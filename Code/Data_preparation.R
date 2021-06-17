@@ -9,11 +9,15 @@ library(readxl)
 library(vegan)
 library(mice)
 
-
 # Parameters
-
+correct_tree_C = TRUE
+set.seed(101)
 for (by_region in c(TRUE, FALSE)) {
-  for (scale_within_land_use in c(TRUE, FALSE)) {
+#by_region = FALSE
+for (scale_within_land_use in c(TRUE, FALSE)) {
+#scale_within_land_use = TRUE
+    print(scale_within_land_use)
+    env_corr ='env_corr'
     for (env_corr in c("env_corr", "")) {
       # ###################### #
       ####    TO DO LIST    ####
@@ -79,7 +83,7 @@ for (by_region in c(TRUE, FALSE)) {
       scale01 <- function(x) {
         x <- as.numeric(x)
         max <- quantile(x, 0.975, na.rm = T)
-        min <- quantile(x, 0.025, na.rm = T)
+        min <- min(x, na.rm = T)
         y <- (x - min) / (max - min)
         y[y < 0] <- 0
         y[y > 1] <- 1
@@ -88,7 +92,6 @@ for (by_region in c(TRUE, FALSE)) {
 
       # Calculates Acoustic diversity
       if (!exists("Acoustic_diversity_by_plot")) source(file = "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Acoustic_diversity.R")
-
 
       # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% #
       ##### CREATION OF INDICATOR DATASETs #####
@@ -125,7 +128,7 @@ for (by_region in c(TRUE, FALSE)) {
       # Abundances and richness for plants and birds
       Abundance_forests <- fread("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Forest_data/Forest_autotrophs_birds.txt")
       Abundance_forests[, Species := gsub("_$", "", Species)]
-      Abundance_grasslands <- fread("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Data/Raw_data/New_synthesis_data/Dataset_clean.txt")
+      Abundance_grasslands <- fread("/Users/Margot/Desktop/Research/Senckenberg/Data/Raw_data/Abundances/Dataset_clean.txt")
       Abundance_grasslands <- Abundance_grasslands[Group_broad %in% c("Plant", "Birds"), ]
       Abundance_grasslands_forests0 <- rbind(
         Abundance_grasslands[, c("Species", "Plot", "Year", "Group_broad", "value")],
@@ -148,7 +151,7 @@ for (by_region in c(TRUE, FALSE)) {
 
       Edible_charismatic_richness <- Abundance_grasslands_forests[value > 0,
         list(
-          Cover_edible = sum(value[Species %in% all_edibles_plants]) + sum(value[Species %in% common_edibles_plants]),
+          Cover_edible = sum(value[Species %in% all_edibles_plants]), #+ sum(value[Species %in% common_edibles_plants]),
           # Cover_mushrooms = sum(value[Species %in% all_edibles_mushrooms]),
           # Redlist = calc_redlist(Species, value, Region),
           Charismatic_plants = sum(value[Species %in% charismatic_plants]),
@@ -184,9 +187,7 @@ for (by_region in c(TRUE, FALSE)) {
       Fungi_edible_cast <- Fungi_cast[, .SD, .SDcols = c("Plot", unique(Fungi_species_edible$Species))]
 
       # Export edible fungi abundance
-      fwrite(Fungi_edible_cast, "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Edible_fungi_presence.csv")
-
-
+      fwrite(Fungi_edible_cast, "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/Edible_fungi_presence.csv")
 
       Edible_charismatic_richness <- merge(Edible_charismatic_richness,
         data.table("Plot" = Fungi_edible_cast$Plot, "Fungi_richness" = apply(Fungi_edible_cast[, -1], 1, specnumber)),
@@ -197,7 +198,7 @@ for (by_region in c(TRUE, FALSE)) {
       #### 1. Forest ####
       # Tweaking to match variable names
 
-      ES_forests <- data.table(read_excel("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Forest_data/ALL_forest_EFES.xlsx"))
+      ES_forests <- fread("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Forest_data/Timber_Prices/24367_Raw_data_Multiple_forest_attributes__1.1.16/24367.txt")[, c('Plot', 'Plot0', 'Exploratory', 'Trees_C_storage')]
       ES_forests[, c("Plot_ID", "Plot", "Exploratory") := list(Plot, Plot0, substr(Exploratory, 1, 1))]
 
       Openness_forests <- fread("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Forest_data/25146_Canopy_openness_of_forest_EPs_2014_1.2.8/25146.txt")
@@ -218,13 +219,13 @@ for (by_region in c(TRUE, FALSE)) {
       # Firewood: https://fbg-amberg.de/brennholz/brennholzboerse
       # https://fbg-amberg.de/holzvermarktung/holzpreise
 
-      Timber_density <- data.table(
-        "Species" = c(
-          "Picea_abies", "Pinus_sylvestris", "Fagus_sylvatica", "Quercus_spec",
-          "Acer_pseudoplatanus", "Fraxinus_excelsior", "Tilia_spec", "Populus_tremula", "Salix_caprea", "Carpinus_betulus"
-        ), # completed with Holz handbuch and https://cedarstripkayak.wordpress.com/lumber-selection/162-2/
-        "Density" = c(0.43, 0.49, 0.66, 0.68, 0.5, 0.71, 0.56, 0.42, 0.5, 0.67)
-      ) # Density in 10^3 kg/m3
+    #  Timber_density <- data.table(
+    #    "Species" = c(
+    #      "Picea_abies", "Pinus_sylvestris", "Fagus_sylvatica", "Quercus_spec",
+    #      "Acer_pseudoplatanus", "Fraxinus_excelsior", "Tilia_spec", "Populus_tremula", "Salix_caprea", "Carpinus_betulus"
+    #    ), # completed with Holz handbuch and https://cedarstripkayak.wordpress.com/lumber-selection/162-2/
+    #    "Density" = c(0.43, 0.49, 0.66, 0.68, 0.5, 0.71, 0.56, 0.42, 0.5, 0.67)
+    #  ) # Density in 10^3 kg/m3
       Timber_prod[, c("Exploratory", "Plot") := list(strsplit(Exploratory, 1, 1), EP)]
 
       # We need to weight timber price based on the average DBH of each species.
@@ -268,7 +269,7 @@ for (by_region in c(TRUE, FALSE)) {
 
       # Merge all the data into one single dataframe
       Timber_data <- merge.data.table(Timber_prod, Dbh_based_price[, list(Species, Plot, "Price_timber" = Price_timber, "Price_industry" = Industrial, "Price_firewood" = Firewood)], by = c("Species", "Plot"), all.x = TRUE)
-      Timber_data <- merge.data.table(Timber_data, Timber_density, by = "Species", all.x = TRUE)
+    #  Timber_data <- merge.data.table(Timber_data, Timber_density, by = "Species", all.x = TRUE)
 
       # Note: I calculate separately market value and volume here, because the wood volume and biomass will be corrected for environment but not the market value (i.e. tot timber production)
       # I hypothesise that 80% of the marketable species can be used as timber and the rest is used for firewood?
@@ -277,7 +278,7 @@ for (by_region in c(TRUE, FALSE)) {
         Timber_volume = 0.8 * sum(VOL[!is.na(Price_timber)]), # Wood volume of marketable species in m3/ha
         Firewood_volume = sum(VOL) - 0.8 * sum(VOL[!is.na(Price_timber)]),
         Market_value = weighted.mean(Price_timber, VOL, na.rm = T), # Plot-specific market value, weighted by the volume of each wood
-        Biomass = sum(VOL) * weighted.mean(Density, VOL, na.rm = T), # Density for known species weighted by the volume of those species in the plot
+     #   Biomass = sum(VOL) * weighted.mean(Density, VOL, na.rm = T), # Density for known species weighted by the volume of those species in the plot
         Uniqueness_hornbeam = sum(grepl("Carpinus", Species)),
         Uniqueness_main_fagus = sum(Species[BA == max(BA)] == "Fagus_sylvatica")
       ),
@@ -287,14 +288,18 @@ for (by_region in c(TRUE, FALSE)) {
 
 
       # Merge
-      ES_forests <- merge.data.table(ES_forests[, c("Plot", "Exploratory", "Trees.C_storage")], Forest_structure[, c("Plot", "dbh_MW_EP")])
+      ES_forests <- merge.data.table(ES_forests[, c("Plot", "Exploratory", "Trees_C_storage")], Forest_structure[, c("Plot", "dbh_MW_EP")])
       ES_forests <- merge.data.table(ES_forests, Openness_forests[, c("Plot", "openness_mean")])
       ES_forests <- merge.data.table(ES_forests, Edible_charismatic_richness)
       ES_forests <- merge.data.table(ES_forests, Moss_cover[, c("Cover_bryophytes", "Plot")], all.x = T)
       ES_forests <- merge.data.table(ES_forests, Timber_data_plot[, c(
-        "Plot", "Market_value", "Timber_volume", # 'Tree.C_stock',
+        "Plot", "Market_value", "Timber_volume", 'Wood_volume', # 'Tree.C_stock',
         "Firewood_volume"
       )])
+      
+      if (correct_tree_C == TRUE){
+      ES_forests[, Trees.C_storage := Trees_C_storage*(1-Firewood_volume/Wood_volume)*5/4]}
+      
       ES_forests <- merge.data.table(ES_forests, Forest_classif[, c("Plot", "Classif")])
       ES_forests <- merge.data.table(ES_forests, Acoustic_diversity_by_plot[, .SD, .SDcols = c("ADI", "NDSI", "Plot")], all.x = T)
 
@@ -304,7 +309,7 @@ for (by_region in c(TRUE, FALSE)) {
 
       # Fill missing values
       ES_forests <- cbind(
-        ES_forests[, mice::complete(mice(.SD, m = 10)), .SDcols = colnames(ES_forests)[!(colnames(ES_forests) %in% c("Exploratory", "Market_value"))], by = Exploratory],
+        ES_forests[, mice::complete(mice(.SD, m = 10, seed = 101)), .SDcols = colnames(ES_forests)[!(colnames(ES_forests) %in% c("Exploratory", "Market_value"))], by = Exploratory],
         Timber_data_plot[, c("Market_value", "Uniqueness_hornbeam", "Uniqueness_main_fagus")]
       )
 
@@ -321,7 +326,7 @@ for (by_region in c(TRUE, FALSE)) {
 
 
       # Impute missing values
-      ES_grasslands <- ES_grasslands[, mice::complete(mice(.SD, m = 10)), .SDcols = colnames(ES_grasslands)[colnames(ES_grasslands) != "Exploratory"], by = Exploratory]
+      ES_grasslands <- ES_grasslands[, mice::complete(mice(.SD, m = 10, seed = 101)), .SDcols = colnames(ES_grasslands)[colnames(ES_grasslands) != "Exploratory"], by = Exploratory]
       ES_grasslands$Uniqueness_juniperus <- as.numeric(ES_grasslands$Uniqueness_juniperus)
       ES_grasslands <- merge(ES_grasslands, Classif)
 
@@ -331,20 +336,43 @@ for (by_region in c(TRUE, FALSE)) {
 
       ## Crop plant communities simulations ##
       arable_weeds <- fread("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Agricultural_data/Arable_weeds_to_use.txt")
-
+      arable_weeds[, Species := Species_correct]
+      arable_birds = fread("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Agricultural_data/Arable_birds_to_use.txt")
+      
       Abundance_crops <- data.table(Crop_classif[, c("Plot", "LU", "Region")])
-      simulate_crop_weeds <- function(weed_table) {
-        weed_table[, tmp := sample(1:100, nrow(weed_table), replace = TRUE)]
-        weed_table[, keep := tmp < Frequency]
-        spe <- weed_table[keep == TRUE, unique(Species)]
-        return(spe)
+      
+      simulate_crop_weeds <- function(species_table, community_type = FALSE) {
+        if (community_type == TRUE){
+          com_type = sample(species_table$Community_level_code, 1)
+          species_table = species_table[Community_level_code == com_type,]
+          print(nrow(species_table))
+        }
+        
+        if (is.null(species_table$Cover)) {species_table$Cover = 1 }
+        
+        species_table[, c('Cover', 'Frequency') := list(as.numeric(Cover), as.numeric(Frequency))]
+        species_table2 = species_table[, list(Cover = mean(Cover), Frequency = mean(Frequency))
+                                      , by = Species]
+        
+        species_table2[, tmp := sample(1:100, nrow(species_table2), replace = TRUE)]
+        species_table2[, keep := tmp < Frequency]
+        cover <- species_table2[keep == TRUE, Cover]
+        names(cover) <- species_table2[keep == TRUE, Species]
+        return(cover)
       }
       for (i in 1:600) {
-        spe <- simulate_crop_weeds(arable_weeds)
-        Abundance_crops[i, (spe) := 1]
+        weeds <- simulate_crop_weeds(arable_weeds)
+        birds <- simulate_crop_weeds(arable_birds)
+        for (wi in 1:length(weeds)){
+          Abundance_crops[i, (names(weeds[wi])) := wi]}
+        for (wi in 1:length(birds)){
+          Abundance_crops[i, (names(birds[wi])) := wi]}
       }
+      
       Abundance_crops <- melt.data.table(Abundance_crops, id.vars = c("Plot", "LU", "Region"), variable.name = "Species", value.name = "value")
-      Abundance_crops$Group_broad <- "plant"
+      Abundance_crops[Species %in% arable_weeds$Species, Group_broad := "plant"]
+      Abundance_crops[Species %in% arable_birds$Species, Group_broad := "bird"]
+      
       Abundance_crops[is.na(value), value := 0]
 
       Abundance_crops[, Species := gsub(" ", "_", Species)]
@@ -416,9 +444,9 @@ for (by_region in c(TRUE, FALSE)) {
 
       All_abundances_cast <- data.table(dcast(All_abundances_aggr, Plot + Region + LU + Classif ~ Species, value.var = "value", fill = 0))
 
-      fwrite(All_abundances_cast[, .SD, .SDcols = c("Plot", all_plants)], "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Plants_abundance.csv")
-      fwrite(All_abundances_cast[, .SD, .SDcols = c("Plot", most_charismatic_birds)], "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Charismatic_birds_abundance.csv")
-      fwrite(All_abundances_cast[, .SD, .SDcols = c("Plot", all_birds)], "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Birds_abundance.csv")
+      fwrite(All_abundances_cast[, .SD, .SDcols = c("Plot", all_plants)], "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/Plants_abundance.csv")
+      fwrite(All_abundances_cast[, .SD, .SDcols = c("Plot", most_charismatic_birds)], "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/Birds_charism_abundance.csv")
+      fwrite(All_abundances_cast[, .SD, .SDcols = c("Plot", all_birds)], "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/Birds_abundance.csv")
 
 
       #### Finish Crop output###
@@ -427,8 +455,8 @@ for (by_region in c(TRUE, FALSE)) {
         Plant_richness = specnumber(value[Species %in% all_plants]),
         Bird_richness = specnumber(value[Species %in% all_birds]),
         Fungi_richness = 0,
-        Cover_edible = sum(value[Species %in% all_edibles_plants]) * 10,
-        Charismatic_plants = sum(value[Species %in% charismatic_plants]) * 10
+        Cover_edible = sum(value[Species %in% all_edibles_plants]),
+        Charismatic_plants = sum(value[Species %in% charismatic_plants])
       ), by = "Plot"]
       ES_crops <- merge(ES_crops, Edible_charismatic_crops, by = "Plot")
 
@@ -474,8 +502,8 @@ for (by_region in c(TRUE, FALSE)) {
       Climate_data[, Plot := plotID]
       Climate <- Climate_data[, list("Mean_Temp" = mean(Ta_200, na.rm = T), "Mean_precip" = mean(precipitation_radolan, na.rm = T)), by = "Plot"]
 
-      env_final <- merge.data.table(All_soil_data_f, Climate)
-      env_final[, colnames(env_final) := mice::complete(mice(.SD, m = 10)), .SDcols = colnames(env_final), by = c("Exploratory", "LU")]
+      env_final <- merge.data.table(All_soil_data_f, Climate, all.x = T)
+      env_final[, colnames(env_final) := mice::complete(mice(.SD, m = 10, seed = 101)), .SDcols = colnames(env_final), by = c("Exploratory", "LU")]
 
       # Adds the C stocks to service dataframes
       ES_forests <- merge(ES_forests, env_final[, .SD, .SDcols = c("Plot", "C.stock")])
@@ -494,30 +522,30 @@ for (by_region in c(TRUE, FALSE)) {
         ES_grasslands_corr <- cbind(
           ES_grasslands[, .SD, .SDcols = c("Plot", "Classif", "Uniqueness_juniperus", "Plant_richness", "Bird_richness", "Fungi_richness")],
           ES_grasslands[,
-            lapply(.SD, function(x) {
-              x <- as.numeric(x)
-              r <- .BY[[1]]
-              mod <- lm(x ~ ., data = env_final[Exploratory == r & LU == "G", c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])
-              pred_val <- predict(mod, env_final[Exploratory == r & LU == "G", lapply(.SD, mean), .SDcols = c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")]) + residuals(mod)
-              print(length(pred_val))
-              return(pred_val)
-            }),
-            by = Exploratory,
-            .SDcols = c("Total_flower_cover", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "ADI", "NDSI", "butterfly_abundance", "Productivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")
+                        lapply(.SD, function(x) {
+                          x <- as.numeric(x)
+                          r <- .BY[[1]]
+                          mod <- lm(x ~ ., data = env_final[Exploratory == r & LU == "G", c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])
+                          pred_val <- predict(mod, env_final[Exploratory == r & LU == "G", lapply(.SD, mean), .SDcols = c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")]) + residuals(mod)
+                          print(length(pred_val))
+                          return(pred_val)
+                        }),
+                        by = Exploratory,
+                        .SDcols = c("Total_flower_cover", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "ADI", "NDSI", "butterfly_abundance", "Productivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")
           ]
         )
         ES_forests_corr <- cbind(
           ES_forests[, list(Plot, Market_value, Classif, Uniqueness_hornbeam, Uniqueness_main_fagus, Plant_richness, Bird_richness, Fungi_richness)],
           ES_forests[,
-            lapply(.SD, function(x) {
-              r <- .BY[[1]]
-              x <- as.numeric(x)
-              mod <- lm(x ~ ., data = env_final[Exploratory == r & LU == "W", c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])
-              pred_val <- predict(mod, env_final[Exploratory == r & LU == "W", lapply(.SD, mean), .SDcols = c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")]) + residuals(mod)
-              return(pred_val)
-            }),
-            by = Exploratory,
-            .SDcols = c("sqrtCover_edible", "sqrtCharismatic_plants", "C.stock", "sqrtCover_bryophytes", "Cover_bryophytes", "ADI", "dbh_MW_EP", "openness_mean", "Cover_edible", "Charismatic_plants", "Plant_richness", "Bird_richness", "Timber_volume", "Firewood_volume", "Trees.C_storage")
+                     lapply(.SD, function(x) {
+                       r <- .BY[[1]]
+                       x <- as.numeric(x)
+                       mod <- lm(x ~ ., data = env_final[Exploratory == r & LU == "W", c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])
+                       pred_val <- predict(mod, env_final[Exploratory == r & LU == "W", lapply(.SD, mean), .SDcols = c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")]) + residuals(mod)
+                       return(pred_val)
+                     }),
+                     by = Exploratory,
+                     .SDcols = c("sqrtCover_edible", "sqrtCharismatic_plants", "C.stock", "sqrtCover_bryophytes", "Cover_bryophytes", "ADI", "dbh_MW_EP", "openness_mean", "Cover_edible", "Charismatic_plants", "Plant_richness", "Bird_richness", "Timber_volume", "Firewood_volume", "Trees.C_storage")
           ]
         )
       }
@@ -525,28 +553,28 @@ for (by_region in c(TRUE, FALSE)) {
         ES_grasslands_corr <- cbind(
           ES_grasslands[, .SD, .SDcols = c("Plot", "Classif", "Uniqueness_juniperus", "Plant_richness", "Bird_richness", "Fungi_richness")],
           ES_grasslands[,
-            lapply(.SD, function(x) {
-              x <- as.numeric(x)
-              r <- .BY[[1]]
-              mod <- lm(x ~ ., data = env_final[LU == "G", c("Exploratory", "Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])
-              pred_val <- predict(mod, cbind(env_final[LU == "G", ]$Exploratory, env_final[LU == "G", lapply(.SD, mean), .SDcols = c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])) + residuals(mod)
-              print(length(pred_val))
-              return(pred_val)
-            }),
-            .SDcols = c("Total_flower_cover", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "ADI", "NDSI", "butterfly_abundance", "Productivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")
+                        lapply(.SD, function(x) {
+                          x <- as.numeric(x)
+                          r <- .BY[[1]]
+                          mod <- lm(x ~ ., data = env_final[LU == "G", c("Exploratory", "Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])
+                          pred_val <- predict(mod, cbind(env_final[LU == "G", ]$Exploratory, env_final[LU == "G", lapply(.SD, mean), .SDcols = c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])) + residuals(mod)
+                          print(length(pred_val))
+                          return(pred_val)
+                        }),
+                        .SDcols = c("Total_flower_cover", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "ADI", "NDSI", "butterfly_abundance", "Productivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")
           ]
         )
         ES_forests_corr <- cbind(
           ES_forests[, list(Plot, Market_value, Classif, Uniqueness_hornbeam, Uniqueness_main_fagus, Plant_richness, Bird_richness, Fungi_richness)],
           ES_forests[,
-            lapply(.SD, function(x) {
-              r <- .BY[[1]]
-              x <- as.numeric(x)
-              mod <- lm(x ~ ., data = env_final[LU == "W", c("Exploratory", "Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])
-              pred_val <- predict(mod, cbind(env_final[LU == "W", ]$Exploratory, env_final[LU == "W", lapply(.SD, mean), .SDcols = c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])) + residuals(mod)
-              return(pred_val)
-            }),
-            .SDcols = c("sqrtCover_edible", "sqrtCharismatic_plants", "C.stock", "sqrtCover_bryophytes", "Cover_bryophytes", "ADI", "dbh_MW_EP", "openness_mean", "Cover_edible", "Charismatic_plants", "Plant_richness", "Bird_richness", "Timber_volume", "Firewood_volume", "Trees.C_storage")
+                     lapply(.SD, function(x) {
+                       r <- .BY[[1]]
+                       x <- as.numeric(x)
+                       mod <- lm(x ~ ., data = env_final[LU == "W", c("Exploratory", "Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])
+                       pred_val <- predict(mod, cbind(env_final[LU == "W", ]$Exploratory, env_final[LU == "W", lapply(.SD, mean), .SDcols = c("Mean_Temp", "Mean_precip", "elevation", "Core_depth", "pH", "prop_clay", "TWI")])) + residuals(mod)
+                       return(pred_val)
+                     }),
+                     .SDcols = c("sqrtCover_edible", "sqrtCharismatic_plants", "C.stock", "sqrtCover_bryophytes", "Cover_bryophytes", "ADI", "dbh_MW_EP", "openness_mean", "Cover_edible", "Charismatic_plants", "Plant_richness", "Bird_richness", "Timber_volume", "Firewood_volume", "Trees.C_storage")
           ]
         )
       }
@@ -602,7 +630,7 @@ for (by_region in c(TRUE, FALSE)) {
       # !!!!!!!!!! Problem with estimated productivity < 0. #As a quick fix now, I add the minimum to all values but won't work in the long-term
       ES_grasslands_use[, Productivity := Productivity]
       # ------ in grasslands
-      ES_grasslands_use[, Production_livestock := Productivity * 11] # !!!! Need to check price / unit. Productivity is dt/ha, price is about 110€/t
+      ES_grasslands_use[, Production_livestock := Productivity * 12.3] # !!!! Need to check price / unit. Productivity is dt/ha, price is about 123€/t according to agrarheute
       ES_grasslands_use[, Production_food := 0]
       # ------ in forests:  No food
       ES_forests_use[, Production_food := 0]
@@ -709,7 +737,7 @@ for (by_region in c(TRUE, FALSE)) {
         }), by = .I]
       }
       if (by_region == FALSE) {
-        ES_crops[LU == "Crop", C_stock := ES_grasslands_use[, list(C_stock = 0.8 * mean(C_stock, na.rm = T))]]
+        ES_crops[LU == "Crop", C_stock := ES_grasslands_use[, list(C_stock = 0.72 * mean(C_stock, na.rm = T))]]
       }
 
 
@@ -723,12 +751,13 @@ for (by_region in c(TRUE, FALSE)) {
         "Harvesting_plants",
         "C_stock",
         "Hunting",
-        "Aesthetic_naturalness", "Aesth_diversity_ADI", # LU diversity calculated at landscape level
+        "Aesthetic_naturalness", 
+        "Aesth_diversity_ADI", # LU diversity calculated at landscape level
         # Conservation calculated at landscape level
         "Reg_ID_habitat", "Aesth_uniqueness_charismatic_plants" #' Reg_ID', birds added at landscape level
       )
       all_indicators <- c(
-        "Ric_plants", "Ric_birds", "Aest_diversity_landscape", "Aesth_uniqueness_charismatic_birds",
+        "Ric_plants", "Ric_birds", "Aest_diversity_landscape", "Aesthuniqueness_charismatic_birds",
         "Harvesting_mushrooms",
         "Leisure_forests", "Leisure_grasslands",
         indicators_plot
@@ -746,39 +775,55 @@ for (by_region in c(TRUE, FALSE)) {
         by = "Plot", all = TRUE
       )
 
-
+        All_ES_data_classif2 = copy(All_ES_data_classif)
+        
       if (scale_within_land_use == TRUE) {
         # For richness (for plot-level analyses only) as well as cover of edible and charismatic plants, we rescale between 0 and 1 independently for forests and grasslands
-        All_ES_data_classif[, c("Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, as.numeric), .SDcols = c("Plant_richness", "Bird_richness", "Fungi_richness")]
+        All_ES_data_classif2[, c("Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, as.numeric), .SDcols = c("Plant_richness", "Bird_richness", "Fungi_richness")]
 
         if (by_region == TRUE) {
-          All_ES_data_classif[LU == "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
-            .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Plant_richness", "Bird_richness", "Fungi_richness"), by = Region
+          All_ES_data_classif2[LU == "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
+            .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness"), by = Region
           ]
-          All_ES_data_classif[LU != "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
-            .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Plant_richness", "Bird_richness", "Fungi_richness"), by = Region
+          All_ES_data_classif2[LU != "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Aesthetic_naturalness","Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
+            .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Aesthetic_naturalness","Plant_richness", "Bird_richness", "Fungi_richness"), by = Region
           ]
         }
         if (by_region == FALSE) {
-          All_ES_data_classif[LU == "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
-            .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Plant_richness", "Bird_richness", "Fungi_richness")
+          All_ES_data_classif2[LU == "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
+            .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness")
           ]
-          All_ES_data_classif[LU != "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
-            .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Plant_richness", "Bird_richness", "Fungi_richness")
+          All_ES_data_classif2[LU != "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Aesthetic_naturalness","Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
+            .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness")
           ]
         }
       }
 
       if (by_region == FALSE) {
-        All_ES_data_classif$Region <- "All"
+        All_ES_data_classif2$Region <- "All"
       }
-      fwrite(All_ES_data_classif, paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/All_ES_data_classif", env_corr, "-region", by_region, "-scale_within", scale_within_land_use, ".csv", sep = ""))
+      fwrite(All_ES_data_classif2[, .SD, .SDcols = colnames(All_ES_data_classif2)[!(colnames(All_ES_data_classif2) %in% c('Plant_richness', 'Bird_richness', 'Fungi_richness'))]], 
+             paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif_", env_corr, "_region", by_region, "_scale_within", scale_within_land_use, ".csv", sep = ""))
     }
   }
 }
 
 
+# test
+#a1 = melt(fread('/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif_env_corr_regionFALSE_scale_withinFALSE.csv'), id.vars = c('Plot', 'Region',        'LU',          'Classif',           'Classif2'))[, Data := "a1"]
+#a2 = melt(fread('/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif__regionFALSE_scale_withinTRUE.csv'), id.vars = c('Plot', 'Region',        'LU',          'Classif',           'Classif2'))[, Data := "a2"]
+#a3 = melt(fread('/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif_env_corr_regionFALSE_scale_withinTRUE.csv') , id.vars = c('Plot', 'Region',        'LU',          'Classif',           'Classif2'))[, Data := "a3"]#
 
+#a4 = melt(fread('/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif__regionTRUE_scale_withinFALSE.csv'), id.vars = c('Plot', 'Region',        'LU',          'Classif',           'Classif2'))[, Data := "a4"]
+#a6 = melt(fread('/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif__regionTRUE_scale_withinTRUE.csv'), id.vars = c('Plot', 'Region',        'LU',          'Classif',           'Classif2'))[, Data := "a6"]
+#a5 = melt(fread('/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif_env_corr_regionTRUE_scale_withinFALSE.csv'), id.vars = c('Plot', 'Region',        'LU',          'Classif',           'Classif2'))[, Data := "a5"]
+#a7 = melt(fread('/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif_env_corr_regionTRUE_scale_withinTRUE.csv'), id.vars = c('Plot', 'Region',        'LU',          'Classif',           'Classif2'))[, Data := "a7"]
+
+#all = rbindlist(list(a1, a2, a3, a4, a5, a6, a7))
+#all[, value := scale01(value), by = c('variable', 'Data' )]
+#all_cast = dcast(all,  Plot + Region+ LU + Classif +  Classif2 + variable ~ Data, value.var = 'value')
+
+#ggplot(all_cast[LU != 'Crop',], aes(a4, a5, color = Region, shape = LU)) + geom_point() + facet_wrap(~variable)
 
 
 All_ES_plot <- melt(All_ES_data_classif, id.vars = c("Plot", "Region", "LU", "Classif", "Classif2"))
@@ -803,39 +848,36 @@ ggplot(All_ES_plot, aes(
   ) +
   theme(legend.position = "bottom")
 
-All_ES_data_classif2 <- copy(All_ES_data_classif)
+All_ES_data_classif2 <- copy(All_ES_data_classif_not_scaled)
 
 # if (plot_level_tests = TRUE){
 All_ES_data_classif2[, colnames(All_ES_data_classif2)[6:19] := lapply(.SD, as.numeric), .SDcols = colnames(All_ES_data_classif2)[6:19]]
-All_ES_data_classif2[, colnames(All_ES_data_classif2)[c(6:9, 10:15)] := lapply(.SD, function(x) {
-  Max <- quantile(x, 0.975)
-  Min <- quantile(x, 0.025)
+All_ES_data_classif2[, colnames(All_ES_data_classif2)[c(6:19)] := lapply(.SD, function(x) {
+
+  Max <- quantile(x, 0.975, na.rm = F)
+  Min <- quantile(x, 0.025, na.rm = F)
   y <- (x - Min) / (Max - Min)
   y[y < 0] <- 0
   y[y > 1] <- 1
-  print(Max)
-  print(Min)
-  print(y)
   return(y)
-}), .SDcols = colnames(All_ES_data_classif)[c(6:9, 10:15)], by = "Region"]
+}), .SDcols = colnames(All_ES_data_classif)[c(6:19)], by = "Region"]
 
 All_ES_scaled_MF <- cbind(
   All_ES_data_classif2[, c(1:5)],
   All_ES_data_classif2[, list(
     Ric = (Plant_richness + Bird_richness) / 2,
     Hunting = Hunting,
-    Harvesting = (Harvesting_plants + Fungi_richness) / 2,
+    Harvesting = (Harvesting_plants) / 2,
     Production_food = Production_food,
     Production_livestock = Production_livestock,
     Production_timber = Production_timber,
     Production_energy = Production_energy,
     Aesthetic = (Aesthetic_naturalness + (0.5 + Aesth_diversity_ADI) / 2) / 2,
-    #  (Leisure_grasslands + Leisure_forests)/2,
     Reg_id = (Aesth_uniqueness_charismatic_plants),
     C_stock = C_stock
   )]
 )
-Demand <- fread("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Demand.csv")
+#Demand <- fread("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/Demand.csv")
 groups <- data.table(Group = unique(Demand$Group))
 whole_data <- data.table(groups[, All_ES_scaled_MF[], by = Group])
 List_scenario_MF <- apply(Demand, 1, function(x) {
@@ -902,9 +944,10 @@ All_env_data_classif <- merge(Classif[, c("Region", "Plot", "LU")],
   by = c("Plot"), all = TRUE
 )
 All_env_data_classif$Core_depth <- as.numeric(All_env_data_classif$Core_depth)
-# All_env_data_classif[, c('Core_depth','pH', 'elevation', 'TWI', 'prop_clay', 'Mean_Temp', 'Mean_precip') :=
+All_env_data_classif = merge(All_env_data_classif, Grassland_LUI[, c('Plot', 'LUI_2007to12')], all.x = T)
+#All_env_data_classif[, c('Core_depth','pH', 'elevation', 'TWI', 'prop_clay', 'Mean_Temp', 'Mean_precip') :=
 #                       lapply(.SD, na.aggregate),
-#                     by = Region, .SDcols = c('pH', 'elevation', 'Cstock0.10', 'TWI', 'prop_clay', 'Mean_Temp', 'Mean_precip')]
+#                     by = Region, .SDcols = c('pH', 'elevation', 'TWI', 'prop_clay', 'Mean_Temp', 'Mean_precip')]
 All_env_data_classif[, c("Core_depth", "pH", "elevation", "TWI", "prop_clay", "Mean_Temp", "Mean_precip") :=
   lapply(.SD, function(x) {
     x[is.na(x)] <- rnorm(length(x[is.na(x)]), mean(x, na.rm = T), sd(x, na.rm = T) / 5)
@@ -912,11 +955,13 @@ All_env_data_classif[, c("Core_depth", "pH", "elevation", "TWI", "prop_clay", "M
   }),
 by = Region, .SDcols = c("Core_depth", "pH", "elevation", "TWI", "prop_clay", "Mean_Temp", "Mean_precip")
 ]
-fwrite(All_env_data_classif, "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/All_env_data.csv")
+
+All_env_data_classif[is.na(LUI_2007to12), LUI_2007to12 := 0]
+fwrite(All_env_data_classif, "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/environments_new.csv")
 
 
 
-env_matrix <- as.matrix(All_env_data_classif[, -c(1:3)])
+env_matrix <- as.matrix(All_env_data_classif[, -c(1:3, 11)])
 rownames(env_matrix) <- All_env_data_classif$Plot
 
 env_pca <- dudi.pca(env_matrix[All_env_data_classif$LU != "Crop", ], scannf = FALSE, nf = 3)
@@ -925,10 +970,7 @@ ind.sup.coord <- suprow(env_pca, env_matrix[All_env_data_classif$LU == "Crop", ]
 
 env_pca <- rbind(env_pca$li, ind.sup.coord)
 env_pca$Plot <- rownames(env_pca)
-fwrite(env_pca, "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Env_pca.csv")
-
-
-
+fwrite(env_pca, "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/environments_pca.csv")
 
 
 
@@ -992,12 +1034,13 @@ colnames(Demand) <- c('ID', 'Cluster',
 
 Scenarios_demand <- Demand[, .SD, .SDcols = colnames(Demand)[!(colnames(Demand) %in% c("REMOVE", 'ID', 'Group'))]]
 Scenarios_demand[, c("Production_livestock","Production_food", "Ric",
-                     "C_stock", "Production_timber", "Production_energy",  "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting") := lapply(.SD, as.numeric), .SDcols = c("Production_livestock","Production_food", "Ric",
+                     "C_stock", "Production_timber", "Production_energy",  "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting") := 
+                   lapply(.SD,, as.numeric), 
+          .SDcols = c("Production_livestock","Production_food", "Ric",
                  "C_stock", "Production_timber", "Production_energy",  "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting")]
-Scenarios_demand[, c("Production_livestock","Production_food", "Ric",
-                     "C_stock", "Production_timber", "Production_energy",  "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting")  := lapply(.SD, function(x){x/rowSums(.SD)})
-                 , .SDcols = c("Production_livestock","Production_food", "Ric",
-                                                                        "C_stock", "Production_timber", "Production_energy",  "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting")]
+Scenarios_demand[, c("Production_livestock","Production_food", "Ric","C_stock", "Production_timber", "Production_energy",  "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting") ] =
+  Scenarios_demand[, c("Production_livestock","Production_food", "Ric","C_stock", "Production_timber", "Production_energy",  "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting") ] /
+  rowSums(Scenarios_demand[, c("Production_livestock","Production_food", "Ric","C_stock", "Production_timber", "Production_energy",  "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting") ])
 
 Scenarios_demand_melt0 <- melt.data.table(Scenarios_demand, variable.name = "Service_name", value.name = "current_demand", id.vars = c('Cluster', 'Stakeholder'))
 
@@ -1010,7 +1053,7 @@ Demand_all_cast = dcast(rbind(Demand_cluster, Demand_stakeholder), Category+Grou
 dpca_demand = dudi.pca(df = Demand[, lapply(.SD, as.numeric), .SDcols = c("Production_livestock", "Production_food", "Ric", "C_stock", "Production_timber", "Production_energy", "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting")], scannf = FALSE, nf = 4)
 fviz_pca(dpca)
 
-All_ES_data_classif = fread(paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/All_ES_data_classif", env_corr, "-region", by_region, "-scale_within", scale_within_land_use, ".csv", sep = ""))
+All_ES_data_classif = fread(paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/All_ES_data_classif", env_corr, "-region", by_region, "-scale_within", scale_within_land_use, ".csv", sep = ""))
 
 All_ES_data_classif[, c('Ric', 'Harvesting', 'Aesthetic', 'Reg_id', 'Leisure')
                         :=
@@ -1046,72 +1089,4 @@ Power[, Group := dplyr::recode(Group,
 Power[, Region := dplyr::recode(Region, "SA" = "A", "SCH" = "S", "HAI" = "H")]
 
 demand_power <- merge.data.table(Demand_all_cast, Power[, c("Region", "Group", "Perceived_influence")], by = "Group", all.x =  T)
-demand_power_all_regions<- demand_power[, lapply(.SD, mean), by = c("Group", 'Category'), .SDcols = colnames(demand_power)[c(3:13, 15)]][, Region := "All"]
-
-demand_power_combined <- rbind(demand_power, demand_power_all_regions)
-fwrite(demand_power_combined, "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Demand_Power.csv")
-
-
-# Availability
-Availability <- data.table(read_excel("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Stakeholders\ weightings/Data_availability.xlsx"))
-Availability[, Group := dplyr::recode(Group,
-  "Agriculture" = "Agric",
-  "Economy" = "Econ",
-  "Local heritage associations" = "Loc_her_asso",
-  "Nature conservation association" = "Nat_cons_asso", "Policy & Administration" = "Policy_admin",
-  "Regional development programs" = "Reg_dev_prog"
-)]
-Availability <- Availability[, -2]
-colnames(Availability) <- c(
-  "Region", "Group", "Production_livestock", "Production_food", "Ric", "C_stock",
-  "Production_timber", "Production_energy", "Energy_techno", "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting"
-)
-Availability_melt <- melt(Availability, id.vars = c("Group", "Region"))
-Availability_melt[, value := as.numeric(value)]
-Availability_melt[, available_enough := ifelse(value > 2, "available", "not_available")]
-
-ggplot(Availability_melt, aes(y = value, x = Group, fill = Region)) +
-  geom_jitter(width = 0.2, height = 0.1, alpha = 0.5) +
-  facet_wrap(~variable, ncol = 3) +
-  geom_boxplot()
-
-ggplot(Availability_melt, aes(y = value, x = variable, fill = Region)) +
-  geom_jitter(width = 0.2, height = 0.1, alpha = 0.5) +
-  geom_boxplot()
-
-Availability2 <- dcast.data.table(Availability_melt[!is.na(available_enough), .N, by = c("Group", "Region", "variable", "available_enough")], Group + Region + variable ~ available_enough, value.var = "N", fill = 0)
-Availability2[, count := rowSums(.SD, na.rm = T), .SDcols = c("available", "not_available")]
-
-# For overall availability perception
-Availability_of_ES <- Availability2[, list(endangered = sum(not_available) / sum(count)), by = c("variable", "Region")]
-# Availability_of_ES = Availability_of_ES[endangered == TRUE & variable != 'Energy_techno' ,]
-
-Availability_of_ES_overall <- Availability2[, list(endangered = sum(not_available) / sum(count)), by = c("variable")][, Region := "All"]
-# Availability_of_ES_overall = Availability_of_ES_overall[endangered == TRUE & variable != 'Energy_techno' ,][,Region := 'All']
-
-
-
-fwrite(
-  rbind(Availability_of_ES, Availability_of_ES_overall),
-  "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Availability.csv"
-)
-
-
-# Detailed per group
-
-Availability2[, prop_strict := ifelse(count > 2, ifelse(is.na(available), 0, available / count), NA)]
-Availability2[, prop := ifelse(is.na(available), 0, available / count)]
-Availability2[, prop01 := ifelse(prop > 0.5, 1, 0)]
-Availability2_per_group <- Availability2[, list(
-  prop = mean(prop, na.rm = T),
-  prop_strict = mean(prop_strict > 0.5, na.rm = T),
-  prop01 = mean(prop01, na.rm = T)
-), by = c("Group", "Region")]
-
-Availability_to_use <- dcast(Availability2, Group + Region ~ variable, value.var = "prop01")
-colnames(Availability_to_use) <- c(
-  "Group", "Region", "Production_livestock", "Production_food", "Ric", "C_stock",
-  "Production_timber", "Production_energy", "", "Harvesting",
-  "Aesthetic", "Reg_id", "Leisure", "Hunting"
-)
-Availability_to_use[is.na(Availability_to_use)] <- -1
+demand_power_all_regions<- demand_power[, lapply(.SD, mean), by = c("G

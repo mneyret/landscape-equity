@@ -1,7 +1,7 @@
 library(tidyr)
 library(mgcv)
 Ab_plants = fread(
-  '/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Landscape_simulation/data/Plants_abundance.csv'
+  '/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/Plants_abundance.csv'
 )
 
 

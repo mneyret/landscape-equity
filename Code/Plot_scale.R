@@ -1,4 +1,4 @@
-es_data <- es_data_raw
+es_data  = copy(es_data_raw)
 
 # Extract correlation matrix
 corrtest_mat = corr.test(es_data[, c(4:8, 11:13)])
@@ -8,7 +8,6 @@ a = matrix(paste(round(corrtest_mat$r, 2),
                                ifelse(corrtest_mat$p> 0.001, '**', '***'
                                )))), nrow = 8)
 colnames(a) = rownames(a) = colnames(corrtest_mat$r)
-#View(a)
 
 if(environmental_correction == TRUE){
   es_env_melt = melt(es_data[env_data, on = 'Plot'], measure.vars = services_all)
@@ -17,11 +16,9 @@ if(environmental_correction == TRUE){
   es_data[, (services_all) := dcast.data.table(es_env_melt, Plot ~ variable, value.var = 'value_cor')[, ..services_all]]
 }
 
-
-
+s
 data_plot  <- es_data[, .SD, .SDcols=-c('Org_C_stock_0')]
 
-#data_plot[, (services_all) := lapply(.SD, function(x){(x-min(x))/(max(x)-min(x))}), by = Exploratory, .SDcols = services_all ]
 data_plot = data_plot[, `:=` (Aesthetic = (Total_flower_cover + butterfly_abundance + ric_birds)/3, 
                               Richness =(ric_tot + is.redlist)/2)]
 
@@ -54,9 +51,6 @@ to_print = data_plot_melt[, list(mean = mean(value), sd = sd(value)), by = list(
 to_print = merge(data_plot_letters, to_print)
 to_print[, to_print := paste(round(mean, 1), " +/- ", round(sd, 1), ' (', gsub(' ', '', Letter), ')', sep = "")]
 
-#View(dcast(to_print, pretty_variables+luiclass ~ Region))
-
-
 gg_box = ggplot(data_plot_melt, aes( value, x = Region, fill = luiclass)) + 
   facet_wrap(~ pretty_variables, nrow = 4) +
   theme_bw() +
@@ -66,17 +60,4 @@ gg_box = ggplot(data_plot_melt, aes( value, x = Region, fill = luiclass)) +
   geom_boxplot(position = position_dodge2(width = 1))
 
 if(saveplots){ggsave(plot = gg_box,  paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/boxplot', environmental_correction,'_lui', lui_class_method, '.pdf'), collapse = ""), width = 10)}
-
-#data_plot_stars = data_plot_melt[, model_letters(value, env, Exploratory, type = 'continuous'), 
-#                                 by = list(variable)]
-#gg_continuous =  ggplot(data_plot_melt[data_plot_melt$env > -2], aes( value, x = env, fill = Exploratory, color = Exploratory)) + 
-#  facet_wrap(variable~  luiclass) +
-#  theme_bw() +
-#  scale_fill_brewer(palette = "Accent") +
-#  scale_color_brewer(palette = "Accent") +
-#  geom_smooth(span = 0.8, method = 'lm') + geom_point()
-
-#if(saveplots){ggsave(plot = gg_continuous, '/Users/Margot/Desktop/Research/Senckenberg/Analysis/Results/lmplot_raw.pdf', width = 10)}
-
-
 

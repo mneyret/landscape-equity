@@ -31,50 +31,10 @@ all_corr_plot = ggplot(all_corr, aes(x = Var1, y = Var2, fill = correlation, siz
   theme(legend.position = 'bottom', legend.direction = 'horizontal', axis.text.x = element_text(angle = 45, hjust = 1))
 
 if(saveplots){
-  #ggsave(plot = all_corr_plot, paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/corrplot_envcorr', environmental_correction,'_lui', lui_class_method, '_plots', no_plots, '_', method_within_landscape, '_method', method, threshold_to_use, '.svg'), collapse = ""), width = 7, height = 3.5)
   ggsave(plot = all_corr_plot, paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/corrplot_envcorr', environmental_correction,'_lui', lui_class_method, '_plots', no_plots, '_', method_within_landscape, '_method', method, threshold_to_use, '.pdf'), collapse = ""), width = 7, height = 3.5)
 }
 
 }
-##### Ternary plots w ggtern ####
-# Build a seperate graphic for each Order and title
-# mod1 = lm(value ~ poly(low, med, degree= 2) + Explo, data = data_average_melt[data_average_melt$variable == 'Ric_Aes' ,])
-# summary(mod1)
-#
-# unique(data_average_melt$variable)
-# plots <- lapply(unique(data_average_melt$nservices), function(o) {
-#   ggtern(data = data_average_melt[data_average_melt$nservices ==  o,]
-#          , aes(x = low, y =  med, z = high, value = value)) +
-#     labs( x       = "",
-#           xarrow  = "",
-#           y       = "",
-#           yarrow  = "",
-#           z       = "",
-#           zarrow  = "") +
-#     facet_nested(cols = vars(pretty_variables), rows = vars(nservices, Region), switch = 'y') +
-#     scale_T_continuous(labels=NA) +
-#     scale_L_continuous(labels=NA) +
-#     scale_R_continuous(labels=NA) +
-#     theme(strip.text.x = element_text(size = 8)) +
-#     stat_interpolate_tern(aes(color=..level..),
-#                           formula = value ~ poly(x, y, degree = 2), #family = "binomial", ,
-#                           method = 'glm',
-#                           method.args = list(family = "binomial"),# weights = data_average_melt[data_average_melt$nservices ==  o,]$nservices_num),
-#                           expand = 1, bins = 500, base = 'identity') +
-#     geom_point(size = 0.6, alpha = 0.1) +
-#     scale_color_gradientn(colors = col2(50), name = "Multifunctionality", limits = c(0,1)) +
-#     theme_bw()
-# })
-# grobs = lapply(plots, ggplotGrob)
-# gg = ggtern::grid.arrange(grobs = grobs, ncol = 1,  align = "v", axis = "l")
-# if(saveplots){
-#   ggsave(plot = gg, filename =  paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/TESTid', environmental_correction,'_lui', lui_class_method, '_plots', no_plots, '_', method_within_landscape, '_method', method, threshold_to_use, '2_binom_class.pdf'), collapse = ""), width = 20, height = 10)
-# }
-
-
-##### Ternary plots manual #####
-# library(compositions)
-#data_average_melt_ilr = data_average_melt[, c("V1", "V2") := data.table(ilr(data.frame(low, med, high)))]
 
 add_padding = function(x, padding = 0.1){
   y1 = scale(x, center = TRUE, scale = TRUE)
@@ -208,95 +168,11 @@ interpolate_tern = function(data_to_plot, tern = TRUE){
  ggsave(plot = gg, filename =  paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/MEAN_SD', environmental_correction,'_lui', lui_class_method, '_plots', no_plots, '_', method_within_landscape, '_method', method, threshold_to_use, '2.pdf'), collapse = ""), width = 10, height = 12)
 }
 
- # End decomment
-
-#### Mean-sd plots ####
-### Linear
-#gg_mean_sd_linear = ggplot(all_res[!is.na(all_res$facet),], aes(predicted, x = x, ymin = conf.low , ymax = conf.high, group = group, color = group, fill = group)) +
-#  facet_grid(facet ~ variable) +  
-#  geom_smooth(se = F, span = 0.05) + 
-#  geom_ribbon(alpha = 0.2, color = NA) + 
-#  theme_bw() + 
-#  xlab('Mean LUI') +
-#  ylab('Multifunctionality') +
-#  scale_colour_manual(name = 'Standard deviation', values = my_palette) +
-#  scale_fill_manual(name = 'Standard deviation', values = my_palette)
-
-# meansd_table = data_average_melt[, as.list(data.table(
-#   ggpredict(
-#     lm(value ~ (lui_mean + I(lui_mean^2))*(lui_sd+I(lui_sd^2))*Region),
-#     c('lui_mean', 'lui_sd', 'Region')))), by = list(pretty_variables, nservices)]
-# my_palette <- brewer.pal(name="Spectral",n=11)[c(4, 8, 10)]
-# plots <- lapply(unique(data_average_melt$nservices), function(o) {
-#   ggplot(meansd_table[meansd_table$nservices ==  o,], aes(predicted, x = x, ymin = conf.low , ymax = conf.high, group = group, color = group, fill = group)) +
-#     facet_nested(cols = vars(pretty_variables), rows = vars(nservices, facet), switch = 'y') +
-#     geom_smooth(se = F, span = 0.05) + 
-#     geom_ribbon(alpha = 0.2, color = NA) + 
-#     theme_bw() + 
-#     xlab('Mean LUI') +
-#     ylab('Multifunctionality') +
-#     scale_colour_manual(name = 'Standard deviation', values = my_palette) +
-#     scale_fill_manual(name = 'Standard deviation', values = my_palette)
-# })
-# grobs = lapply(plots, ggplotGrob)
-# gg_mean_sd_linear = grid.arrange(grobs = grobs, ncol = 1)
-# 
-# if(saveplots){
-#   ggsave(plot = gg_mean_sd_linear, file = paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/ggmeansdlinear_', environmental_correction,'_lui', lui_class_method, '_plots', no_plots, '_', method_within_landscape, '_method', method, threshold_to_use, '.pdf'), collapse = ""), width = 9, height = 10)
-# }
-
-
-#### Multifunctionality for all services depending on LUI mean and sd ####
-#mod = step(lm(value ~ (lui_sd + I(lui_sd^2))*Region, data = data_average_melt[data_average_melt$variable == "All",]),scope = list(lower = ~ Region), trace = 0)
-#MF_lui_cv = plot(ggpredict(mod, c('lui_sd', 'Region'))) +
- # ggtitle('') + ylab('Multifunctionality') + xlab('LUI variation coefficient') + 
-#  scale_color_manual(values = my_palette) +   scale_fill_manual(values = my_palette)
-#mod = step(lm(value ~(lui_mean + I(lui_mean^2))*Region, data = data_average_melt[data_average_melt$variable == "All",]),scope = list(lower = ~ Region), trace = 0)
-#MF_lui_mean = plot(ggpredict(mod, c('lui_mean', 'Region'))) +
-#  ggtitle('') + ylab('Multifunctionality') + xlab('LUI mean') + 
-#  scale_color_manual(values = my_palette) +   scale_fill_manual(values  = my_palette)
-
-#if(saveplots){
-#  ggsave(plot = MF_lui_cv, paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/MFluicv', environmental_correction,'_lui', lui_class_method, '_plots', no_plots, '_', method_within_landscape, '_method', method, threshold_to_use, '.pdf'), collapse = ""), width = 4, height = 3.5)
-#  ggsave(plot = MF_lui_mean, paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/MFluimean', environmental_correction,'_lui', lui_class_method, '_plots', no_plots, '_', method_within_landscape, '_method', method, threshold_to_use, '.pdf'), collapse = ""), width = 4, height = 3.5)
-#}
-#
-
-### Raster
-# library(akima)
-# predict_mod = function(value, lui_mean, lui_sd){
-#   mod = step(lm(formula = value ~ (lui_mean+I(lui_mean^2))*(lui_sd + I(lui_sd^2))), trace = 0)
-#   y = predict(mod, newdata = data.frame(lui_mean = lui_mean, lui_sd = lui_sd))
-#   return(y)}
-# 
-# T.lm = data_average_melt[, interp2xyz(interp(x = lui_mean, y = lui_sd, z = value,
-#                                              duplicate = 'mean', extrap = TRUE, linear = TRUE), data.frame = TRUE)
-#                          , by = list(Region, pretty_variables, nservices)]
-# T.lm[, z_bis := list(predict_mod(lui_mean = x, lui_sd = y, value = z)), by = list(Region, pretty_variables)]
-# T.lm[is.na(z)]$z_bis = NA
-# 
-# plots <- lapply(unique(T.lm$nservices), function(o) {
-#   ggplot(T.lm[T.lm$nservices == o],  aes(x = x, y = y)) + theme_bw()  +
-#     facet_nested(cols = vars(pretty_variables), rows = vars(nservices, Region), switch = 'y') +
-#     xlab('LUI mean') + ylab('LUI sd') + 
-#     geom_raster(aes(fill = z_bis)) +
-#     scale_fill_gradientn(colors = col2(50), name = "Multifunctionality", na.value="white")
-#   
-# })
-# grobs = lapply(plots, ggplotGrob)
-# gg_meansd = grid.arrange(grobs = grobs, ncol = 1)
-# 
-# if(saveplots){
-#   ggsave(plot = gg_meansd, filename =  paste(c('/Users/Margot/Desktop/Research/Senckenberg/Project_Landscape_MF/Landscape_composition/Results/Sensitivity analyses/ggmeansd_', environmental_correction,'_lui', lui_class_method, '_plots', no_plots, '_', method_within_landscape, '_method', method, threshold_to_use, '.pdf'), collapse = ""), width = 8, height = 10)
-# }
-
-
 #### Multifunctionality range depending on ... ####
 
  
 Ranges =  interpolate_tern(data_average_melt, tern = TRUE)$range
 Ranges$range = as.numeric(Ranges$range)
-#Ranges = data_average_melt[, list(Range =  find_range(value, low, med)), by = list(variable, Explo)]
 data_plots2 = setDT(merge(data_plot, env_data))
 data_plots2$Region = factor(data_plots2$Exploratory, levels = c('A', 'H', 'S'))
 levels(data_plots2$Region) =  c('South-West', 'Central', 'North')
