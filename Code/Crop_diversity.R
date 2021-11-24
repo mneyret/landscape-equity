@@ -2,7 +2,6 @@
 library(readxl)
 library(dplyr)
 # Old version
-
 arable_weeds = data.table(read_excel('/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Agricultural_data/Arable_weeds.xlsx', sheet = 2))
 colnames(arable_weeds)[3] = 'Frequency'
 
@@ -226,8 +225,6 @@ gbif_data_arable = gbif_data_oservation[species %in% names(bird_species),]
 number_of_observation_points = nrow(unique(gbif_data_arable[, c('recordedBy', 'locality', 'eventDate')]))
 
 occurence = gbif_data_arable[, sum(N)/number_of_observation_points, by = 'species' ]
-
-
 
 
 Crop_birds = data.table('Species' = names(bird_species), 'Occurence_quali' = as.character(bird_species))

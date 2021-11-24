@@ -20,6 +20,15 @@
 *.tar
 *.zip
 *.pdf
+*.xls
+*.xlsx
+
+.Rdata
+.Rhistory
+
+Data/Raw_data/New_synthesis_data/
+
+
 
 # Logs and databases #
 ######################

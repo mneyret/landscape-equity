@@ -10,6 +10,9 @@ library(readxl)
 library(boot)
 library(R.utils)
 library(Rmisc)
+library(cowplot)
+library(DescTools)
+
 
 scale01 <- function(x) {
   x <- as.numeric(x)
@@ -21,8 +24,8 @@ scale01 <- function(x) {
   return(y)
 }
 
-for (crop_constrained in c(TRUE, FALSE)) {
-  # crop_constrained = 'TRUE'
+for (crop_constrained in c(#FALSE,
+  TRUE)) {
 
   #### Data ####
   # Demand and service availability
@@ -35,18 +38,10 @@ for (crop_constrained in c(TRUE, FALSE)) {
       "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Demand_Power.csv"
     )
 
-
-  # Baseline scenarios
-  # Baseline_scenarios <- data.table(read_excel("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Scenarios/Scenarios_management_new_baseline.xlsx", sheet = 3))
-  # Baseline = melt(Baseline_scenarios[Scenario_name == 'Baseline', .SD, .SDcols = c('Forest_classification','Region', 'Crop', 'Forest_Mixed', 'Forest_Coniferous', 'Forest_Deciduous', 'Forest_even_aged', 'Forest_uneven_aged', 'Grassland_low', 'Grassland_medium', 'Grassland_high')], value.name = "Prop",
-  #               id.vars = c('Forest_classification', 'Region'))
-  # Baseline[is.na(Region), Region := 'All']
-  # Baseline[, No := Prop*15/100]
-  # Baseline1 = read_excel('/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Scenarios/BASELINE.xlsx')
-
   ### Parameters loop
-  for (by_region in c(TRUE)){ #, TRUE)) {
-    # by_region = 'FALSE'
+  for (by_region in c(#TRUE, 
+    FALSE
+                      )){ 
     print(paste("by_region: ", by_region))
 
     # Scenario composition
@@ -96,17 +91,15 @@ for (crop_constrained in c(TRUE, FALSE)) {
     )]
     landscape_scenarios[, Leisure_forests := ifelse(rowSums(.SD) < (no_plots/2), rowSums(.SD) / no_plots, 0.5), .SDcols = c(
       "Forest_Deciduous",
-      "Forest_Mixed",
-      "Forest_Coniferous",
-      "Forest_even_aged",
-      "Forest_uneven_aged"
+      "Forest_Mixed", "Forest_Coniferous", "Forest_even_aged","Forest_uneven_aged"
     )]
     landscape_scenarios[, scenario := scenario_no]
     landscape_scenarios[, Area := (
-      Forest_Deciduous + Forest_Mixed + Forest_Coniferous + Forest_even_aged + Forest_uneven_aged
-    ) * 100 +
+      Forest_Deciduous + Forest_Mixed + Forest_Coniferous + Forest_even_aged + Forest_uneven_aged) * 100 +
       (Grassland_medium + Grassland_high + Grassland_low + Crop) * 16]
     landscape_scenarios[, proportion_grasslands := (Grassland_medium + Grassland_high + Grassland_low) / no_plots]
+    landscape_scenarios[, proportion_forests := (Forest_Deciduous + Forest_Mixed + Forest_Coniferous + Forest_even_aged + Forest_uneven_aged) / no_plots]
+    
     landscape_scenarios[, concatenate := paste(.SD, collapse = "_"), by = 1:nrow(landscape_scenarios), .SDcols = c(
       "Crop",
       "Grassland_low",
@@ -130,7 +123,6 @@ for (crop_constrained in c(TRUE, FALSE)) {
     )
 
     # * --- Loop on scale_within ####
-   #  for (scale_within_land_use in c(FALSE, TRUE)) {
     scale_within_land_use <- TRUE
     print(paste("scale_within_land_use: ", scale_within_land_use))
 
@@ -141,8 +133,8 @@ for (crop_constrained in c(TRUE, FALSE)) {
     }   else {
       env_choices <- "env_corr"
     }
-    for (env_corr in env_choices) {
-    #env_corr = "env_corr"
+    for (env_corr in "env_corr"#env_choices
+         ) {
       print(paste("env_corr: ", env_corr))
 
       file <-
@@ -185,7 +177,7 @@ for (crop_constrained in c(TRUE, FALSE)) {
        sim_data_complete <- sim_data_complete[replica < 200, ]
   
       # Identify faulty scenarios (i.e. asks for more plot than what exists)
-       sim_data_complete = merge(sim_data_complete, picked[, c('scenario', 'replica', 'region', 'not_enough_plots')], 
+       sim_data_complete = merge.data.table(sim_data_complete, picked[, c('scenario', 'replica', 'region', 'not_enough_plots')], 
                                  by = c('scenario', 'replica', 'region'))
        sim_data_complete = sim_data_complete[not_enough_plots == FALSE,]
        rm(picked)
@@ -204,7 +196,8 @@ for (crop_constrained in c(TRUE, FALSE)) {
               "Area",
               "scenario",
               "concatenate",
-              "proportion_grasslands"
+              "proportion_grasslands",
+              'proportion_forests'
             )
           ],
           by = c("scenario"),
@@ -218,7 +211,7 @@ for (crop_constrained in c(TRUE, FALSE)) {
         by = c("scenario", "region"),
         all.x = T
       )
-      sim_data_complete[, LUI_corr := LUI_2007to12 / proportion_grasslands]
+      sim_data_complete[, LUI_corr := LUI_2008_2015 / proportion_grasslands]
       sim_data_complete <- sim_data_complete[!is.na(heterogeneity), ]
 
        print('d')
@@ -238,7 +231,12 @@ for (crop_constrained in c(TRUE, FALSE)) {
       )
 
        print('e')
+       
+       
+       
       ### Start working on simulation results
+       
+     ### Correcting diversities
       sim_data_complete[, c(
         "birds_diversity",
         "plants_diversity",
@@ -273,11 +271,12 @@ for (crop_constrained in c(TRUE, FALSE)) {
 
        print('i')
       # Plot service per landscape area <=> proportion of forests
-      # ggplot(
-      #    sim_data_complete[, list(div = mean(plants_diversity_corr), area = mean(Area)), by = c("region", "scenario")],
-      #    aes(div, x = area, color = region)
-      #  ) +
-      #    geom_smooth()
+     #  gg_forest = ggplot(
+    #      sim_data_complete[, list(div = mean(plants_diversity_corr), area = mean(Area)), by = c("region", "scenario")],
+    #      aes(div, x = area, color = region)
+    #    ) +
+    #      geom_smooth()
+
 
       if (env_corr == "env_corr") {
         sim_data_complete[, c(
@@ -288,7 +287,7 @@ for (crop_constrained in c(TRUE, FALSE)) {
           lapply(.SD, function(x) {
             mod <-
               glm(
-                x ~ region + Core_depth + Mean_Temp + Mean_precip + TWI + elevation + pH + prop_clay + heterogeneity,
+                x ~  Core_depth + Mean_Temp + Mean_precip + TWI + elevation + pH + prop_clay + heterogeneity,
                 family = "poisson"
               )
             return(residuals(mod))
@@ -300,31 +299,31 @@ for (crop_constrained in c(TRUE, FALSE)) {
         )#,
       #  by = region
         ]
-     #   sim_data_complete[, c("plants_diversity_corr") :=
-    #      lapply(.SD, function(x) {
-    #        mod <-
-    #          lm(
-    #            x ~ Core_depth + Mean_Temp + Mean_precip + TWI + elevation + pH + prop_clay + heterogeneity
-    #          )
-    #        return(residuals(mod))
-    #      }),
-    #    .SDcols = c("plants_diversity_corr"),
-    #    by = region
-    #    ]
+
       }
+       
+      ### Dealing with the hunting services
+       sim_data_complete[, c('Hunting_forest_deer', 
+                            'Hunting_forest_boar', 
+                            'Hunting_other_habitat_roe_deer',
+                            'Hunting_other_habitat_boar') := list(
+                              Hunting_habitat_deer,
+                              proportion_forests,
+                              (proportion_grasslands >=  0.1)  + (Crop >=  0.1*no_plots),
+                              as.numeric((proportion_grasslands + Crop/no_plots >= 0.1))
+                            )]
 
-      #sim_data_complete[, Scenario_description := Scenario_description.x]
-      # print('j')
-
-
+       
       ### Normalisation of all services and service indicators by maximum at landscape level
       sim_data_complete[, c(
         "Aesth_diversity_ADI",
         "Aesth_uniqueness_charismatic_plants",
         "Aesthetic_naturalness",
         "C_stock",
-        "Harvesting_plants",
-        "Hunting",
+        "Harvesting_plants",       
+        'Hunting_forest_deer', 
+        'Hunting_forest_boar', 
+        'Hunting_other_habitat_roe_deer',
         "Production_energy",
         "Production_food",
         "Production_livestock",
@@ -352,7 +351,10 @@ for (crop_constrained in c(TRUE, FALSE)) {
         "Aesthetic_naturalness",
         "C_stock",
         "Harvesting_plants",
-        "Hunting",
+        'Hunting_forest_deer', 
+        'Hunting_forest_boar', 
+    #   'Hunting_other_habitat_red_deer',
+        'Hunting_other_habitat_roe_deer',
         "Production_energy",
         "Production_food",
         "Production_livestock",
@@ -368,10 +370,6 @@ for (crop_constrained in c(TRUE, FALSE)) {
       ),
       by = region
       ]
-
-
-      # hist(sim_data_complete[region == 'H', Aesth_diversity_ADI])
-      # mean(sim_data_complete[region == 'H' & Scenario_description == 'Baseline', Aesth_diversity_ADI])
 
       ## Check: indicators min/max
       sim_data_complete[, lapply(.SD, function(x) {
@@ -393,6 +391,7 @@ for (crop_constrained in c(TRUE, FALSE)) {
         "C_stock"
       )
 
+      
       sim_data_complete <- sim_data_complete[, c(
         "Ric",
         "Hunting",
@@ -406,8 +405,11 @@ for (crop_constrained in c(TRUE, FALSE)) {
         "Reg_id",
         "C_stock"
       ) := list(
-        (plants_diversity_corr + birds_diversity) / 2,
-        Hunting,
+        (plants_diversity_corr + birds_diversity),
+       (#(Hunting_forest_deer + Hunting_other_habitat_red_deer)/ 2 +  
+         (Hunting_forest_deer + Hunting_other_habitat_roe_deer)/ 2 + (
+           Hunting_forest_boar + Hunting_other_habitat_boar
+         )/ 2)/2,
         (Harvesting_plants + fungi_diversity) / 2,
         Production_food,
         Production_livestock,
@@ -421,45 +423,10 @@ for (crop_constrained in c(TRUE, FALSE)) {
       by = c("scenario", "replica", "region")
       ]
 
-      # hist(sim_data_complete[region == 'H', Aesthetic])
-      # mean(sim_data_complete[region == 'H' & Scenario_description == 'Baseline', Aesthetic])
-
-      sim_data_complete[, c("Aesthetic", "Leisure", "Reg_id") := lapply(.SD, scale01), .SDcols = c("Aesthetic", "Leisure", "Reg_id"), by = region]
-
-      ## Check: see how services vary with % of forests = Area
-     # sim_average <- sim_data_complete[, lapply(.SD, mean),
-    #    .SDcols = c(
-    #      "Ric",
-    #      "Hunting",
-    #      "Harvesting",
-    #      "Production_food",
-    #      "Production_livestock",
-    #      "Production_timber",
-    #      "Production_energy",
-    #      "Aesthetic",
-    #      "Leisure",
-    #      "Reg_id",
-    #      "C_stock",
-    #      "Area"
-    #    ),
-    #    by = c("scenario", "region")
-    #  ]
-    #  sim_average_melt <-
-    #    melt(sim_average, id.vars = c("scenario", "region", "Area"))
-    #  ggplot(sim_average_melt, aes(value, x = Area, color = region)) +
-    #    theme_bw() +
-    #    geom_point(alpha = 0.01, size = 0.1) +
-    #    geom_smooth() +
-    #    facet_wrap(~variable)
-
-      ## Check: service distribution
-      # for (i in services){
-      #  plot(histogram(sim_data_complete[, get(i)], xlab = i))
-      # }
-
-
+      sim_data_complete[, c('Ric', "Aesthetic", "Leisure", "Reg_id", 'Hunting') := lapply(.SD, scale01), .SDcols = c('Ric', "Aesthetic", "Leisure", "Reg_id", 'Hunting'), by = region]
+      
       ############ Now that all the services are properly normalised, we can remove all the unwanted landscapes
-      # where the proportion of crops differs form the baseline
+      # where the proportion of crops differs from the baseline
 
       if (crop_constrained == TRUE) {
           sim_data_complete <- sim_data_complete[(region == "A" &
@@ -472,7 +439,62 @@ for (crop_constrained in c(TRUE, FALSE)) {
                                                       Crop %in% landscape_scenarios[Scenario_description == 'Baseline' & Region == 'All',as.numeric(names(sort(table(Crop), decreasing = T)[1]))]) ]
         }
 
-
+      
+      ## Check: see how services vary with % of forests = Area
+      sim_average <- sim_data_complete[, lapply(.SD, mean),
+                                       .SDcols = c(
+                                         "Ric",
+                                         "Hunting",
+                                         "Harvesting",
+                                         "Production_food",
+                                         "Production_livestock",
+                                         "Production_timber",
+                                         "Production_energy",
+                                         "Aesthetic",
+                                         "Leisure",
+                                         "Reg_id",
+                                         "C_stock",
+                                         "Area"
+                                       ),
+                                       by = c("scenario", "region")
+      ]
+      sim_average_melt <-
+        melt.data.table(sim_average, id.vars = c("scenario", "region", "Area"))
+      sim_average_melt[, variable_pretty := dplyr::recode(variable,
+                                                          'Ric' = 'Biodiversity conservation',
+                                                          'Hunting' = 'Hunting',
+                                                          'Harvesting' = 'Foraging',
+                                                          'Production_food' = 'Food crop production',
+                                                          'Production_livestock' = 'Livestock production',
+                                                          'Production_timber' = 'Timber production',
+                                                          'Production_energy' = 'Energy production',
+                                                          'Aesthetic' = 'Aesthetic value',
+                                                          'Leisure' = 'Leisure',
+                                                          'Reg_id' = 'Regional identity',
+                                                          'C_stock' = 'Carbon stocks'
+      )]
+      
+      
+      sim_average_melt[, Forest_prop := (Area - 320)/84 * 100/20]
+      
+      
+      gg_forest_prop =  ggplot(sim_average_melt, aes(value, x = Forest_prop)) +
+        theme_bw() +
+        geom_point(alpha = 0.01, size = 0.1) +
+        geom_smooth(color = 'black') +
+        facet_wrap(~variable_pretty) + 
+        xlab('Proportion of forest plots (%)') +
+        ylab('Service value (scaled)')
+      
+      
+      ggsave(
+        plot = gg_forest_prop,
+        file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/forest_prop_env_corr", env_corr, "by_region", by_region,
+                     "_scale_within", scale_within_land_use,"_crop_constrained", crop_constrained, ".png", sep = ""
+        ),
+        height = 6,
+        width = 8
+      )
 
       # * --- Loop on SB ####
       if (by_region == FALSE &
@@ -482,7 +504,8 @@ for (crop_constrained in c(TRUE, FALSE)) {
         SB_choices <- FALSE
       }
 
-      for (use_SB in SB_choices) {
+      for (use_SB in FALSE#SB_choices
+           ) {
        # use_SB <- FALSE
         print(paste("SB: ", use_SB))
         ### If we're using supply-benefit relationship, we transform the services accordingly
@@ -552,18 +575,6 @@ for (crop_constrained in c(TRUE, FALSE)) {
           ]
         }
 
-        ## Check: services min/max
-     #   sim_data_complete[, lapply(.SD, function(x) {
-    #      list(min(x), mean(x), max(x))
-    #    }), .SDcols = services, by = region]
-
-     #   sim_data_complete[, lapply(.SD, function(x) {
-    #      sum(x) / 1000
-    #    }), .SDcols = services, by = region]
-
-      #  for (i in services) {
-      #    plot(histogram(sim_data_complete[, get(i)], xlab = i))
-      #  }
 
         #  *--- Loop on Forest classification ####
         if (by_region == FALSE &
@@ -574,9 +585,9 @@ for (crop_constrained in c(TRUE, FALSE)) {
           forest_choices <- "Type"
         }
 
-        for (forest_class in forest_choices) {
+        for (forest_class in "Type"#forest_choices
+             ) {
           print(forest_class)
-          #forest_class <- "Type"
           if (forest_class == "Type") {
             service_data <-
               sim_data_complete[Forest_age_scenario %in% c("Type", "Both"), .SD, .SDcols = c(
@@ -604,12 +615,7 @@ for (crop_constrained in c(TRUE, FALSE)) {
               )]
           }
           
-          ### Adding demand in for all stakeholder groups
-          #  *--- Loop on cluster/stakeholders ####
-          # for (big_groups in c(FALSE, TRUE)) {
-
           big_groups <- FALSE
-          # print(paste("big_groups: ", big_groups))
           if (big_groups == TRUE) {
             Demand <- Demand_raw[Category == "Cluster", ]
           } else {
@@ -647,36 +653,7 @@ for (crop_constrained in c(TRUE, FALSE)) {
                 "LUI_corr"
               )
             )
-
-          # Removing baseline values
-          ### Baseline check
-         # test <- service_data2[Scenario_description == "Baseline", list(concatenate = unique(concatenate)), by = region]
-        #  test[, c(
-        #    "Crop",
-        #    "Grassland_low",
-        #    "Grassland_medium",
-        #    "Grassland_high",
-        #    "Forest_Deciduous",
-        #    "Forest_Mixed",
-        #    "Forest_Coniferous",
-        #    "Forest_even_aged",
-        #    "Forest_uneven_aged"
-        #  ) := tstrsplit(concatenate, "_")]
-         # test2 <- test[, lapply(.SD, function(x) {
-        #    mean(as.numeric(x))
-        #  }), .SDcols = c(
-        #    "Crop",
-        #    "Grassland_low",
-        #    "Grassland_medium",
-        #    "Grassland_high",
-        #    "Forest_Deciduous",
-        #    "Forest_Mixed",
-        #    "Forest_Coniferous",
-        #    "Forest_even_aged",
-        #    "Forest_uneven_aged"
-        #  ), by = region]
-        #  test2$Crop / no_plots * 100 > 56
-
+    
           Baseline_values <- service_data2[Scenario_description == "Baseline", list(Value = mean(value)), by = list("Region" = region, "Variable" = variable)]
 
           service_data2[, value_baseline := Baseline_values[Region == region &
@@ -684,6 +661,13 @@ for (crop_constrained in c(TRUE, FALSE)) {
           service_data2[, value_diff := value - value_baseline]
 
 
+          fwrite(service_data2[, .SD, .SDcols = c('value_diff', 'value', 'LUI_corr', 'variable', 'scenario', 'region', 'replica', 'value_baseline', 'Scenario_description', 'concatenate')],
+                 paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Community_services_full",
+                 env_corr, "-by_region", by_region, "scale_within", scale_within_land_use, "-SB", use_SB, "-biggroup",
+                 big_groups, "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = "")
+          )
+          
+          
           # Add Power value in
           service_data2[, is.MF := grepl("__MF", variable, perl = TRUE), by = variable]
           service_data2[is.MF == TRUE, Group := gsub("([A-z]*)__MF", "\\1", variable, perl = TRUE), by = variable]
@@ -718,10 +702,8 @@ for (crop_constrained in c(TRUE, FALSE)) {
           # hist(sim_data_complete[region == 'H', Aesthetic])
           # mean(Data_detailed[region == 'H', Aesthetic])
           Data_detailed$Scenario_description <- "Baseline"
-          groups <-
-            data.table(unique(data.frame(Group = Demand$Group)))
-          Data_detailed <-
-            data.table(groups[, Data_detailed[], by = Group])
+          groups <- data.table(unique(data.frame(Group = Demand$Group)))
+          Data_detailed <- data.table(groups[, Data_detailed[], by = Group])
 
           for (gr in unique(Demand$Group)) {
             # print(gr)
@@ -811,61 +793,61 @@ for (crop_constrained in c(TRUE, FALSE)) {
               "Reg_dev_prog"
             )
           )
-          plot_baseline <- ggplot(
-            Data_detailed_melt,
-            aes(
-              x = Group,
-              y = value,
-              fill = variable,
-              group = region
-            )
-          ) +
-            geom_col() +
-            theme_bw() +
-            facet_grid( ~ region) +
-            # ylim(c(0, 0.5)) +
-            ylab("Multifunctionality") +
-            theme(legend.position = "bottom") +
+          Data_detailed_melt$line <-
+            ifelse(Data_detailed_melt$Group %in%  c("Hunting",
+                   "Forestry",
+                   "Landowner",
+                   "Econ",
+                   "Nat_cons_asso",
+                   "Research",
+                   "Reg_dev_prog"
+                   ), 1, 2)
+          
+          
+          for (R in unique(Data_detailed_melt$region)){
+          plot_baseline1 <- ggplot(
+            Data_detailed_melt[region == R & line == 1,],
+            aes(x = Group,y = value,fill = variable,group = region)
+          ) + geom_col() + theme_bw() + xlab('')+
+            ylab("") + theme(legend.position = "none", 
+                             axis.text.x = element_blank(), 
+                             panel.grid.minor =   element_blank(),
+                             plot.margin = margin(b = 20)) +
             scale_fill_manual(
               values = my_palette_services,
-              breaks = c(
-                "Ric_w",
-                "Aesthetic_w",
-                "Reg_id_w",
-                "Leisure_w",
-                "Production_food_w",
-                "Production_livestock_w",
-                "Production_timber_w",
-                "Production_energy_w",
-                "Harvesting_w",
-                "Hunting_w",
-                "C_stock_w"
-              )
-            )
+              breaks = c("Ric_w","Aesthetic_w","Reg_id_w","Leisure_w","Production_food_w","Production_livestock_w","Production_timber_w","Production_energy_w","Harvesting_w","Hunting_w","C_stock_w"))
+            
+          plot_baseline2 <- ggplot(
+            Data_detailed_melt[region == R & line == 2,],
+            aes(x = Group,y = value,fill = variable,group = region)
+          ) + geom_col() + theme_bw() + xlab('')+
+            ylab("") + theme(legend.position = "none", 
+                             axis.text.x = element_blank(), 
+                             panel.grid.minor =   element_blank(),
+                             plot.margin = margin(b = 20)) +
+            
+            scale_fill_manual(
+              values = my_palette_services,
+              breaks = c("Ric_w","Aesthetic_w","Reg_id_w","Leisure_w","Production_food_w","Production_livestock_w","Production_timber_w","Production_energy_w","Harvesting_w","Hunting_w","C_stock_w"))
+          
+          plot_baseline = plot_grid(plot_baseline1,plot_baseline2,
+                     nrow = 2)
+          
+          dir.create(file.path(paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+            "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", 'TRUE', "/biggroup", big_groups, "/forest", forest_class, 
+            "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
+            
           ggsave(
             plot = plot_baseline,
-            file = paste(
-              "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/plot_baseline",
-              env_corr,
-              "-by_region",
-              by_region,
-              "scale_within",
-              scale_within_land_use,
-              "-SB",
-              use_SB,
-              "-biggroup",
-              big_groups,
-              "_forest",
-              forest_class,
-              "_constrained",
-              crop_constrained,
-              ".pdf",
-              sep = ""
-            ),
-            width = 10,
-            height = 4
+            file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+            "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", 'TRUE', "/biggroup", big_groups, "/forest", forest_class, 
+            "/constrained", crop_constrained, "/plot_baseline_MF.pdf", sep = ""),
+            width = 7,
+            height = 6
           )
-
+          }
+          
+          
           #  *--- Loop on power weighting ####
           if (by_region == FALSE &
             crop_constrained == TRUE &
@@ -888,9 +870,9 @@ for (crop_constrained in c(TRUE, FALSE)) {
             if (weighted == TRUE) {
               Community_MF <- service_data2[is.MF == TRUE, list(
                 mean_MF = wtd.mean(value, Power),
-                mean_MF_diff = wtd.mean(value_diff, Power),
-                harmony = -sqrt(wtd.var(value, Power)),
-                harmony_unwtd = -sd(value),
+              #  mean_MF_diff = wtd.mean(value_diff, Power),
+                gini = Gini(value, Power),
+                gini_unwtd = Gini(value),
                 LUI = mean(LUI_corr)
                 
               ), by = c(
@@ -906,8 +888,8 @@ for (crop_constrained in c(TRUE, FALSE)) {
               Community_MF <- service_data2[is.MF == TRUE, list(
                 mean_MF = mean(value),
                 #  mean_MF_diff = mean(value_diff),
-                harmony = -sd(value),
-                harmony_unwtd = -sd(value),
+                gini = Gini(value),
+                gini_unwtd = Gini(value),
                 LUI = mean(LUI_corr)
               ), by = c(
                 "scenario",
@@ -943,17 +925,26 @@ for (crop_constrained in c(TRUE, FALSE)) {
             # Besides, we need to know how much each scenario decreases endangered services
             Availability_merged <-
               merge.data.table(
-                service_data2[is.MF == FALSE, list(value_diff = mean(value_diff)), by = c("scenario", "concatenate", "region", "variable")],
+                merge.data.table(
+                  service_data2[is.MF == FALSE, list(value_diff = mean(value_diff)), by = c("scenario", "concatenate", "region", "variable")],
+                  service_data2[is.MF == FALSE, as.list(CI(value_diff)), by = c("scenario", "concatenate", "region", "variable")],
+                  
+                  #service_data2[is.MF == FALSE, list(value_rel = mean(value_diff/value_baseline)), by = c("scenario", "concatenate", "region", "variable")],
+                by = c('variable', 'region', 'scenario',        'concatenate')),
                 Availability[, list(variable, "region" = Region, endangered)],
                 by = c("variable", "region"),
                 all.x = T
               )
-            Availability_merged <- Availability_merged[endangered > 0.6, ]
-            Threat_scores <-
-              Availability_merged[, list(Score = (sum(
+            Availability_merged <- Availability_merged[endangered >= 0.65, ]
+          
+              Threat_scores <-
+              Availability_merged[, list(
+                Score  = sum(
                 value_diff * endangered,
                 na.rm = T
-              ))), by = list(
+              ),
+              Score01 = sum(upper < 0.0)),#sum(value_rel < -0.01)),
+                , by = list(
                 "scenario" = scenario,
                 "Region" = region,
                 "concatenate" = concatenate
@@ -963,8 +954,8 @@ for (crop_constrained in c(TRUE, FALSE)) {
 
             # Compare equity and LUI to baseline
             Baseline_H <- Community_MF[Scenario_description == "Baseline", list(
-              harmony_baseline = mean(harmony),
-              harmony_unwtd_baseline = mean(harmony_unwtd)
+              gini_baseline = mean(gini),
+              gini_unwtd_baseline = mean(gini_unwtd)
             ), by = list("Region" = region)]
             Baseline_MF <- Community_MF[Scenario_description == "Baseline", list(MF_baseline = mean(mean_MF), LUI_baseline = mean(LUI)), by = list("Region" = region)]
 
@@ -972,9 +963,9 @@ for (crop_constrained in c(TRUE, FALSE)) {
             Community_MF_average <- Community_MF[, list(
               mean_MF = mean(mean_MF),
               sd_MF = sd(mean_MF),
-              mean_harmony = mean(harmony),
-              mean_unwtd_harmony = mean(harmony_unwtd),
-              sd_harmony = sd(harmony),
+              mean_gini = mean(gini),
+              mean_unwtd_gini = mean(gini_unwtd),
+              sd_gini = sd(gini),
               LUI = mean(LUI)
             ),
             by = c(
@@ -986,10 +977,10 @@ for (crop_constrained in c(TRUE, FALSE)) {
             )
             ]
 
-            Community_MF_average[, harmony_baseline := Baseline_H[Region == region, harmony_baseline], by = region]
-            Community_MF_average[, mean_harmony_diff := mean_harmony - harmony_baseline]
-            Community_MF_average[, harmony_unwtd_baseline := Baseline_H[Region == region, harmony_unwtd_baseline], by = region]
-            Community_MF_average[, mean_harmony_unwtd_diff := mean_unwtd_harmony - harmony_unwtd_baseline]
+            Community_MF_average[, gini_baseline := Baseline_H[Region == region, gini_baseline], by = region]
+            Community_MF_average[, mean_gini_diff := mean_gini - gini_baseline]
+            Community_MF_average[, gini_unwtd_baseline := Baseline_H[Region == region, gini_unwtd_baseline], by = region]
+            Community_MF_average[, mean_gini_unwtd_diff := mean_unwtd_gini - gini_unwtd_baseline]
             Community_MF_average[, MF_baseline := Baseline_MF[Region == region, MF_baseline], by = region]
             Community_MF_average[, mean_MF_diff := mean_MF - MF_baseline]
             Community_MF_average[, LUI_baseline := Baseline_MF[Region == region, LUI_baseline], by = region]
@@ -1000,14 +991,14 @@ for (crop_constrained in c(TRUE, FALSE)) {
 
             # Add threat scores
             Community_MF_average <-
-              merge(
+              merge.data.table(
                 Community_MF_average,
                 Threat_scores[, region := Region],
                 by = c("scenario", "concatenate", "region"),
                 all.x = T
               )
             Community_MF_average <-
-              merge(
+              merge.data.table(
                 Community_MF_average,
                 MF_by_group_all[, region := Region],
                 by = c("scenario", "concatenate", "region"),

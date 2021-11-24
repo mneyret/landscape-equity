@@ -1,407 +1,408 @@
-Scenario_description,Forest_classification,Region,Crop,Forest_Mixed,Forest_Coniferous,Forest_Deciduous,Grassland_low,Grassland_medium,Grassland_high,Forest_even_aged,Forest_uneven_aged,All_grasslands,All_forests,problem_overall,problem_grasslands,problem_forests
-Current proportion of LU types,Type,S,6,2,2,2,1,1,1,0,0,3,6,0,0,0
-Current proportion of LU types,Type,All,5,3,1,3,1,1,1,0,0,3,7,0,0,0
-Add 50% grasslands,Type,A,2,3,2,2,2,2,2,0,0,6,7,0,0,0
-Add 50% grasslands,Type,S,6,2,2,2,1,1,1,0,0,3,6,0,0,0
-Add 50% crops,Type,All,7,2,1,2,1,1,1,0,0,3,5,0,0,0
-All mixed forests and low-intensity grasslands (same crops),Type,A,2,9,0,0,4,0,0,0,0,4,9,0,0,0
-All mixed forests and low-intensity grasslands (same crops),Type,H,5,7,0,0,3,0,0,0,0,3,7,0,0,0
-All mixed forests and low-intensity grasslands (same crops),Type,S,6,6,0,0,3,0,0,0,0,3,6,0,0,0
-All mixed forests and low-intensity grasslands (same crops),Type,All,5,7,0,0,3,0,0,0,0,3,7,0,0,0
-Only coniferous forests and only high LUI grasslands,Type,A,2,0,9,0,0,0,4,0,0,4,9,0,0,0
-Only coniferous forests and only high LUI grasslands,Type,H,5,0,7,0,0,0,3,0,0,3,7,0,0,0
-Only coniferous forests and only high LUI grasslands,Type,S,6,0,6,0,0,0,3,0,0,3,6,0,0,0
-Only coniferous forests and only high LUI grasslands,Type,All,5,0,7,0,0,0,3,0,0,3,7,0,0,0
-All forests are coniferous,Type,H,5,0,7,0,1,1,1,0,0,3,7,0,0,0
-All forests are coniferous,Type,S,6,0,6,0,1,1,1,0,0,3,6,0,0,0
-All forests are coniferous,Type,All,5,0,7,0,1,1,1,0,0,3,7,0,0,0
-All forests are deciduous,Type,H,5,0,0,7,1,1,1,0,0,3,7,0,0,0
-All forests are deciduous,Type,S,6,0,0,6,1,1,1,0,0,3,6,0,0,0
-All forests are deciduous,Type,All,5,0,0,7,1,1,1,0,0,3,7,0,0,0
-All forests are mixed,Type,H,5,7,0,0,1,1,1,0,0,3,7,0,0,0
-All forests are mixed,Type,S,6,6,0,0,1,1,1,0,0,3,6,0,0,0
-All forests are mixed,Type,All,5,7,0,0,1,1,1,0,0,3,7,0,0,0
-All high LUI grasslands become crops,Type,A,4,4,2,3,1,1,0,0,0,2,9,0,0,0
-All high LUI grasslands become crops,Type,S,7,2,2,2,1,1,0,0,0,2,6,0,0,0
-All high LUI grasslands become crops,Type,All,6,3,1,3,1,1,0,0,0,2,7,0,0,0
-"half crops converted to grasslands,  more low grassland",Type,H,3,2,0,4,3,2,1,0,0,6,6,0,0,0
-"half crops converted to grasslands,  more low grassland",Type,S,3,2,2,2,3,2,1,0,0,6,6,0,0,0
-"half crops converted to grasslands,  more low grassland",Type,All,2,3,1,3,3,2,1,0,0,6,7,0,0,0
-Low-lui and med-lui grasslands become coniferous forests,Type,A,2,4,5,3,0,0,1,0,0,1,12,0,0,0
-Low-lui and med-lui grasslands become coniferous forests,Type,S,6,2,4,2,0,0,1,0,0,1,8,0,0,0
-Low-lui and med-lui grasslands become coniferous forests,Type,All,5,3,3,3,0,0,1,0,0,1,9,0,0,0
-Low-lui and med-lui grasslands become mixed forests,Type,S,6,2,2,4,0,0,1,0,0,1,8,0,0,0
-Low-lui and med-lui grasslands become mixed forests,Type,All,5,3,1,5,0,0,1,0,0,1,9,0,0,0
-All grasslands are high int,Type,A,2,4,2,3,0,0,4,0,0,4,9,0,0,0
-All grasslands are high int,Type,S,6,2,2,2,0,0,3,0,0,3,6,0,0,0
-All grasslands are high int,Type,All,5,3,1,3,0,0,3,0,0,3,7,0,0,0
-All grasslands are low int,Type,A,2,4,2,3,4,0,0,0,0,4,9,0,0,0
-All grasslands are low int,Type,S,6,2,2,2,3,0,0,0,0,3,6,0,0,0
-All grasslands are low int,Type,All,5,3,1,3,3,0,0,0,0,3,7,0,0,0
-100% forest,Type,H,0,5,0,10,0,0,0,0,0,0,15,0,0,0
-100% forest,Type,All,0,5,3,7,0,0,0,0,0,0,15,0,0,0
-100% grasslands,Type,A,0,0,0,0,5,5,5,0,0,15,0,0,0,0
-100% grasslands,Type,H,0,0,0,0,5,5,5,0,0,15,0,0,0,0
-100% grasslands,Type,S,0,0,0,0,5,5,5,0,0,15,0,0,0,0
-100% grasslands,Type,All,0,0,0,0,5,5,5,0,0,15,0,0,0,0
-100% crops,Type,A,15,0,0,0,0,0,0,0,0,0,0,0,0,0
-100% crops,Type,H,15,0,0,0,0,0,0,0,0,0,0,0,0,0
-100% crops,Type,S,15,0,0,0,0,0,0,0,0,0,0,0,0,0
-100% crops,Type,All,15,0,0,0,0,0,0,0,0,0,0,0,0,0
-33% each,Type,S,5,1,1,2,2,2,2,0,0,6,4,0,0,0
-Current proportion of LU types,Age,H,5,0,0,0,1,1,1,3,4,3,7,0,0,0
-Current proportion of LU types,Age,S,6,0,0,0,1,1,1,5,1,3,6,0,0,0
-Current proportion of LU types,Age,All,5,0,0,0,1,1,1,5,2,3,7,0,0,0
-Add 50% grasslands,Age,A,2,0,0,0,2,2,2,6,1,6,7,0,0,0
-Add 50% grasslands,Age,S,6,0,0,0,1,1,1,5,1,3,6,0,0,0
-Add 50% crops,Age,A,4,0,0,0,1,1,1,7,1,3,8,0,0,0
-Add 50% crops,Age,All,7,0,0,0,1,1,1,4,1,3,5,0,0,0
-All forests are uneven-aged and grasslands low-intensity,Age,A,2,0,0,0,4,0,0,0,9,4,9,0,0,0
-All forests are uneven-aged and grasslands low-intensity,Age,H,5,0,0,0,3,0,0,0,7,3,7,0,0,0
-All forests are uneven-aged and grasslands low-intensity,Age,S,6,0,0,0,3,0,0,0,6,3,6,0,0,0
-All forests are uneven-aged and grasslands low-intensity,Age,All,5,0,0,0,3,0,0,0,7,3,7,0,0,0
-All forests are even-aged and grasslands high-intensity,Age,A,2,0,0,0,0,0,4,9,0,4,9,0,0,0
-All forests are even-aged and grasslands high-intensity,Age,H,5,0,0,0,0,0,3,7,0,3,7,0,0,0
-All forests are even-aged and grasslands high-intensity,Age,S,6,0,0,0,0,0,3,6,0,3,6,0,0,0
-All forests are even-aged and grasslands high-intensity,Age,All,5,0,0,0,0,0,3,7,0,3,7,0,0,0
-All forests are even-aged,Age,H,5,0,0,0,1,1,1,7,0,3,7,0,0,0
-All forests are even-aged,Age,S,6,0,0,0,1,1,1,6,0,3,6,0,0,0
-All forests are even-aged,Age,All,5,0,0,0,1,1,1,7,0,3,7,0,0,0
-All forests are uneven-aged,Age,H,5,0,0,0,1,1,1,0,7,3,7,0,0,0
-All forests are uneven-aged,Age,S,6,0,0,0,1,1,1,0,6,3,6,0,0,0
-All forests are uneven-aged,Age,All,5,0,0,0,1,1,1,0,7,3,7,0,0,0
-All high LUI grasslands become crops (forests: EA/UA),Age,A,4,0,0,0,1,1,0,8,1,2,9,0,0,0
-All high LUI grasslands become crops (forests: EA/UA),Age,H,6,0,0,0,1,1,0,3,4,2,7,0,0,0
-All high LUI grasslands become crops (forests: EA/UA),Age,S,7,0,0,0,1,1,0,5,1,2,6,0,0,0
-All high LUI grasslands become crops (forests: EA/UA),Age,All,6,0,0,0,1,1,0,5,2,2,7,0,0,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,S,3,0,0,0,3,2,1,5,1,6,6,0,0,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,All,2,0,0,0,3,2,1,5,2,6,7,0,0,0
-Low-lui and med-lui grasslands become uneven-aged forests,Age,A,2,0,0,0,0,0,1,8,4,1,12,0,0,0
-Low-lui and med-lui grasslands become uneven-aged forests,Age,H,5,0,0,0,0,0,1,3,6,1,9,0,0,0
-Low-lui and med-lui grasslands become uneven-aged forests,Age,S,6,0,0,0,0,0,1,5,3,1,8,0,0,0
-Low-lui and med-lui grasslands become uneven-aged forests,Age,All,5,0,0,0,0,0,1,5,4,1,9,0,0,0
-Low-lui and med-lui grasslands become even-aged forests,Age,H,5,0,0,0,0,0,1,5,4,1,9,0,0,0
-Low-lui and med-lui grasslands become even-aged forests,Age,S,6,0,0,0,0,0,1,7,1,1,8,0,0,0
-All grasslands are high intensity,Age,A,2,0,0,0,0,0,4,8,1,4,9,0,0,0
-All grasslands are high intensity,Age,H,5,0,0,0,0,0,3,3,4,3,7,0,0,0
-All grasslands are high intensity,Age,S,6,0,0,0,0,0,3,5,1,3,6,0,0,0
-All grasslands are high intensity,Age,All,5,0,0,0,0,0,3,5,2,3,7,0,0,0
-All grasslands are high intensity,Age,A,2,0,0,0,4,0,0,8,1,4,9,0,0,0
-All grasslands are high intensity,Age,H,5,0,0,0,3,0,0,3,4,3,7,0,0,0
-All grasslands are high intensity,Age,S,6,0,0,0,3,0,0,5,1,3,6,0,0,0
-All grasslands are high intensity,Age,All,5,0,0,0,3,0,0,5,2,3,7,0,0,0
-100% forest (EA/UA),Age,H,0,0,0,0,0,0,0,7,8,0,15,0,0,0
-100% forest (EA/UA),Age,S,0,0,0,0,0,0,0,13,2,0,15,0,0,0
-100% forest (EA/UA),Age,All,0,0,0,0,0,0,0,11,4,0,15,0,0,0
-33% each (EA/UA),Age,A,5,0,0,0,2,2,2,4,0,6,4,0,0,0
-Current proportion of LU types,Type,A,3,4,2,3,1,1,1,0,0,3,9,1,0,0
-Current proportion of LU types,Type,H,6,2,0,4,1,1,1,0,0,3,6,1,0,0
-Add 50% forests,Type,A,0,5,3,4,1,1,1,0,0,3,12,-1,0,0
-Add 50% forests,Type,S,5,3,3,4,0,0,0,0,0,0,10,1,0,0
-Add 50% forests,Type,All,1,4,2,5,1,1,1,0,0,3,11,-1,0,0
-Add 50% grasslands,Type,All,3,2,1,3,2,2,2,0,0,6,6,-1,0,0
-Add 50% crops,Type,A,5,3,2,2,1,1,1,0,0,3,7,1,0,0
-Add 50% crops,Type,H,7,2,0,3,1,1,1,0,0,3,5,-1,0,0
-Add 50% crops,Type,S,8,1,1,2,1,1,1,0,0,3,4,-1,0,0
-All forests are coniferous,Type,A,3,0,9,0,1,1,1,0,0,3,9,1,0,0
-All forests are deciduous,Type,A,3,0,0,9,1,1,1,0,0,3,9,1,0,0
-All forests are mixed,Type,A,3,9,0,0,1,1,1,0,0,3,9,1,0,0
-All high LUI grasslands become crops,Type,H,7,2,0,4,1,1,0,0,0,2,6,1,0,0
-"half crops converted to grasslands,  more low grassland",Type,A,0,4,2,3,3,2,1,0,0,6,9,-1,0,0
-Low-lui and med-lui grasslands become coniferous forests,Type,H,6,2,2,4,0,0,1,0,0,1,8,1,0,0
-Low-lui and med-lui grasslands become mixed forests,Type,A,3,4,2,5,0,0,1,0,0,1,11,1,0,0
-Low-lui and med-lui grasslands become mixed forests,Type,H,6,2,0,6,0,0,1,0,0,1,8,1,0,0
-All grasslands are high int,Type,H,6,2,0,4,0,0,3,0,0,3,6,1,0,0
-All grasslands are low int,Type,H,6,2,0,4,3,0,0,0,0,3,6,1,0,0
-100% forest,Type,S,1,4,4,6,0,0,0,0,0,0,14,1,0,0
-33% each,Type,A,4,2,1,2,2,2,2,0,0,6,5,-1,0,0
-33% each,Type,H,4,2,0,3,2,2,2,0,0,6,5,-1,0,0
-33% each,Type,All,4,2,1,2,2,2,2,0,0,6,5,-1,0,0
-Current proportion of LU types,Age,A,3,0,0,0,1,1,1,8,1,3,9,1,0,0
-Add 50% forests,Age,A,0,0,0,0,1,1,1,11,1,3,12,-1,0,0
-Add 50% forests,Age,S,5,0,0,0,0,0,0,9,1,0,10,1,0,0
-Add 50% forests,Age,All,1,0,0,0,1,1,1,8,3,3,11,-1,0,0
-Add 50% crops,Age,H,7,0,0,0,1,1,1,2,3,3,5,-1,0,0
-Add 50% crops,Age,S,8,0,0,0,1,1,1,3,1,3,4,-1,0,0
-All forests are even-aged,Age,A,3,0,0,0,1,1,1,9,0,3,9,1,0,0
-All forests are uneven-aged,Age,A,3,0,0,0,1,1,1,0,9,3,9,1,0,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,A,0,0,0,0,3,2,1,8,1,6,9,-1,0,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,H,2,0,0,0,3,2,1,3,4,6,7,-1,0,0
-Low-lui and med-lui grasslands become even-aged forests,Age,A,3,0,0,0,0,0,1,10,1,1,11,1,0,0
-Low-lui and med-lui grasslands become even-aged forests,Age,All,4,0,0,0,0,0,1,8,2,1,10,-1,0,0
-33% each (EA/UA),Age,H,4,0,0,0,2,2,2,2,3,6,5,-1,0,0
-33% each (EA/UA),Age,S,4,0,0,0,2,2,2,4,1,6,5,-1,0,0
-33% each (EA/UA),Age,All,4,0,0,0,2,2,2,4,1,6,5,-1,0,0
-Add 50% forests,Type,H,2,4,0,7,0,1,1,0,0,2,11,-2,-1,0
-Add 50% grasslands,Type,H,5,2,0,4,2,1,1,0,0,4,6,2,1,0
-Add 50% forests,Age,H,2,0,0,0,0,1,1,5,6,2,11,-2,-1,0
-Add 50% grasslands,Age,H,5,0,0,0,2,1,1,3,3,4,6,2,1,0
-Add 50% grasslands,Age,All,3,0,0,0,1,2,2,5,2,5,7,-2,-1,0
-Current proportion of LU types,Type,A,2,4,2,3,2,1,1,0,0,4,9,1,1,0
-Current proportion of LU types,Type,H,5,2,0,4,2,1,1,0,0,4,6,1,1,0
-Add 50% forests,Type,A,1,5,3,4,0,1,1,0,0,2,12,-1,-1,0
-Add 50% forests,Type,S,4,3,3,4,1,0,0,0,0,1,10,1,1,0
-Add 50% forests,Type,All,2,4,2,5,0,1,1,0,0,2,11,-1,-1,0
-Add 50% grasslands,Type,All,4,2,1,3,1,2,2,0,0,5,6,-1,-1,0
-Add 50% crops,Type,A,4,3,2,2,2,1,1,0,0,4,7,1,1,0
-Add 50% crops,Type,H,8,2,0,3,0,1,1,0,0,2,5,-1,-1,0
-Add 50% crops,Type,S,9,1,1,2,0,1,1,0,0,2,4,-1,-1,0
-All forests are coniferous,Type,A,2,0,9,0,2,1,1,0,0,4,9,1,1,0
-All forests are deciduous,Type,A,2,0,0,9,2,1,1,0,0,4,9,1,1,0
-All forests are mixed,Type,A,2,9,0,0,2,1,1,0,0,4,9,1,1,0
-All high LUI grasslands become crops,Type,H,6,2,0,4,2,1,0,0,0,3,6,1,1,0
-"half crops converted to grasslands,  more low grassland",Type,A,1,4,2,3,2,2,1,0,0,5,9,-1,-1,0
-Low-lui and med-lui grasslands become coniferous forests,Type,H,5,2,2,4,1,0,1,0,0,2,8,1,1,0
-Low-lui and med-lui grasslands become mixed forests,Type,A,2,4,2,5,1,0,1,0,0,2,11,1,1,0
-Low-lui and med-lui grasslands become mixed forests,Type,H,5,2,0,6,1,0,1,0,0,2,8,1,1,0
-All grasslands are high int,Type,H,5,2,0,4,1,0,3,0,0,4,6,1,1,0
-All grasslands are low int,Type,H,5,2,0,4,4,0,0,0,0,4,6,1,1,0
-100% forest,Type,S,0,4,4,6,1,0,0,0,0,1,14,1,1,0
-33% each,Type,A,5,2,1,2,1,2,2,0,0,5,5,-1,-1,0
-33% each,Type,H,5,2,0,3,1,2,2,0,0,5,5,-1,-1,0
-33% each,Type,All,5,2,1,2,1,2,2,0,0,5,5,-1,-1,0
-Current proportion of LU types,Age,A,2,0,0,0,2,1,1,8,1,4,9,1,1,0
-Add 50% forests,Age,A,1,0,0,0,0,1,1,11,1,2,12,-1,-1,0
-Add 50% forests,Age,S,4,0,0,0,1,0,0,9,1,1,10,1,1,0
-Add 50% forests,Age,All,2,0,0,0,0,1,1,8,3,2,11,-1,-1,0
-Add 50% crops,Age,H,8,0,0,0,0,1,1,2,3,2,5,-1,-1,0
-Add 50% crops,Age,S,9,0,0,0,0,1,1,3,1,2,4,-1,-1,0
-All forests are even-aged,Age,A,2,0,0,0,2,1,1,9,0,4,9,1,1,0
-All forests are uneven-aged,Age,A,2,0,0,0,2,1,1,0,9,4,9,1,1,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,A,1,0,0,0,2,2,1,8,1,5,9,-1,-1,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,H,3,0,0,0,2,2,1,3,4,5,7,-1,-1,0
-Low-lui and med-lui grasslands become even-aged forests,Age,A,2,0,0,0,1,0,1,10,1,2,11,1,1,0
-33% each (EA/UA),Age,H,5,0,0,0,1,2,2,2,3,5,5,-1,-1,0
-33% each (EA/UA),Age,S,5,0,0,0,1,2,2,4,1,5,5,-1,-1,0
-33% each (EA/UA),Age,All,5,0,0,0,1,2,2,4,1,5,5,-1,-1,0
-Add 50% forests,Type,H,2,4,0,7,1,0,1,0,0,2,11,-2,-1,0
-Add 50% grasslands,Type,H,5,2,0,4,1,2,1,0,0,4,6,2,1,0
-Add 50% forests,Age,H,2,0,0,0,1,0,1,5,6,2,11,-2,-1,0
-Add 50% grasslands,Age,H,5,0,0,0,1,2,1,3,3,4,6,2,1,0
-Add 50% grasslands,Age,All,3,0,0,0,2,1,2,5,2,5,7,-2,-1,0
-Current proportion of LU types,Type,A,2,4,2,3,1,2,1,0,0,4,9,1,1,0
-Current proportion of LU types,Type,H,5,2,0,4,1,2,1,0,0,4,6,1,1,0
-Add 50% forests,Type,A,1,5,3,4,1,0,1,0,0,2,12,-1,-1,0
-Add 50% forests,Type,S,4,3,3,4,0,1,0,0,0,1,10,1,1,0
-Add 50% forests,Type,All,2,4,2,5,1,0,1,0,0,2,11,-1,-1,0
-Add 50% grasslands,Type,All,4,2,1,3,2,1,2,0,0,5,6,-1,-1,0
-Add 50% crops,Type,A,4,3,2,2,1,2,1,0,0,4,7,1,1,0
-Add 50% crops,Type,H,8,2,0,3,1,0,1,0,0,2,5,-1,-1,0
-Add 50% crops,Type,S,9,1,1,2,1,0,1,0,0,2,4,-1,-1,0
-All forests are coniferous,Type,A,2,0,9,0,1,2,1,0,0,4,9,1,1,0
-All forests are deciduous,Type,A,2,0,0,9,1,2,1,0,0,4,9,1,1,0
-All forests are mixed,Type,A,2,9,0,0,1,2,1,0,0,4,9,1,1,0
-All high LUI grasslands become crops,Type,H,6,2,0,4,1,2,0,0,0,3,6,1,1,0
-"half crops converted to grasslands,  more low grassland",Type,A,1,4,2,3,3,1,1,0,0,5,9,-1,-1,0
-Low-lui and med-lui grasslands become coniferous forests,Type,H,5,2,2,4,0,1,1,0,0,2,8,1,1,0
-Low-lui and med-lui grasslands become mixed forests,Type,A,2,4,2,5,0,1,1,0,0,2,11,1,1,0
-Low-lui and med-lui grasslands become mixed forests,Type,H,5,2,0,6,0,1,1,0,0,2,8,1,1,0
-All grasslands are high int,Type,H,5,2,0,4,0,1,3,0,0,4,6,1,1,0
-All grasslands are low int,Type,H,5,2,0,4,3,1,0,0,0,4,6,1,1,0
-100% forest,Type,S,0,4,4,6,0,1,0,0,0,1,14,1,1,0
-33% each,Type,A,5,2,1,2,2,1,2,0,0,5,5,-1,-1,0
-33% each,Type,H,5,2,0,3,2,1,2,0,0,5,5,-1,-1,0
-33% each,Type,All,5,2,1,2,2,1,2,0,0,5,5,-1,-1,0
-Current proportion of LU types,Age,A,2,0,0,0,1,2,1,8,1,4,9,1,1,0
-Add 50% forests,Age,A,1,0,0,0,1,0,1,11,1,2,12,-1,-1,0
-Add 50% forests,Age,S,4,0,0,0,0,1,0,9,1,1,10,1,1,0
-Add 50% forests,Age,All,2,0,0,0,1,0,1,8,3,2,11,-1,-1,0
-Add 50% crops,Age,H,8,0,0,0,1,0,1,2,3,2,5,-1,-1,0
-Add 50% crops,Age,S,9,0,0,0,1,0,1,3,1,2,4,-1,-1,0
-All forests are even-aged,Age,A,2,0,0,0,1,2,1,9,0,4,9,1,1,0
-All forests are uneven-aged,Age,A,2,0,0,0,1,2,1,0,9,4,9,1,1,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,A,1,0,0,0,3,1,1,8,1,5,9,-1,-1,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,H,3,0,0,0,3,1,1,3,4,5,7,-1,-1,0
-Low-lui and med-lui grasslands become even-aged forests,Age,A,2,0,0,0,0,1,1,10,1,2,11,1,1,0
-33% each (EA/UA),Age,H,5,0,0,0,2,1,2,2,3,5,5,-1,-1,0
-33% each (EA/UA),Age,S,5,0,0,0,2,1,2,4,1,5,5,-1,-1,0
-33% each (EA/UA),Age,All,5,0,0,0,2,1,2,4,1,5,5,-1,-1,0
-Add 50% forests,Type,H,2,4,0,7,1,1,0,0,0,2,11,-2,-1,0
-Add 50% grasslands,Type,H,5,2,0,4,1,1,2,0,0,4,6,2,1,0
-Add 50% forests,Age,H,2,0,0,0,1,1,0,5,6,2,11,-2,-1,0
-Add 50% grasslands,Age,H,5,0,0,0,1,1,2,3,3,4,6,2,1,0
-Add 50% grasslands,Age,All,3,0,0,0,2,2,1,5,2,5,7,-2,-1,0
-Current proportion of LU types,Type,A,2,4,2,3,1,1,2,0,0,4,9,1,1,0
-Current proportion of LU types,Type,H,5,2,0,4,1,1,2,0,0,4,6,1,1,0
-Add 50% forests,Type,A,1,5,3,4,1,1,0,0,0,2,12,-1,-1,0
-Add 50% forests,Type,S,4,3,3,4,0,0,1,0,0,1,10,1,1,0
-Add 50% forests,Type,All,2,4,2,5,1,1,0,0,0,2,11,-1,-1,0
-Add 50% grasslands,Type,All,4,2,1,3,2,2,1,0,0,5,6,-1,-1,0
-Add 50% crops,Type,A,4,3,2,2,1,1,2,0,0,4,7,1,1,0
-Add 50% crops,Type,H,8,2,0,3,1,1,0,0,0,2,5,-1,-1,0
-Add 50% crops,Type,S,9,1,1,2,1,1,0,0,0,2,4,-1,-1,0
-All forests are coniferous,Type,A,2,0,9,0,1,1,2,0,0,4,9,1,1,0
-All forests are deciduous,Type,A,2,0,0,9,1,1,2,0,0,4,9,1,1,0
-All forests are mixed,Type,A,2,9,0,0,1,1,2,0,0,4,9,1,1,0
-All high LUI grasslands become crops,Type,H,6,2,0,4,1,1,1,0,0,3,6,1,1,0
-"half crops converted to grasslands,  more low grassland",Type,A,1,4,2,3,3,2,0,0,0,5,9,-1,-1,0
-Low-lui and med-lui grasslands become coniferous forests,Type,H,5,2,2,4,0,0,2,0,0,2,8,1,1,0
-Low-lui and med-lui grasslands become mixed forests,Type,A,2,4,2,5,0,0,2,0,0,2,11,1,1,0
-Low-lui and med-lui grasslands become mixed forests,Type,H,5,2,0,6,0,0,2,0,0,2,8,1,1,0
-All grasslands are high int,Type,H,5,2,0,4,0,0,4,0,0,4,6,1,1,0
-All grasslands are low int,Type,H,5,2,0,4,3,0,1,0,0,4,6,1,1,0
-100% forest,Type,S,0,4,4,6,0,0,1,0,0,1,14,1,1,0
-33% each,Type,A,5,2,1,2,2,2,1,0,0,5,5,-1,-1,0
-33% each,Type,H,5,2,0,3,2,2,1,0,0,5,5,-1,-1,0
-33% each,Type,All,5,2,1,2,2,2,1,0,0,5,5,-1,-1,0
-Current proportion of LU types,Age,A,2,0,0,0,1,1,2,8,1,4,9,1,1,0
-Add 50% forests,Age,A,1,0,0,0,1,1,0,11,1,2,12,-1,-1,0
-Add 50% forests,Age,S,4,0,0,0,0,0,1,9,1,1,10,1,1,0
-Add 50% forests,Age,All,2,0,0,0,1,1,0,8,3,2,11,-1,-1,0
-Add 50% crops,Age,H,8,0,0,0,1,1,0,2,3,2,5,-1,-1,0
-Add 50% crops,Age,S,9,0,0,0,1,1,0,3,1,2,4,-1,-1,0
-All forests are even-aged,Age,A,2,0,0,0,1,1,2,9,0,4,9,1,1,0
-All forests are uneven-aged,Age,A,2,0,0,0,1,1,2,0,9,4,9,1,1,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,A,1,0,0,0,3,2,0,8,1,5,9,-1,-1,0
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,H,3,0,0,0,3,2,0,3,4,5,7,-1,-1,0
-Low-lui and med-lui grasslands become even-aged forests,Age,A,2,0,0,0,0,0,2,10,1,2,11,1,1,0
-Low-lui and med-lui grasslands become even-aged forests,Age,All,5,0,0,0,0,0,0,8,2,0,10,-1,-1,0
-33% each (EA/UA),Age,H,5,0,0,0,2,2,1,2,3,5,5,-1,-1,0
-33% each (EA/UA),Age,S,5,0,0,0,2,2,1,4,1,5,5,-1,-1,0
-33% each (EA/UA),Age,All,5,0,0,0,2,2,1,4,1,5,5,-1,-1,0
-Add 50% forests,Type,H,2,3,0,7,1,1,1,0,0,3,10,-2,0,-1
-Add 50% grasslands,Type,H,5,3,0,4,1,1,1,0,0,3,7,2,0,1
-Current proportion of LU types,Type,A,2,5,2,3,1,1,1,0,0,3,10,1,0,1
-Current proportion of LU types,Type,H,5,3,0,4,1,1,1,0,0,3,7,1,0,1
-Add 50% forests,Type,A,1,4,3,4,1,1,1,0,0,3,11,-1,0,-1
-Add 50% forests,Type,S,4,4,3,4,0,0,0,0,0,0,11,1,0,1
-Add 50% forests,Type,All,2,3,2,5,1,1,1,0,0,3,10,-1,0,-1
-Add 50% grasslands,Type,All,4,1,1,3,2,2,2,0,0,6,5,-1,0,-1
-Add 50% crops,Type,A,4,4,2,2,1,1,1,0,0,3,8,1,0,1
-Add 50% crops,Type,H,8,1,0,3,1,1,1,0,0,3,4,-1,0,-1
-Add 50% crops,Type,S,9,0,1,2,1,1,1,0,0,3,3,-1,0,-1
-All forests are coniferous,Type,A,2,1,9,0,1,1,1,0,0,3,10,1,0,1
-All forests are deciduous,Type,A,2,1,0,9,1,1,1,0,0,3,10,1,0,1
-All forests are mixed,Type,A,2,10,0,0,1,1,1,0,0,3,10,1,0,1
-All high LUI grasslands become crops,Type,H,6,3,0,4,1,1,0,0,0,2,7,1,0,1
-"half crops converted to grasslands,  more low grassland",Type,A,1,3,2,3,3,2,1,0,0,6,8,-1,0,-1
-Low-lui and med-lui grasslands become coniferous forests,Type,H,5,3,2,4,0,0,1,0,0,1,9,1,0,1
-Low-lui and med-lui grasslands become mixed forests,Type,A,2,5,2,5,0,0,1,0,0,1,12,1,0,1
-Low-lui and med-lui grasslands become mixed forests,Type,H,5,3,0,6,0,0,1,0,0,1,9,1,0,1
-All grasslands are high int,Type,H,5,3,0,4,0,0,3,0,0,3,7,1,0,1
-All grasslands are low int,Type,H,5,3,0,4,3,0,0,0,0,3,7,1,0,1
-100% forest,Type,A,0,6,4,5,0,0,0,0,0,0,15,-1,0,-1
-100% forest,Type,S,0,5,4,6,0,0,0,0,0,0,15,1,0,1
-33% each,Type,A,5,1,1,2,2,2,2,0,0,6,4,-1,0,-1
-33% each,Type,H,5,1,0,3,2,2,2,0,0,6,4,-1,0,-1
-33% each,Type,All,5,1,1,2,2,2,2,0,0,6,4,-1,0,-1
-Add 50% forests,Type,H,3,3,0,7,0,1,1,0,0,2,10,-2,-1,-1
-Add 50% grasslands,Type,H,4,3,0,4,2,1,1,0,0,4,7,2,1,1
-Add 50% forests,Type,H,3,3,0,7,1,0,1,0,0,2,10,-2,-1,-1
-Add 50% grasslands,Type,H,4,3,0,4,1,2,1,0,0,4,7,2,1,1
-Add 50% forests,Type,H,3,3,0,7,1,1,0,0,0,2,10,-2,-1,-1
-Add 50% grasslands,Type,H,4,3,0,4,1,1,2,0,0,4,7,2,1,1
-Add 50% grasslands,Type,H,5,2,1,4,1,1,1,0,0,3,7,2,0,1
-Current proportion of LU types,Type,A,2,4,3,3,1,1,1,0,0,3,10,1,0,1
-Current proportion of LU types,Type,H,5,2,1,4,1,1,1,0,0,3,7,1,0,1
-Add 50% forests,Type,A,1,5,2,4,1,1,1,0,0,3,11,-1,0,-1
-Add 50% forests,Type,S,4,3,4,4,0,0,0,0,0,0,11,1,0,1
-Add 50% forests,Type,All,2,4,1,5,1,1,1,0,0,3,10,-1,0,-1
-Add 50% grasslands,Type,All,4,2,0,3,2,2,2,0,0,6,5,-1,0,-1
-Add 50% crops,Type,A,4,3,3,2,1,1,1,0,0,3,8,1,0,1
-Add 50% crops,Type,S,9,1,0,2,1,1,1,0,0,3,3,-1,0,-1
-All forests are coniferous,Type,A,2,0,10,0,1,1,1,0,0,3,10,1,0,1
-All forests are deciduous,Type,A,2,0,1,9,1,1,1,0,0,3,10,1,0,1
-All forests are mixed,Type,A,2,9,1,0,1,1,1,0,0,3,10,1,0,1
-All high LUI grasslands become crops,Type,H,6,2,1,4,1,1,0,0,0,2,7,1,0,1
-"half crops converted to grasslands,  more low grassland",Type,A,1,4,1,3,3,2,1,0,0,6,8,-1,0,-1
-Low-lui and med-lui grasslands become coniferous forests,Type,H,5,2,3,4,0,0,1,0,0,1,9,1,0,1
-Low-lui and med-lui grasslands become mixed forests,Type,A,2,4,3,5,0,0,1,0,0,1,12,1,0,1
-Low-lui and med-lui grasslands become mixed forests,Type,H,5,2,1,6,0,0,1,0,0,1,9,1,0,1
-All grasslands are high int,Type,H,5,2,1,4,0,0,3,0,0,3,7,1,0,1
-All grasslands are low int,Type,H,5,2,1,4,3,0,0,0,0,3,7,1,0,1
-100% forest,Type,A,0,7,3,5,0,0,0,0,0,0,15,-1,0,-1
-100% forest,Type,S,0,4,5,6,0,0,0,0,0,0,15,1,0,1
-33% each,Type,A,5,2,0,2,2,2,2,0,0,6,4,-1,0,-1
-33% each,Type,All,5,2,0,2,2,2,2,0,0,6,4,-1,0,-1
-Add 50% grasslands,Type,H,4,2,1,4,2,1,1,0,0,4,7,2,1,1
-Add 50% grasslands,Type,H,4,2,1,4,1,2,1,0,0,4,7,2,1,1
-Add 50% grasslands,Type,H,4,2,1,4,1,1,2,0,0,4,7,2,1,1
-Add 50% forests,Type,H,2,4,0,6,1,1,1,0,0,3,10,-2,0,-1
-Add 50% grasslands,Type,H,5,2,0,5,1,1,1,0,0,3,7,2,0,1
-Current proportion of LU types,Type,A,2,4,2,4,1,1,1,0,0,3,10,1,0,1
-Current proportion of LU types,Type,H,5,2,0,5,1,1,1,0,0,3,7,1,0,1
-Add 50% forests,Type,A,1,5,3,3,1,1,1,0,0,3,11,-1,0,-1
-Add 50% forests,Type,S,4,3,3,5,0,0,0,0,0,0,11,1,0,1
-Add 50% forests,Type,All,2,4,2,4,1,1,1,0,0,3,10,-1,0,-1
-Add 50% grasslands,Type,All,4,2,1,2,2,2,2,0,0,6,5,-1,0,-1
-Add 50% crops,Type,A,4,3,2,3,1,1,1,0,0,3,8,1,0,1
-Add 50% crops,Type,H,8,2,0,2,1,1,1,0,0,3,4,-1,0,-1
-Add 50% crops,Type,S,9,1,1,1,1,1,1,0,0,3,3,-1,0,-1
-All forests are coniferous,Type,A,2,0,9,1,1,1,1,0,0,3,10,1,0,1
-All forests are deciduous,Type,A,2,0,0,10,1,1,1,0,0,3,10,1,0,1
-All forests are mixed,Type,A,2,9,0,1,1,1,1,0,0,3,10,1,0,1
-All high LUI grasslands become crops,Type,H,6,2,0,5,1,1,0,0,0,2,7,1,0,1
-"half crops converted to grasslands,  more low grassland",Type,A,1,4,2,2,3,2,1,0,0,6,8,-1,0,-1
-Low-lui and med-lui grasslands become coniferous forests,Type,H,5,2,2,5,0,0,1,0,0,1,9,1,0,1
-Low-lui and med-lui grasslands become mixed forests,Type,A,2,4,2,6,0,0,1,0,0,1,12,1,0,1
-Low-lui and med-lui grasslands become mixed forests,Type,H,5,2,0,7,0,0,1,0,0,1,9,1,0,1
-All grasslands are high int,Type,H,5,2,0,5,0,0,3,0,0,3,7,1,0,1
-All grasslands are low int,Type,H,5,2,0,5,3,0,0,0,0,3,7,1,0,1
-100% forest,Type,A,0,7,4,4,0,0,0,0,0,0,15,-1,0,-1
-100% forest,Type,S,0,4,4,7,0,0,0,0,0,0,15,1,0,1
-33% each,Type,A,5,2,1,1,2,2,2,0,0,6,4,-1,0,-1
-33% each,Type,H,5,2,0,2,2,2,2,0,0,6,4,-1,0,-1
-33% each,Type,All,5,2,1,1,2,2,2,0,0,6,4,-1,0,-1
-Add 50% forests,Type,H,3,4,0,6,0,1,1,0,0,2,10,-2,-1,-1
-Add 50% grasslands,Type,H,4,2,0,5,2,1,1,0,0,4,7,2,1,1
-Add 50% forests,Type,H,3,4,0,6,1,0,1,0,0,2,10,-2,-1,-1
-Add 50% grasslands,Type,H,4,2,0,5,1,2,1,0,0,4,7,2,1,1
-Add 50% forests,Type,H,3,4,0,6,1,1,0,0,0,2,10,-2,-1,-1
-Add 50% grasslands,Type,H,4,2,0,5,1,1,2,0,0,4,7,2,1,1
-Add 50% forests,Age,H,2,0,0,0,1,1,1,4,6,3,10,-2,0,-1
-Add 50% grasslands,Age,H,5,0,0,0,1,1,1,4,3,3,7,2,0,1
-Add 50% grasslands,Age,All,3,0,0,0,2,2,2,4,2,6,6,-2,0,-1
-Current proportion of LU types,Age,A,2,0,0,0,1,1,1,9,1,3,10,1,0,1
-Add 50% forests,Age,A,1,0,0,0,1,1,1,10,1,3,11,-1,0,-1
-Add 50% forests,Age,S,4,0,0,0,0,0,0,10,1,0,11,1,0,1
-Add 50% forests,Age,All,2,0,0,0,1,1,1,7,3,3,10,-1,0,-1
-Add 50% crops,Age,H,8,0,0,0,1,1,1,1,3,3,4,-1,0,-1
-Add 50% crops,Age,S,9,0,0,0,1,1,1,2,1,3,3,-1,0,-1
-All forests are even-aged,Age,A,2,0,0,0,1,1,1,10,0,3,10,1,0,1
-All forests are uneven-aged,Age,A,2,0,0,0,1,1,1,1,9,3,10,1,0,1
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,A,1,0,0,0,3,2,1,7,1,6,8,-1,0,-1
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,H,3,0,0,0,3,2,1,2,4,6,6,-1,0,-1
-Low-lui and med-lui grasslands become even-aged forests,Age,A,2,0,0,0,0,0,1,11,1,1,12,1,0,1
-Low-lui and med-lui grasslands become even-aged forests,Age,All,5,0,0,0,0,0,1,7,2,1,9,-1,0,-1
-100% forest (EA/UA),Age,A,0,0,0,0,0,0,0,13,2,0,15,-1,0,-1
-33% each (EA/UA),Age,H,5,0,0,0,2,2,2,1,3,6,4,-1,0,-1
-33% each (EA/UA),Age,S,5,0,0,0,2,2,2,3,1,6,4,-1,0,-1
-33% each (EA/UA),Age,All,5,0,0,0,2,2,2,3,1,6,4,-1,0,-1
-Add 50% forests,Age,H,3,0,0,0,0,1,1,4,6,2,10,-2,-1,-1
-Add 50% grasslands,Age,H,4,0,0,0,2,1,1,4,3,4,7,2,1,1
-Add 50% grasslands,Age,All,4,0,0,0,1,2,2,4,2,5,6,-2,-1,-1
-Add 50% forests,Age,H,3,0,0,0,1,0,1,4,6,2,10,-2,-1,-1
-Add 50% grasslands,Age,H,4,0,0,0,1,2,1,4,3,4,7,2,1,1
-Add 50% grasslands,Age,All,4,0,0,0,2,1,2,4,2,5,6,-2,-1,-1
-Add 50% forests,Age,H,3,0,0,0,1,1,0,4,6,2,10,-2,-1,-1
-Add 50% grasslands,Age,H,4,0,0,0,1,1,2,4,3,4,7,2,1,1
-Add 50% grasslands,Age,All,4,0,0,0,2,2,1,4,2,5,6,-2,-1,-1
-Add 50% forests,Age,H,2,0,0,0,1,1,1,5,5,3,10,-2,0,-1
-Add 50% grasslands,Age,H,5,0,0,0,1,1,1,3,4,3,7,2,0,1
-Add 50% grasslands,Age,All,3,0,0,0,2,2,2,5,1,6,6,-2,0,-1
-Current proportion of LU types,Age,A,2,0,0,0,1,1,1,8,2,3,10,1,0,1
-Add 50% forests,Age,A,1,0,0,0,1,1,1,11,0,3,11,-1,0,-1
-Add 50% forests,Age,S,4,0,0,0,0,0,0,9,2,0,11,1,0,1
-Add 50% forests,Age,All,2,0,0,0,1,1,1,8,2,3,10,-1,0,-1
-Add 50% crops,Age,H,8,0,0,0,1,1,1,2,2,3,4,-1,0,-1
-Add 50% crops,Age,S,9,0,0,0,1,1,1,3,0,3,3,-1,0,-1
-All forests are even-aged,Age,A,2,0,0,0,1,1,1,9,1,3,10,1,0,1
-All forests are uneven-aged,Age,A,2,0,0,0,1,1,1,0,10,3,10,1,0,1
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,A,1,0,0,0,3,2,1,8,0,6,8,-1,0,-1
-"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,H,3,0,0,0,3,2,1,3,3,6,6,-1,0,-1
-Low-lui and med-lui grasslands become even-aged forests,Age,A,2,0,0,0,0,0,1,10,2,1,12,1,0,1
-Low-lui and med-lui grasslands become even-aged forests,Age,All,5,0,0,0,0,0,1,8,1,1,9,-1,0,-1
-100% forest (EA/UA),Age,A,0,0,0,0,0,0,0,14,1,0,15,-1,0,-1
-33% each (EA/UA),Age,H,5,0,0,0,2,2,2,2,2,6,4,-1,0,-1
-33% each (EA/UA),Age,S,5,0,0,0,2,2,2,4,0,6,4,-1,0,-1
-33% each (EA/UA),Age,All,5,0,0,0,2,2,2,4,0,6,4,-1,0,-1
-Add 50% forests,Age,H,3,0,0,0,0,1,1,5,5,2,10,-2,-1,-1
-Add 50% grasslands,Age,H,4,0,0,0,2,1,1,3,4,4,7,2,1,1
-Add 50% grasslands,Age,All,4,0,0,0,1,2,2,5,1,5,6,-2,-1,-1
-Add 50% forests,Age,H,3,0,0,0,1,0,1,5,5,2,10,-2,-1,-1
-Add 50% grasslands,Age,H,4,0,0,0,1,2,1,3,4,4,7,2,1,1
-Add 50% grasslands,Age,All,4,0,0,0,2,1,2,5,1,5,6,-2,-1,-1
-Add 50% forests,Age,H,3,0,0,0,1,1,0,5,5,2,10,-2,-1,-1
-Add 50% grasslands,Age,H,4,0,0,0,1,1,2,3,4,4,7,2,1,1
-Add 50% grasslands,Age,All,4,0,0,0,2,2,1,5,1,5,6,-2,-1,-1
+Scenario_description,Forest_classification,Region,Crop,Forest_Mixed,Forest_Coniferous,Forest_Deciduous,Forest_even_aged,Forest_uneven_aged,Grassland_low,Grassland_medium,Grassland_high,scenarios,n_scenarios,n_tot,All_grasslands,All_forests,problem_overall,problem_grasslands,problem_forests
+Current proportion of LU types,Type,A,3,0,1,6,0,0,2,2,1,,,,5,7,0,0,0
+Current proportion of LU types,Type,All,6,0,2,4,0,0,1,1,1,,,,3,6,0,0,0
+Add 50% grasslands,Type,A,2,0,1,5,0,0,3,2,2,,,,7,6,0,0,0
+Add 50% crops,Type,A,5,0,1,5,0,0,2,1,1,,,,4,6,0,0,0
+Add 50% crops,Type,H,14,0,0,1,0,0,0,0,0,,,,0,1,0,0,0
+All mixed forests and low-intensity grasslands (same crops),Type,A,3,7,0,0,0,0,5,0,0,,,,5,7,0,0,0
+All mixed forests and low-intensity grasslands (same crops),Type,H,9,4,0,0,0,0,2,0,0,,,,2,4,0,0,0
+All mixed forests and low-intensity grasslands (same crops),Type,S,5,8,0,0,0,0,2,0,0,,,,2,8,0,0,0
+All mixed forests and low-intensity grasslands (same crops),Type,All,6,6,0,0,0,0,3,0,0,,,,3,6,0,0,0
+Only coniferous forests and only high LUI grasslands,Type,A,3,0,7,0,0,0,0,0,5,,,,5,7,0,0,0
+Only coniferous forests and only high LUI grasslands,Type,H,9,0,4,0,0,0,0,0,2,,,,2,4,0,0,0
+Only coniferous forests and only high LUI grasslands,Type,S,5,0,8,0,0,0,0,0,2,,,,2,8,0,0,0
+Only coniferous forests and only high LUI grasslands,Type,All,6,0,6,0,0,0,0,0,3,,,,3,6,0,0,0
+All forests are coniferous,Type,A,3,0,7,0,0,0,2,2,1,,,,5,7,0,0,0
+All forests are coniferous,Type,All,6,0,6,0,0,0,1,1,1,,,,3,6,0,0,0
+All forests are deciduous,Type,A,3,0,0,7,0,0,2,2,1,,,,5,7,0,0,0
+All forests are deciduous,Type,All,6,0,0,6,0,0,1,1,1,,,,3,6,0,0,0
+All forests are mixed,Type,A,3,7,0,0,0,0,2,2,1,,,,5,7,0,0,0
+All forests are mixed,Type,All,6,6,0,0,0,0,1,1,1,,,,3,6,0,0,0
+All high LUI grasslands become crops,Type,A,4,0,1,6,0,0,2,2,0,,,,4,7,0,0,0
+All high LUI grasslands become crops,Type,All,7,0,2,4,0,0,1,1,0,,,,2,6,0,0,0
+"half crops converted to grasslands,  more low grassland",Type,H,4,0,0,4,0,0,5,1,1,,,,7,4,0,0,0
+"half crops converted to grasslands,  more low grassland",Type,All,3,0,2,4,0,0,4,1,1,,,,6,6,0,0,0
+Low-lui and med-lui grasslands become coniferous forests,Type,A,3,0,5,6,0,0,0,0,1,,,,1,11,0,0,0
+Low-lui and med-lui grasslands become coniferous forests,Type,S,5,1,5,3,0,0,0,0,1,,,,1,9,0,0,0
+Low-lui and med-lui grasslands become coniferous forests,Type,All,6,0,4,4,0,0,0,0,1,,,,1,8,0,0,0
+Low-lui and med-lui grasslands become mixed forests,Type,A,3,4,1,6,0,0,0,0,1,,,,1,11,0,0,0
+Low-lui and med-lui grasslands become mixed forests,Type,H,9,1,0,4,0,0,0,0,1,,,,1,5,0,0,0
+Low-lui and med-lui grasslands become mixed forests,Type,S,5,2,4,3,0,0,0,0,1,,,,1,9,0,0,0
+All grasslands are high int,Type,A,3,0,1,6,0,0,0,0,5,,,,5,7,0,0,0
+All grasslands are high int,Type,H,9,0,0,4,0,0,0,0,2,,,,2,4,0,0,0
+All grasslands are high int,Type,S,5,1,4,3,0,0,0,0,2,,,,2,8,0,0,0
+All grasslands are high int,Type,All,6,0,2,4,0,0,0,0,3,,,,3,6,0,0,0
+All grasslands are low int,Type,A,3,0,1,6,0,0,5,0,0,,,,5,7,0,0,0
+All grasslands are low int,Type,H,9,0,0,4,0,0,2,0,0,,,,2,4,0,0,0
+All grasslands are low int,Type,S,5,1,4,3,0,0,2,0,0,,,,2,8,0,0,0
+All grasslands are low int,Type,All,6,0,2,4,0,0,3,0,0,,,,3,6,0,0,0
+100% forest,Type,A,0,1,2,12,0,0,0,0,0,,,,0,15,0,0,0
+100% forest,Type,H,0,1,1,13,0,0,0,0,0,,,,0,15,0,0,0
+100% forest,Type,All,0,1,4,10,0,0,0,0,0,,,,0,15,0,0,0
+100% grasslands,Type,A,0,0,0,0,0,0,6,5,4,,,,15,0,0,0,0
+100% grasslands,Type,H,0,0,0,0,0,0,4,5,6,,,,15,0,0,0,0
+100% grasslands,Type,S,0,0,0,0,0,0,6,4,5,,,,15,0,0,0,0
+100% grasslands,Type,All,0,0,0,0,0,0,5,5,5,,,,15,0,0,0,0
+100% crops,Type,A,15,0,0,0,0,0,0,0,0,,,,0,0,0,0,0
+100% crops,Type,H,15,0,0,0,0,0,0,0,0,,,,0,0,0,0,0
+100% crops,Type,S,15,0,0,0,0,0,0,0,0,,,,0,0,0,0,0
+100% crops,Type,All,15,0,0,0,0,0,0,0,0,,,,0,0,0,0,0
+33% each,Type,A,5,0,1,4,0,0,2,2,1,,,,5,5,0,0,0
+33% each,Type,S,5,0,3,2,0,0,2,1,2,,,,5,5,0,0,0
+33% each,Type,All,5,0,1,3,0,0,2,2,2,,,,6,4,0,0,0
+Current proportion of LU types,Age,A,3,0,0,0,6,1,2,2,1,,,,5,7,0,0,0
+Current proportion of LU types,Age,S,5,0,0,0,6,1,1,1,1,,,,3,7,0,0,0
+Current proportion of LU types,Age,All,6,0,0,0,5,1,1,1,1,,,,3,6,0,0,0
+Add 50% forests,Age,H,6,0,0,0,4,4,0,0,1,,,,1,8,0,0,0
+Add 50% forests,Age,S,3,0,0,0,10,2,0,0,0,,,,0,12,0,0,0
+Add 50% forests,Age,All,3,0,0,0,8,2,1,1,0,,,,2,10,0,0,0
+Add 50% grasslands,Age,A,2,0,0,0,5,1,3,2,2,,,,7,6,0,0,0
+Add 50% grasslands,Age,H,8,0,0,0,2,2,1,1,1,,,,3,4,0,0,0
+Add 50% grasslands,Age,S,5,0,0,0,6,1,1,1,1,,,,3,7,0,0,0
+Add 50% crops,Age,H,14,0,0,0,0,1,0,0,0,,,,0,1,0,0,0
+All forests are uneven-aged and grasslands low-intensity,Age,A,3,0,0,0,0,7,5,0,0,,,,5,7,0,0,0
+All forests are uneven-aged and grasslands low-intensity,Age,H,9,0,0,0,0,4,2,0,0,,,,2,4,0,0,0
+All forests are uneven-aged and grasslands low-intensity,Age,S,5,0,0,0,0,8,2,0,0,,,,2,8,0,0,0
+All forests are uneven-aged and grasslands low-intensity,Age,All,6,0,0,0,0,6,3,0,0,,,,3,6,0,0,0
+All forests are even-aged and grasslands high-intensity,Age,A,3,0,0,0,7,0,0,0,5,,,,5,7,0,0,0
+All forests are even-aged and grasslands high-intensity,Age,H,9,0,0,0,4,0,0,0,2,,,,2,4,0,0,0
+All forests are even-aged and grasslands high-intensity,Age,S,5,0,0,0,8,0,0,0,2,,,,2,8,0,0,0
+All forests are even-aged and grasslands high-intensity,Age,All,6,0,0,0,6,0,0,0,3,,,,3,6,0,0,0
+All forests are even-aged,Age,A,3,0,0,0,7,0,2,2,1,,,,5,7,0,0,0
+All forests are even-aged,Age,All,6,0,0,0,6,0,1,1,1,,,,3,6,0,0,0
+All forests are uneven-aged,Age,A,3,0,0,0,0,7,2,2,1,,,,5,7,0,0,0
+All forests are uneven-aged,Age,All,6,0,0,0,0,6,1,1,1,,,,3,6,0,0,0
+All high LUI grasslands become crops (forests: EA/UA),Age,A,4,0,0,0,6,1,2,2,0,,,,4,7,0,0,0
+All high LUI grasslands become crops (forests: EA/UA),Age,S,6,0,0,0,6,1,1,1,0,,,,2,7,0,0,0
+All high LUI grasslands become crops (forests: EA/UA),Age,All,7,0,0,0,5,1,1,1,0,,,,2,6,0,0,0
+Low-lui and med-lui grasslands become uneven-aged forests,Age,H,9,0,0,0,2,3,0,0,1,,,,1,5,0,0,0
+Low-lui and med-lui grasslands become uneven-aged forests,Age,S,5,0,0,0,6,3,0,0,1,,,,1,9,0,0,0
+Low-lui and med-lui grasslands become uneven-aged forests,Age,All,6,0,0,0,5,3,0,0,1,,,,1,8,0,0,0
+Low-lui and med-lui grasslands become even-aged forests,Age,A,3,0,0,0,10,1,0,0,1,,,,1,11,0,0,0
+Low-lui and med-lui grasslands become even-aged forests,Age,H,9,0,0,0,3,2,0,0,1,,,,1,5,0,0,0
+Low-lui and med-lui grasslands become even-aged forests,Age,S,5,0,0,0,8,1,0,0,1,,,,1,9,0,0,0
+Low-lui and med-lui grasslands become even-aged forests,Age,All,6,0,0,0,7,1,0,0,1,,,,1,8,0,0,0
+All grasslands are high int,Age,A,3,0,0,0,6,1,0,0,5,,,,5,7,0,0,0
+All grasslands are high int,Age,H,9,0,0,0,2,2,0,0,2,,,,2,4,0,0,0
+All grasslands are high int,Age,All,6,0,0,0,5,1,0,0,3,,,,3,6,0,0,0
+All grasslands are low int,Age,A,3,0,0,0,6,1,5,0,0,,,,5,7,0,0,0
+All grasslands are low int,Age,H,9,0,0,0,2,2,2,0,0,,,,2,4,0,0,0
+All grasslands are low int,Age,All,6,0,0,0,5,1,3,0,0,,,,3,6,0,0,0
+100% forest (EA/UA),Age,H,0,0,0,0,7,8,0,0,0,,,,0,15,0,0,0
+100% forest (EA/UA),Age,S,0,0,0,0,13,2,0,0,0,,,,0,15,0,0,0
+100% forest (EA/UA),Age,All,0,0,0,0,11,4,0,0,0,,,,0,15,0,0,0
+33% each (EA/UA),Age,H,5,0,0,0,2,3,1,2,2,,,,5,5,0,0,0
+33% each (EA/UA),Age,S,5,0,0,0,4,1,2,1,2,,,,5,5,0,0,0
+100% grasslands,Type,A,0,0,0,0,0,0,6,5,4,,,,15,0,0,0,0
+100% grasslands,Type,H,0,0,0,0,0,0,4,5,6,,,,15,0,0,0,0
+100% grasslands,Type,S,0,0,0,0,0,0,6,4,5,,,,15,0,0,0,0
+100% grasslands,Type,All,0,0,0,0,0,0,5,5,5,,,,15,0,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__A,Age,A,3,0,0,0,4,2,4,1,1,49_4936,2,5326,6,6,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__H,Type,H,9,0,0,3,0,0,1,1,1,91_106_138_165_173_230_964_965_1866_2125,10,5326,3,3,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__S,Type,S,4,1,4,3,0,0,1,1,1,92_243,2,5326,3,8,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__A,Age,A,3,0,0,0,4,2,4,1,1,49_4936,2,5326,6,6,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__H,Type,H,9,0,0,3,0,0,1,1,1,91_106_138_165_173_230_269_964_965_1866_2125,11,5326,3,3,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__S,Type,S,4,1,4,3,0,0,1,1,1,92_243,2,5326,3,8,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__A,Type,A,3,1,7,2,0,0,2,0,0,133_3472_3491_3602_3617_3805_3806_3824_3825_3862_3884_3885_3901_3937_3983_4000_4001_4028_4029_4043,20,5326,2,10,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__A,Age,A,3,0,0,0,5,3,3,0,1,157_158_192_221_4736_4935_4936_4969_4970_4988_4989_5119_5120_5138_5139,15,5326,4,8,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__H,Type,H,3,3,1,4,0,0,2,1,1,1_3_4_6_8_9_16_17_18_19_20_22_27_30_34_46_48_91_94_100_103_104_105_108_111_132_138_141_143_146_147_168_173_176_178_181_182_200_205_208_210_211_214_227_230_234_238_244_253_254_255_257_264_270_273_277_617_622_623_624_625_626_627_628_630_631_632_633_634_635_636_637_638_641_657_658_659_660_661_663_664_665_666_667_668_669_670_671_672_673_674_685_686_687_688_689_690_691_692_693_694_695_696_705_706_707_708_709_944_946_949_953_954_955_956_959_960_961_962_964_965_987_989_991_992_993_994_995_996_997_998_999_1000_1001_1002_1003_1004_1005_1006_1007_1008_1009_1021_1022_1023_1024_1025_1026_1027_1028_1029_1030_1031_1032_1033_1034_1035_1036_1037_1038_1045_1046_1047_1048_1049_1050_1051_1052_1053_1054_1185_1187_1188_1189_1190_1193_1194_1195_1196_1219_1221_1223_1225_1226_1227_1228_1229_1230_1231_1232_1233_1234_1235_1236_1237_1238_1239_1240_1241_1242_1243_1244_1254_1255_1256_1257_1258_1259_1260_1261_1262_1263_1264_1265_1266_1267_1268_1269_1270_1271_1272_1279_1280_1281_1282_1283_1284_1285_1286_1287_1288_1293_1294_1295_1296_1331_1332_1333_1334_1335_1336_1337_1339_1340_1341_1342_1343_1345_1346_1347_1371_1373_1375_1376_1377_1378_1379_1380_1381_1382_1383_1384_1385_1386_1387_1388_1389_1390_1391_1392_1393_1405_1406_1408_1409_1410_1411_1412_1413_1414_1415_1416_1417_1418_1419_1420_1421_1422_1429_1430_1431_1432_1433_1434_1435_1436_1437_1438_1443_1444_1445_1446_1466_1467_1468_1469_1470_1472_1473_1474_1475_1476_1477_1478_1479_1480_1481_1482_1493_1494_1496_1497_1498_1499_1500_1501_1502_1503_1504_1505_1506_1507_1508_1509_1510_1517_1518_1519_1520_1521_1522_1523_1524_1525_1526_1532_1533_1534_1549_1550_1551_1552_1553_1554_1555_1556_1557_1558_1559_1560_1568_1570_1571_1572_1573_1574_1575_1576_1583_1584_1598_1599_1600_1601_1850_1851_1852_1853_1854_1855_1856_1857_1858_1859_1860_1861_1862_1863_1864_1865_1866_1867_1868_1869_1870_1886_1887_1890_1891_1892_1893_1894_1895_1896_1897_1898_1899_1900_1901_1902_1903_1904_1905_1906_1907_1908_1909_1910_1911_1912_1913_1914_1915_1922_1925_1926_1927_1928_1929_1930_1931_1932_1933_1934_1935_1936_1937_1938_1939_1940_1941_1942_1949_1950_1951_1952_1953_1954_1955_1956_1957_1958_1963_1964_1965_1966_2113_2115_2119_2121_2122_2125_2126_2148_2149_2152_2153_2154_2155_2156_2158_2159_2160_2161_2162_2163_2164_2165_2166_2167_2168_2169_2170_2171_2172_2173_2174_2175_2176_2177_2178_2179_2187_2189_2193_2194_2195_2196_2197_2198_2199_2200_2201_2202_2203_2204_2205_2206_2207_2208_2209_2210_2211_2212_2213_2220_2223_2224_2225_2226_2227_2228_2229_2230_2231_2232_2233_2234_2235_2242_2243_2244_2245_2246_2247_2248_2294_2295_2296_2297_2298_2299_2300_2301_2302_2303_2304_2305_2306_2307_2308_2309_2310_2311_2312_2313_2314_2316_2317_2341_2342_2343_2344_2345_2348_2349_2350_2351_2352_2353_2354_2355_2356_2357_2358_2359_2360_2361_2362_2363_2364_2365_2366_2367_2368_2376_2378_2382_2383_2384_2385_2386_2387_2388_2389_2390_2391_2392_2393_2394_2395_2396_2397_2398_2399_2400_2401_2402_2407_2409_2412_2413_2414_2415_2416_2417_2418_2419_2420_2421_2422_2423_2424_2431_2432_2433_2434_2435_2436_2437_2460_2463_2465_2467_2469_2470_2471_2472_2473_2474_2475_2476_2477_2478_2479_2480_2481_2482_2483_2484_2485_2486_2487_2502_2503_2504_2505_2506_2507_2508_2509_2510_2511_2512_2513_2514_2515_2516_2517_2518_2519_2520_2521_2522_2527_2532_2533_2534_2535_2536_2537_2538_2539_2540_2541_2542_2543_2544_2551_2552_2553_2554_2555_2556_2557_2563_2575_2576_2578_2579_2580_2581_2582_2583_2584_2585_2586_2587_2588_2589_2590_2591_2592_2603_2604_2605_2606_2607_2608_2609_2610_2611_2612_2613_2614_2621_2622_2623_2624_2625_2626_2627_2633_2642_2643_2644_2645_2646_2647_2648_2649_2650_2658_2659_2660_2661_2662_2663,748,5326,4,8,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__H,Age,H,4,0,0,0,4,3,2,1,1,49_50_51_52_53_54_55_56_58_60_61_62_64_65_66_67_68_69_70_71_72_73_74_75_76_77_78_79_80_82_83_84_85_89_90_112_113_114_115_116_117_118_119_120_121_122_123_124_125_126_128_149_150_151_153_155_157_158_159_160_161_162_164_183_184_185_186_188_190_192_193_194_195_196_198_215_216_218_220_221_222_223_224_281_283_284_286_288_289_290_291_292_293_295_298_299_300_301_303_305_306_307_308_4330_4331_4332_4333_4334_4335_4336_4337_4338_4339_4340_4341_4342_4343_4344_4345_4346_4349_4365_4366_4367_4368_4369_4371_4372_4373_4374_4375_4376_4377_4378_4379_4380_4381_4393_4394_4395_4397_4398_4399_4400_4401_4402_4403_4414_4415_4416_4651_4654_4656_4660_4661_4662_4663_4664_4665_4666_4667_4668_4669_4691_4692_4693_4696_4697_4698_4699_4700_4701_4702_4703_4704_4705_4706_4707_4708_4709_4710_4711_4723_4724_4726_4727_4728_4729_4730_4731_4732_4733_4734_4735_4736_4737_4738_4739_4740_4748_4750_4751_4752_4753_4754_4755_4756_4880_4883_4889_4890_4891_4892_4895_4896_4897_4898_4900_4901_4921_4923_4924_4925_4926_4927_4928_4929_4930_4931_4932_4933_4934_4935_4936_4937_4938_4939_4940_4941_4942_4943_4944_4945_4946_4956_4957_4958_4959_4960_4961_4962_4963_4964_4965_4966_4967_4968_4969_4970_4971_4972_4973_4974_4981_4982_4983_4984_4985_4986_4987_4988_4989_4990_4996_4997_4998_5033_5034_5035_5036_5037_5038_5039_5042_5043_5044_5045_5048_5049_5052_5073_5075_5077_5078_5079_5080_5081_5082_5083_5084_5085_5086_5087_5088_5089_5090_5091_5092_5093_5094_5095_5106_5107_5108_5109_5110_5111_5112_5113_5114_5115_5116_5117_5118_5119_5120_5121_5122_5123_5124_5131_5132_5133_5134_5135_5136_5137_5138_5139_5140_5145_5146_5147_5148_5168_5169_5170_5171_5172_5174_5175_5176_5177_5178_5179_5180_5181_5182_5183_5184_5195_5196_5198_5199_5200_5201_5202_5203_5204_5205_5206_5207_5208_5209_5210_5211_5212_5219_5220_5221_5222_5223_5224_5225_5226_5227_5228_5233_5234_5235_5236_5252_5253_5254_5255_5256_5257_5258_5259_5260_5261_5262_5270_5271_5272_5273_5274_5275_5276_5277_5278_5284_5285_5286_5299_5300_5301_5302_5303,419,5326,4,7,0,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__S,Type,S,3,1,1,6,0,0,2,1,1,1_3_16_20_30_34_92_103_108_146_181_211_243_244_247_253_259_263_273_659_660_661_662_664_665_666_667_668_688_689_691_692_693_1025_1026_1027_1028_1029_1030_1031_1032_1033_1034_1052_1261_1262_1265_1266_1267_1268_1417_1418_1901_1902_1903_1904_1905_1930_1931_1932_1933_1934_1935_1936_1937_1938_1939_1941_1942_1956_1957_2197_2198_2199_2200_2201_2202_2203_2204_2205_2206_2209_2227_2228_2229_2230_2231_2232_2392_2393_2394_2395_2416_2420_2421_2883_2884_2885_2886_2887_2888_2889_2890_2891_2892_2894_3063_3087_3088,109,5326,4,8,0,0,0
+Current proportion of LU types,Type,H,8,0,0,4,0,0,1,1,1,,,,3,4,-1,0,0
+Current proportion of LU types,Type,S,4,1,4,3,0,0,1,1,1,,,,3,8,-1,0,0
+Add 50% forests,Type,A,1,0,2,9,0,0,1,1,1,,,,3,11,-1,0,0
+Add 50% forests,Type,H,7,0,1,7,0,0,0,0,0,,,,0,8,1,0,0
+Add 50% forests,Type,S,4,1,6,4,0,0,0,0,0,,,,0,11,1,0,0
+Add 50% forests,Type,All,2,1,3,7,0,0,1,1,0,,,,2,11,-1,0,0
+Add 50% grasslands,Type,H,9,0,0,3,0,0,1,1,1,,,,3,3,1,0,0
+Add 50% grasslands,Type,S,4,1,4,3,0,0,1,1,1,,,,3,8,-1,0,0
+Add 50% grasslands,Type,All,6,0,2,3,0,0,2,1,1,,,,4,5,1,0,0
+Add 50% crops,Type,S,7,1,3,2,0,0,1,0,1,,,,2,6,-1,0,0
+Add 50% crops,Type,All,8,0,1,3,0,0,1,1,1,,,,3,4,-1,0,0
+All forests are coniferous,Type,H,8,0,4,0,0,0,1,1,1,,,,3,4,-1,0,0
+All forests are coniferous,Type,S,4,0,8,0,0,0,1,1,1,,,,3,8,-1,0,0
+All forests are deciduous,Type,H,8,0,0,4,0,0,1,1,1,,,,3,4,-1,0,0
+All forests are deciduous,Type,S,4,0,0,8,0,0,1,1,1,,,,3,8,-1,0,0
+All forests are mixed,Type,H,8,4,0,0,0,0,1,1,1,,,,3,4,-1,0,0
+All forests are mixed,Type,S,4,8,0,0,0,0,1,1,1,,,,3,8,-1,0,0
+All high LUI grasslands become crops,Type,H,9,0,0,4,0,0,1,1,0,,,,2,4,-1,0,0
+All high LUI grasslands become crops,Type,S,5,1,4,3,0,0,1,1,0,,,,2,8,-1,0,0
+"half crops converted to grasslands,  more low grassland",Type,A,1,0,1,6,0,0,4,2,1,,,,7,7,-1,0,0
+Low-lui and med-lui grasslands become coniferous forests,Type,H,8,0,2,4,0,0,0,0,1,,,,1,6,-1,0,0
+Low-lui and med-lui grasslands become mixed forests,Type,All,5,3,2,4,0,0,0,0,1,,,,1,9,-1,0,0
+33% each,Type,H,6,0,0,4,0,0,1,2,2,,,,5,4,1,0,0
+Current proportion of LU types,Age,H,8,0,0,0,2,2,1,1,1,,,,3,4,-1,0,0
+Add 50% forests,Age,A,1,0,0,0,10,1,1,1,1,,,,3,11,-1,0,0
+Add 50% grasslands,Age,All,6,0,0,0,4,1,2,1,1,,,,4,5,1,0,0
+Add 50% crops,Age,A,4,0,0,0,6,1,2,1,1,,,,4,7,-1,0,0
+Add 50% crops,Age,S,7,0,0,0,5,1,1,0,1,,,,2,6,-1,0,0
+All forests are even-aged,Age,H,8,0,0,0,4,0,1,1,1,,,,3,4,-1,0,0
+All forests are even-aged,Age,S,4,0,0,0,8,0,1,1,1,,,,3,8,-1,0,0
+All forests are uneven-aged,Age,H,8,0,0,0,0,4,1,1,1,,,,3,4,-1,0,0
+All forests are uneven-aged,Age,S,4,0,0,0,0,8,1,1,1,,,,3,8,-1,0,0
+All high LUI grasslands become crops (forests: EA/UA),Age,H,9,0,0,0,2,2,1,1,0,,,,2,4,-1,0,0
+"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,S,2,0,0,0,6,1,4,1,1,,,,6,7,-1,0,0
+Low-lui and med-lui grasslands become uneven-aged forests,Age,A,4,0,0,0,6,4,0,0,1,,,,1,10,1,0,0
+All grasslands are high int,Age,S,6,0,0,0,6,1,0,0,2,,,,2,7,1,0,0
+All grasslands are low int,Age,S,6,0,0,0,6,1,2,0,0,,,,2,7,1,0,0
+33% each (EA/UA),Age,A,6,0,0,0,4,0,2,2,1,,,,5,4,1,0,0
+33% each (EA/UA),Age,All,4,0,0,0,4,1,2,2,2,,,,6,5,-1,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__H,Age,H,10,0,0,0,1,3,1,0,0,59_295_4900_4901,4,5326,1,4,1,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__H,Age,H,10,0,0,0,1,3,1,0,0,59_295_4900_4901,4,5326,1,4,1,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__H,Type,H,4,2,1,6,0,0,2,0,0,244_1938_1939_1954_1956_1957_2206_2231_2232_2245_2248_2420_2421_2434_2437_2541_2554_2557_2611_2627,20,5326,2,9,1,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Type,S,2,0,1,7,0,0,3,1,1,1_34_146_181_211_244_666_667_668_692_693_1027_1033_1034_1937_1938_1939_2231,18,5326,5,8,-1,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Age,S,4,0,0,0,1,7,3,0,0,5207_5208,2,5326,3,8,1,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__A,Type,A,2,1,5,2,0,0,3,1,1,14_36_92_127_133_163_197_225_229_239_240_241_242_258_259_260_261_266_278_279_280_2205_2206_2857_2858_2889_2890_2891_2892_2910_3063_3066_3087_3088_3179_3180_3184_3205_3206_3252_3253_3276_3436_3437_3438_3439_3470_3471_3472_3473_3491_3492_3538_3539_3574_3575_3576_3580_3601_3602_3617_3646_3647_3648_3670_3671_3687_3723_3775_3776_3803_3804_3805_3806_3824_3825_3859_3860_3861_3862_3884_3885_3899_3901_3922_3923_3937_3982_3983_4000_4001_4028_4029_4043,94,5326,5,8,-1,0,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__S,Age,S,2,0,0,0,3,5,3,1,1,49_58_68_157_192_4735_4736_4933_4934_4935_4963_4964_4966_4967_4968_4969_4970_5084_5086_5113_5114_5115_5116_5117_5118_5119_5120_5172_5176_5177_5178_5199_5201_5202_5204_5205_5206_5207_5208_5226,40,5326,5,8,-1,0,0
+"half crops converted to grasslands,  more low grassland",Type,S,2,1,4,3,0,0,3,1,1,,,,5,8,-2,-1,0
+Add 50% crops,Age,All,8,0,0,0,4,1,0,1,1,,,,2,5,-2,-1,0
+Current proportion of LU types,Type,H,9,0,0,4,0,0,0,1,1,,,,2,4,-1,-1,0
+Current proportion of LU types,Type,S,5,1,4,3,0,0,0,1,1,,,,2,8,-1,-1,0
+Add 50% forests,Type,A,2,0,2,9,0,0,0,1,1,,,,2,11,-1,-1,0
+Add 50% forests,Type,H,6,0,1,7,0,0,1,0,0,,,,1,8,1,1,0
+Add 50% forests,Type,S,3,1,6,4,0,0,1,0,0,,,,1,11,1,1,0
+Add 50% forests,Type,All,3,1,3,7,0,0,0,1,0,,,,1,11,-1,-1,0
+Add 50% grasslands,Type,H,8,0,0,3,0,0,2,1,1,,,,4,3,1,1,0
+Add 50% grasslands,Type,S,5,1,4,3,0,0,0,1,1,,,,2,8,-1,-1,0
+Add 50% grasslands,Type,All,5,0,2,3,0,0,3,1,1,,,,5,5,1,1,0
+Add 50% crops,Type,S,8,1,3,2,0,0,0,0,1,,,,1,6,-1,-1,0
+Add 50% crops,Type,All,9,0,1,3,0,0,0,1,1,,,,2,4,-1,-1,0
+All forests are coniferous,Type,H,9,0,4,0,0,0,0,1,1,,,,2,4,-1,-1,0
+All forests are coniferous,Type,S,5,0,8,0,0,0,0,1,1,,,,2,8,-1,-1,0
+All forests are deciduous,Type,H,9,0,0,4,0,0,0,1,1,,,,2,4,-1,-1,0
+All forests are deciduous,Type,S,5,0,0,8,0,0,0,1,1,,,,2,8,-1,-1,0
+All forests are mixed,Type,H,9,4,0,0,0,0,0,1,1,,,,2,4,-1,-1,0
+All forests are mixed,Type,S,5,8,0,0,0,0,0,1,1,,,,2,8,-1,-1,0
+All high LUI grasslands become crops,Type,H,10,0,0,4,0,0,0,1,0,,,,1,4,-1,-1,0
+All high LUI grasslands become crops,Type,S,6,1,4,3,0,0,0,1,0,,,,1,8,-1,-1,0
+"half crops converted to grasslands,  more low grassland",Type,A,2,0,1,6,0,0,3,2,1,,,,6,7,-1,-1,0
+33% each,Type,H,5,0,0,4,0,0,2,2,2,,,,6,4,1,1,0
+Current proportion of LU types,Age,H,9,0,0,0,2,2,0,1,1,,,,2,4,-1,-1,0
+Add 50% forests,Age,A,2,0,0,0,10,1,0,1,1,,,,2,11,-1,-1,0
+Add 50% grasslands,Age,All,5,0,0,0,4,1,3,1,1,,,,5,5,1,1,0
+Add 50% crops,Age,A,5,0,0,0,6,1,1,1,1,,,,3,7,-1,-1,0
+Add 50% crops,Age,S,8,0,0,0,5,1,0,0,1,,,,1,6,-1,-1,0
+All forests are even-aged,Age,H,9,0,0,0,4,0,0,1,1,,,,2,4,-1,-1,0
+All forests are even-aged,Age,S,5,0,0,0,8,0,0,1,1,,,,2,8,-1,-1,0
+All forests are uneven-aged,Age,H,9,0,0,0,0,4,0,1,1,,,,2,4,-1,-1,0
+All forests are uneven-aged,Age,S,5,0,0,0,0,8,0,1,1,,,,2,8,-1,-1,0
+All high LUI grasslands become crops (forests: EA/UA),Age,H,10,0,0,0,2,2,0,1,0,,,,1,4,-1,-1,0
+"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,S,3,0,0,0,6,1,3,1,1,,,,5,7,-1,-1,0
+Low-lui and med-lui grasslands become uneven-aged forests,Age,A,3,0,0,0,6,4,1,0,1,,,,2,10,1,1,0
+All grasslands are high int,Age,S,5,0,0,0,6,1,1,0,2,,,,3,7,1,1,0
+All grasslands are low int,Age,S,5,0,0,0,6,1,3,0,0,,,,3,7,1,1,0
+33% each (EA/UA),Age,A,5,0,0,0,4,0,3,2,1,,,,6,4,1,1,0
+33% each (EA/UA),Age,All,5,0,0,0,4,1,1,2,2,,,,5,5,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__H,Age,H,9,0,0,0,1,3,2,0,0,59_295_4900_4901,4,5326,2,4,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__H,Age,H,9,0,0,0,1,3,2,0,0,59_295_4900_4901,4,5326,2,4,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__H,Type,H,3,2,1,6,0,0,3,0,0,244_1938_1939_1954_1956_1957_2206_2231_2232_2245_2248_2420_2421_2434_2437_2541_2554_2557_2611_2627,20,5326,3,9,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Type,S,3,0,1,7,0,0,2,1,1,1_34_146_181_211_244_666_667_668_692_693_1027_1033_1034_1937_1938_1939_2231,18,5326,4,8,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Age,S,3,0,0,0,1,7,4,0,0,5207_5208,2,5326,4,8,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__A,Type,A,3,1,5,2,0,0,2,1,1,14_36_92_127_133_163_197_225_229_239_240_241_242_258_259_260_261_266_278_279_280_2205_2206_2857_2858_2889_2890_2891_2892_2910_3063_3066_3087_3088_3179_3180_3184_3205_3206_3252_3253_3276_3436_3437_3438_3439_3470_3471_3472_3473_3491_3492_3538_3539_3574_3575_3576_3580_3601_3602_3617_3646_3647_3648_3670_3671_3687_3723_3775_3776_3803_3804_3805_3806_3824_3825_3859_3860_3861_3862_3884_3885_3899_3901_3922_3923_3937_3982_3983_4000_4001_4028_4029_4043,94,5326,4,8,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__S,Age,S,3,0,0,0,3,5,2,1,1,49_58_68_157_192_4735_4736_4933_4934_4935_4963_4964_4966_4967_4968_4969_4970_5084_5086_5113_5114_5115_5116_5117_5118_5119_5120_5172_5176_5177_5178_5199_5201_5202_5204_5205_5206_5207_5208_5226,40,5326,4,8,-1,-1,0
+"half crops converted to grasslands,  more low grassland",Type,S,2,1,4,3,0,0,4,0,1,,,,5,8,-2,-1,0
+Add 50% crops,Age,All,8,0,0,0,4,1,1,0,1,,,,2,5,-2,-1,0
+Current proportion of LU types,Type,H,9,0,0,4,0,0,1,0,1,,,,2,4,-1,-1,0
+Current proportion of LU types,Type,S,5,1,4,3,0,0,1,0,1,,,,2,8,-1,-1,0
+Add 50% forests,Type,A,2,0,2,9,0,0,1,0,1,,,,2,11,-1,-1,0
+Add 50% forests,Type,H,6,0,1,7,0,0,0,1,0,,,,1,8,1,1,0
+Add 50% forests,Type,S,3,1,6,4,0,0,0,1,0,,,,1,11,1,1,0
+Add 50% forests,Type,All,3,1,3,7,0,0,1,0,0,,,,1,11,-1,-1,0
+Add 50% grasslands,Type,H,8,0,0,3,0,0,1,2,1,,,,4,3,1,1,0
+Add 50% grasslands,Type,S,5,1,4,3,0,0,1,0,1,,,,2,8,-1,-1,0
+Add 50% grasslands,Type,All,5,0,2,3,0,0,2,2,1,,,,5,5,1,1,0
+Add 50% crops,Type,All,9,0,1,3,0,0,1,0,1,,,,2,4,-1,-1,0
+All forests are coniferous,Type,H,9,0,4,0,0,0,1,0,1,,,,2,4,-1,-1,0
+All forests are coniferous,Type,S,5,0,8,0,0,0,1,0,1,,,,2,8,-1,-1,0
+All forests are deciduous,Type,H,9,0,0,4,0,0,1,0,1,,,,2,4,-1,-1,0
+All forests are deciduous,Type,S,5,0,0,8,0,0,1,0,1,,,,2,8,-1,-1,0
+All forests are mixed,Type,H,9,4,0,0,0,0,1,0,1,,,,2,4,-1,-1,0
+All forests are mixed,Type,S,5,8,0,0,0,0,1,0,1,,,,2,8,-1,-1,0
+All high LUI grasslands become crops,Type,H,10,0,0,4,0,0,1,0,0,,,,1,4,-1,-1,0
+All high LUI grasslands become crops,Type,S,6,1,4,3,0,0,1,0,0,,,,1,8,-1,-1,0
+"half crops converted to grasslands,  more low grassland",Type,A,2,0,1,6,0,0,4,1,1,,,,6,7,-1,-1,0
+33% each,Type,H,5,0,0,4,0,0,1,3,2,,,,6,4,1,1,0
+Current proportion of LU types,Age,H,9,0,0,0,2,2,1,0,1,,,,2,4,-1,-1,0
+Add 50% forests,Age,A,2,0,0,0,10,1,1,0,1,,,,2,11,-1,-1,0
+Add 50% grasslands,Age,All,5,0,0,0,4,1,2,2,1,,,,5,5,1,1,0
+Add 50% crops,Age,A,5,0,0,0,6,1,2,0,1,,,,3,7,-1,-1,0
+All forests are even-aged,Age,H,9,0,0,0,4,0,1,0,1,,,,2,4,-1,-1,0
+All forests are even-aged,Age,S,5,0,0,0,8,0,1,0,1,,,,2,8,-1,-1,0
+All forests are uneven-aged,Age,H,9,0,0,0,0,4,1,0,1,,,,2,4,-1,-1,0
+All forests are uneven-aged,Age,S,5,0,0,0,0,8,1,0,1,,,,2,8,-1,-1,0
+All high LUI grasslands become crops (forests: EA/UA),Age,H,10,0,0,0,2,2,1,0,0,,,,1,4,-1,-1,0
+"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,S,3,0,0,0,6,1,4,0,1,,,,5,7,-1,-1,0
+Low-lui and med-lui grasslands become uneven-aged forests,Age,A,3,0,0,0,6,4,0,1,1,,,,2,10,1,1,0
+All grasslands are high int,Age,S,5,0,0,0,6,1,0,1,2,,,,3,7,1,1,0
+All grasslands are low int,Age,S,5,0,0,0,6,1,2,1,0,,,,3,7,1,1,0
+33% each (EA/UA),Age,A,5,0,0,0,4,0,2,3,1,,,,6,4,1,1,0
+33% each (EA/UA),Age,All,5,0,0,0,4,1,2,1,2,,,,5,5,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__H,Age,H,9,0,0,0,1,3,1,1,0,59_295_4900_4901,4,5326,2,4,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__H,Age,H,9,0,0,0,1,3,1,1,0,59_295_4900_4901,4,5326,2,4,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__H,Type,H,3,2,1,6,0,0,2,1,0,244_1938_1939_1954_1956_1957_2206_2231_2232_2245_2248_2420_2421_2434_2437_2541_2554_2557_2611_2627,20,5326,3,9,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Type,S,3,0,1,7,0,0,3,0,1,1_34_146_181_211_244_666_667_668_692_693_1027_1033_1034_1937_1938_1939_2231,18,5326,4,8,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Age,S,3,0,0,0,1,7,3,1,0,5207_5208,2,5326,4,8,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__A,Type,A,3,1,5,2,0,0,3,0,1,14_36_92_127_133_163_197_225_229_239_240_241_242_258_259_260_261_266_278_279_280_2205_2206_2857_2858_2889_2890_2891_2892_2910_3063_3066_3087_3088_3179_3180_3184_3205_3206_3252_3253_3276_3436_3437_3438_3439_3470_3471_3472_3473_3491_3492_3538_3539_3574_3575_3576_3580_3601_3602_3617_3646_3647_3648_3670_3671_3687_3723_3775_3776_3803_3804_3805_3806_3824_3825_3859_3860_3861_3862_3884_3885_3899_3901_3922_3923_3937_3982_3983_4000_4001_4028_4029_4043,94,5326,4,8,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__S,Age,S,3,0,0,0,3,5,3,0,1,49_58_68_157_192_4735_4736_4933_4934_4935_4963_4964_4966_4967_4968_4969_4970_5084_5086_5113_5114_5115_5116_5117_5118_5119_5120_5172_5176_5177_5178_5199_5201_5202_5204_5205_5206_5207_5208_5226,40,5326,4,8,-1,-1,0
+"half crops converted to grasslands,  more low grassland",Type,S,2,1,4,3,0,0,4,1,0,,,,5,8,-2,-1,0
+Add 50% crops,Age,All,8,0,0,0,4,1,1,1,0,,,,2,5,-2,-1,0
+Current proportion of LU types,Type,H,9,0,0,4,0,0,1,1,0,,,,2,4,-1,-1,0
+Current proportion of LU types,Type,S,5,1,4,3,0,0,1,1,0,,,,2,8,-1,-1,0
+Add 50% forests,Type,A,2,0,2,9,0,0,1,1,0,,,,2,11,-1,-1,0
+Add 50% forests,Type,H,6,0,1,7,0,0,0,0,1,,,,1,8,1,1,0
+Add 50% forests,Type,S,3,1,6,4,0,0,0,0,1,,,,1,11,1,1,0
+Add 50% grasslands,Type,H,8,0,0,3,0,0,1,1,2,,,,4,3,1,1,0
+Add 50% grasslands,Type,S,5,1,4,3,0,0,1,1,0,,,,2,8,-1,-1,0
+Add 50% grasslands,Type,All,5,0,2,3,0,0,2,1,2,,,,5,5,1,1,0
+Add 50% crops,Type,S,8,1,3,2,0,0,1,0,0,,,,1,6,-1,-1,0
+Add 50% crops,Type,All,9,0,1,3,0,0,1,1,0,,,,2,4,-1,-1,0
+All forests are coniferous,Type,H,9,0,4,0,0,0,1,1,0,,,,2,4,-1,-1,0
+All forests are coniferous,Type,S,5,0,8,0,0,0,1,1,0,,,,2,8,-1,-1,0
+All forests are deciduous,Type,H,9,0,0,4,0,0,1,1,0,,,,2,4,-1,-1,0
+All forests are deciduous,Type,S,5,0,0,8,0,0,1,1,0,,,,2,8,-1,-1,0
+All forests are mixed,Type,H,9,4,0,0,0,0,1,1,0,,,,2,4,-1,-1,0
+All forests are mixed,Type,S,5,8,0,0,0,0,1,1,0,,,,2,8,-1,-1,0
+"half crops converted to grasslands,  more low grassland",Type,A,2,0,1,6,0,0,4,2,0,,,,6,7,-1,-1,0
+Low-lui and med-lui grasslands become coniferous forests,Type,H,9,0,2,4,0,0,0,0,0,,,,0,6,-1,-1,0
+Low-lui and med-lui grasslands become mixed forests,Type,All,6,3,2,4,0,0,0,0,0,,,,0,9,-1,-1,0
+33% each,Type,H,5,0,0,4,0,0,1,2,3,,,,6,4,1,1,0
+Current proportion of LU types,Age,H,9,0,0,0,2,2,1,1,0,,,,2,4,-1,-1,0
+Add 50% forests,Age,A,2,0,0,0,10,1,1,1,0,,,,2,11,-1,-1,0
+Add 50% grasslands,Age,All,5,0,0,0,4,1,2,1,2,,,,5,5,1,1,0
+Add 50% crops,Age,A,5,0,0,0,6,1,2,1,0,,,,3,7,-1,-1,0
+Add 50% crops,Age,S,8,0,0,0,5,1,1,0,0,,,,1,6,-1,-1,0
+All forests are even-aged,Age,H,9,0,0,0,4,0,1,1,0,,,,2,4,-1,-1,0
+All forests are even-aged,Age,S,5,0,0,0,8,0,1,1,0,,,,2,8,-1,-1,0
+All forests are uneven-aged,Age,H,9,0,0,0,0,4,1,1,0,,,,2,4,-1,-1,0
+All forests are uneven-aged,Age,S,5,0,0,0,0,8,1,1,0,,,,2,8,-1,-1,0
+"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,S,3,0,0,0,6,1,4,1,0,,,,5,7,-1,-1,0
+Low-lui and med-lui grasslands become uneven-aged forests,Age,A,3,0,0,0,6,4,0,0,2,,,,2,10,1,1,0
+All grasslands are high int,Age,S,5,0,0,0,6,1,0,0,3,,,,3,7,1,1,0
+All grasslands are low int,Age,S,5,0,0,0,6,1,2,0,1,,,,3,7,1,1,0
+33% each (EA/UA),Age,A,5,0,0,0,4,0,2,2,2,,,,6,4,1,1,0
+33% each (EA/UA),Age,All,5,0,0,0,4,1,2,2,1,,,,5,5,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__H,Age,H,9,0,0,0,1,3,1,0,1,59_295_4900_4901,4,5326,2,4,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__H,Age,H,9,0,0,0,1,3,1,0,1,59_295_4900_4901,4,5326,2,4,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__H,Type,H,3,2,1,6,0,0,2,0,1,244_1938_1939_1954_1956_1957_2206_2231_2232_2245_2248_2420_2421_2434_2437_2541_2554_2557_2611_2627,20,5326,3,9,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Type,S,3,0,1,7,0,0,3,1,0,1_34_146_181_211_244_666_667_668_692_693_1027_1033_1034_1937_1938_1939_2231,18,5326,4,8,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Age,S,3,0,0,0,1,7,3,0,1,5207_5208,2,5326,4,8,1,1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__A,Type,A,3,1,5,2,0,0,3,1,0,14_36_92_127_133_163_197_225_229_239_240_241_242_258_259_260_261_266_278_279_280_2205_2206_2857_2858_2889_2890_2891_2892_2910_3063_3066_3087_3088_3179_3180_3184_3205_3206_3252_3253_3276_3436_3437_3438_3439_3470_3471_3472_3473_3491_3492_3538_3539_3574_3575_3576_3580_3601_3602_3617_3646_3647_3648_3670_3671_3687_3723_3775_3776_3803_3804_3805_3806_3824_3825_3859_3860_3861_3862_3884_3885_3899_3901_3922_3923_3937_3982_3983_4000_4001_4028_4029_4043,94,5326,4,8,-1,-1,0
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__S,Age,S,3,0,0,0,3,5,3,1,0,49_58_68_157_192_4735_4736_4933_4934_4935_4963_4964_4966_4967_4968_4969_4970_5084_5086_5113_5114_5115_5116_5117_5118_5119_5120_5172_5176_5177_5178_5199_5201_5202_5204_5205_5206_5207_5208_5226,40,5326,4,8,-1,-1,0
+"half crops converted to grasslands,  more low grassland",Type,S,2,0,4,3,0,0,4,1,1,,,,6,7,-2,0,-1
+Current proportion of LU types,Type,S,5,0,4,3,0,0,1,1,1,,,,3,7,-1,0,-1
+Add 50% forests,Type,H,6,1,1,7,0,0,0,0,0,,,,0,9,1,0,1
+Add 50% forests,Type,S,3,2,6,4,0,0,0,0,0,,,,0,12,1,0,1
+Add 50% forests,Type,All,3,0,3,7,0,0,1,1,0,,,,2,10,-1,0,-1
+Add 50% grasslands,Type,H,8,1,0,3,0,0,1,1,1,,,,3,4,1,0,1
+Add 50% grasslands,Type,S,5,0,4,3,0,0,1,1,1,,,,3,7,-1,0,-1
+Add 50% grasslands,Type,All,5,1,2,3,0,0,2,1,1,,,,4,6,1,0,1
+Add 50% crops,Type,S,8,0,3,2,0,0,1,0,1,,,,2,5,-1,0,-1
+All forests are mixed,Type,H,9,3,0,0,0,0,1,1,1,,,,3,3,-1,0,-1
+All forests are mixed,Type,S,5,7,0,0,0,0,1,1,1,,,,3,7,-1,0,-1
+All high LUI grasslands become crops,Type,S,6,0,4,3,0,0,1,1,0,,,,2,7,-1,0,-1
+Low-lui and med-lui grasslands become mixed forests,Type,All,6,2,2,4,0,0,0,0,1,,,,1,8,-1,0,-1
+100% forest,Type,S,0,1,8,6,0,0,0,0,0,,,,0,15,-1,0,-1
+33% each,Type,H,5,1,0,4,0,0,1,2,2,,,,5,5,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__H,Type,H,3,3,1,6,0,0,2,0,0,244_1938_1939_1954_1956_1957_2206_2231_2232_2245_2248_2420_2421_2434_2437_2541_2554_2557_2611_2627,20,5326,2,10,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__A,Type,A,3,0,5,2,0,0,3,1,1,14_36_92_127_133_163_197_225_229_239_240_241_242_258_259_260_261_266_278_279_280_2205_2206_2857_2858_2889_2890_2891_2892_2910_3063_3066_3087_3088_3179_3180_3184_3205_3206_3252_3253_3276_3436_3437_3438_3439_3470_3471_3472_3473_3491_3492_3538_3539_3574_3575_3576_3580_3601_3602_3617_3646_3647_3648_3670_3671_3687_3723_3775_3776_3803_3804_3805_3806_3824_3825_3859_3860_3861_3862_3884_3885_3899_3901_3922_3923_3937_3982_3983_4000_4001_4028_4029_4043,94,5326,5,7,-1,0,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,0,4,3,0,0,3,1,1,,,,5,7,-2,-1,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,0,4,3,0,0,4,0,1,,,,5,7,-2,-1,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,0,4,3,0,0,4,1,0,,,,5,7,-2,-1,-1
+"half crops converted to grasslands,  more low grassland",Type,S,2,1,3,3,0,0,4,1,1,,,,6,7,-2,0,-1
+Current proportion of LU types,Type,S,5,1,3,3,0,0,1,1,1,,,,3,7,-1,0,-1
+Add 50% forests,Type,A,2,0,1,9,0,0,1,1,1,,,,3,10,-1,0,-1
+Add 50% forests,Type,H,6,0,2,7,0,0,0,0,0,,,,0,9,1,0,1
+Add 50% forests,Type,S,3,1,7,4,0,0,0,0,0,,,,0,12,1,0,1
+Add 50% forests,Type,All,3,1,2,7,0,0,1,1,0,,,,2,10,-1,0,-1
+Add 50% grasslands,Type,H,8,0,1,3,0,0,1,1,1,,,,3,4,1,0,1
+Add 50% grasslands,Type,S,5,1,3,3,0,0,1,1,1,,,,3,7,-1,0,-1
+Add 50% grasslands,Type,All,5,0,3,3,0,0,2,1,1,,,,4,6,1,0,1
+Add 50% crops,Type,S,8,1,2,2,0,0,1,0,1,,,,2,5,-1,0,-1
+Add 50% crops,Type,All,9,0,0,3,0,0,1,1,1,,,,3,3,-1,0,-1
+All forests are coniferous,Type,H,9,0,3,0,0,0,1,1,1,,,,3,3,-1,0,-1
+All forests are coniferous,Type,S,5,0,7,0,0,0,1,1,1,,,,3,7,-1,0,-1
+All high LUI grasslands become crops,Type,S,6,1,3,3,0,0,1,1,0,,,,2,7,-1,0,-1
+"half crops converted to grasslands,  more low grassland",Type,A,2,0,0,6,0,0,4,2,1,,,,7,6,-1,0,-1
+Low-lui and med-lui grasslands become coniferous forests,Type,H,9,0,1,4,0,0,0,0,1,,,,1,5,-1,0,-1
+Low-lui and med-lui grasslands become mixed forests,Type,All,6,3,1,4,0,0,0,0,1,,,,1,8,-1,0,-1
+100% forest,Type,S,0,2,7,6,0,0,0,0,0,,,,0,15,-1,0,-1
+33% each,Type,H,5,0,1,4,0,0,1,2,2,,,,5,5,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__H,Type,H,3,2,2,6,0,0,2,0,0,244_1938_1939_1954_1956_1957_2206_2231_2232_2245_2248_2420_2421_2434_2437_2541_2554_2557_2611_2627,20,5326,2,10,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Type,S,3,0,0,7,0,0,3,1,1,1_34_146_181_211_244_666_667_668_692_693_1027_1033_1034_1937_1938_1939_2231,18,5326,5,7,-1,0,-1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__A,Type,A,3,1,4,2,0,0,3,1,1,14_36_92_127_133_163_197_225_229_239_240_241_242_258_259_260_261_266_278_279_280_2205_2206_2857_2858_2889_2890_2891_2892_2910_3063_3066_3087_3088_3179_3180_3184_3205_3206_3252_3253_3276_3436_3437_3438_3439_3470_3471_3472_3473_3491_3492_3538_3539_3574_3575_3576_3580_3601_3602_3617_3646_3647_3648_3670_3671_3687_3723_3775_3776_3803_3804_3805_3806_3824_3825_3859_3860_3861_3862_3884_3885_3899_3901_3922_3923_3937_3982_3983_4000_4001_4028_4029_4043,94,5326,5,7,-1,0,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,1,3,3,0,0,3,1,1,,,,5,7,-2,-1,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,1,3,3,0,0,4,0,1,,,,5,7,-2,-1,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,1,3,3,0,0,4,1,0,,,,5,7,-2,-1,-1
+"half crops converted to grasslands,  more low grassland",Type,S,2,1,4,2,0,0,4,1,1,,,,6,7,-2,0,-1
+Current proportion of LU types,Type,H,9,0,0,3,0,0,1,1,1,,,,3,3,-1,0,-1
+Current proportion of LU types,Type,S,5,1,4,2,0,0,1,1,1,,,,3,7,-1,0,-1
+Add 50% forests,Type,A,2,0,2,8,0,0,1,1,1,,,,3,10,-1,0,-1
+Add 50% forests,Type,H,6,0,1,8,0,0,0,0,0,,,,0,9,1,0,1
+Add 50% forests,Type,S,3,1,6,5,0,0,0,0,0,,,,0,12,1,0,1
+Add 50% forests,Type,All,3,1,3,6,0,0,1,1,0,,,,2,10,-1,0,-1
+Add 50% grasslands,Type,H,8,0,0,4,0,0,1,1,1,,,,3,4,1,0,1
+Add 50% grasslands,Type,S,5,1,4,2,0,0,1,1,1,,,,3,7,-1,0,-1
+Add 50% grasslands,Type,All,5,0,2,4,0,0,2,1,1,,,,4,6,1,0,1
+Add 50% crops,Type,S,8,1,3,1,0,0,1,0,1,,,,2,5,-1,0,-1
+Add 50% crops,Type,All,9,0,1,2,0,0,1,1,1,,,,3,3,-1,0,-1
+All forests are deciduous,Type,H,9,0,0,3,0,0,1,1,1,,,,3,3,-1,0,-1
+All forests are deciduous,Type,S,5,0,0,7,0,0,1,1,1,,,,3,7,-1,0,-1
+All high LUI grasslands become crops,Type,H,10,0,0,3,0,0,1,1,0,,,,2,3,-1,0,-1
+All high LUI grasslands become crops,Type,S,6,1,4,2,0,0,1,1,0,,,,2,7,-1,0,-1
+"half crops converted to grasslands,  more low grassland",Type,A,2,0,1,5,0,0,4,2,1,,,,7,6,-1,0,-1
+Low-lui and med-lui grasslands become coniferous forests,Type,H,9,0,2,3,0,0,0,0,1,,,,1,5,-1,0,-1
+Low-lui and med-lui grasslands become mixed forests,Type,All,6,3,2,3,0,0,0,0,1,,,,1,8,-1,0,-1
+100% forest,Type,S,0,2,8,5,0,0,0,0,0,,,,0,15,-1,0,-1
+33% each,Type,H,5,0,0,5,0,0,1,2,2,,,,5,5,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__H,Type,H,3,2,1,7,0,0,2,0,0,244_1938_1939_1954_1956_1957_2206_2231_2232_2245_2248_2420_2421_2434_2437_2541_2554_2557_2611_2627,20,5326,2,10,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Type,S,3,0,1,6,0,0,3,1,1,1_34_146_181_211_244_666_667_668_692_693_1027_1033_1034_1937_1938_1939_2231,18,5326,5,7,-1,0,-1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__A,Type,A,3,1,5,1,0,0,3,1,1,14_36_92_127_133_163_197_225_229_239_240_241_242_258_259_260_261_266_278_279_280_2205_2206_2857_2858_2889_2890_2891_2892_2910_3063_3066_3087_3088_3179_3180_3184_3205_3206_3252_3253_3276_3436_3437_3438_3439_3470_3471_3472_3473_3491_3492_3538_3539_3574_3575_3576_3580_3601_3602_3617_3646_3647_3648_3670_3671_3687_3723_3775_3776_3803_3804_3805_3806_3824_3825_3859_3860_3861_3862_3884_3885_3899_3901_3922_3923_3937_3982_3983_4000_4001_4028_4029_4043,94,5326,5,7,-1,0,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,1,4,2,0,0,3,1,1,,,,5,7,-2,-1,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,1,4,2,0,0,4,0,1,,,,5,7,-2,-1,-1
+"half crops converted to grasslands,  more low grassland",Type,S,3,1,4,2,0,0,4,1,0,,,,5,7,-2,-1,-1
+Add 50% crops,Age,All,8,0,0,0,3,1,1,1,1,,,,3,4,-2,0,-1
+Current proportion of LU types,Age,H,9,0,0,0,1,2,1,1,1,,,,3,3,-1,0,-1
+Add 50% forests,Age,A,2,0,0,0,9,1,1,1,1,,,,3,10,-1,0,-1
+Add 50% grasslands,Age,All,5,0,0,0,5,1,2,1,1,,,,4,6,1,0,1
+Add 50% crops,Age,A,5,0,0,0,5,1,2,1,1,,,,4,6,-1,0,-1
+Add 50% crops,Age,S,8,0,0,0,4,1,1,0,1,,,,2,5,-1,0,-1
+All forests are even-aged,Age,H,9,0,0,0,3,0,1,1,1,,,,3,3,-1,0,-1
+All forests are even-aged,Age,S,5,0,0,0,7,0,1,1,1,,,,3,7,-1,0,-1
+All high LUI grasslands become crops (forests: EA/UA),Age,H,10,0,0,0,1,2,1,1,0,,,,2,3,-1,0,-1
+"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,S,3,0,0,0,5,1,4,1,1,,,,6,6,-1,0,-1
+Low-lui and med-lui grasslands become uneven-aged forests,Age,A,3,0,0,0,7,4,0,0,1,,,,1,11,1,0,1
+All grasslands are high int,Age,S,5,0,0,0,7,1,0,0,2,,,,2,8,1,0,1
+All grasslands are low int,Age,S,5,0,0,0,7,1,2,0,0,,,,2,8,1,0,1
+100% forest (EA/UA),Age,A,0,0,0,0,13,2,0,0,0,,,,0,15,-1,0,-1
+33% each (EA/UA),Age,A,5,0,0,0,5,0,2,2,1,,,,5,5,1,0,1
+33% each (EA/UA),Age,All,5,0,0,0,3,1,2,2,2,,,,6,4,-1,0,-1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__H,Age,H,9,0,0,0,2,3,1,0,0,59_295_4900_4901,4,5326,1,5,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__H,Age,H,9,0,0,0,2,3,1,0,0,59_295_4900_4901,4,5326,1,5,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Age,S,3,0,0,0,2,7,3,0,0,5207_5208,2,5326,3,9,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__S,Age,S,3,0,0,0,2,5,3,1,1,49_58_68_157_192_4735_4736_4933_4934_4935_4963_4964_4966_4967_4968_4969_4970_5084_5086_5113_5114_5115_5116_5117_5118_5119_5120_5172_5176_5177_5178_5199_5201_5202_5204_5205_5206_5207_5208_5226,40,5326,5,7,-1,0,-1
+Add 50% crops,Age,All,9,0,0,0,3,1,0,1,1,,,,2,4,-2,-1,-1
+Add 50% crops,Age,All,9,0,0,0,3,1,1,0,1,,,,2,4,-2,-1,-1
+Add 50% crops,Age,All,9,0,0,0,3,1,1,1,0,,,,2,4,-2,-1,-1
+Add 50% crops,Age,All,8,0,0,0,4,0,1,1,1,,,,3,4,-2,0,-1
+Current proportion of LU types,Age,H,9,0,0,0,2,1,1,1,1,,,,3,3,-1,0,-1
+Add 50% forests,Age,A,2,0,0,0,10,0,1,1,1,,,,3,10,-1,0,-1
+Add 50% grasslands,Age,All,5,0,0,0,4,2,2,1,1,,,,4,6,1,0,1
+Add 50% crops,Age,A,5,0,0,0,6,0,2,1,1,,,,4,6,-1,0,-1
+Add 50% crops,Age,S,8,0,0,0,5,0,1,0,1,,,,2,5,-1,0,-1
+All forests are uneven-aged,Age,H,9,0,0,0,0,3,1,1,1,,,,3,3,-1,0,-1
+All forests are uneven-aged,Age,S,5,0,0,0,0,7,1,1,1,,,,3,7,-1,0,-1
+All high LUI grasslands become crops (forests: EA/UA),Age,H,10,0,0,0,2,1,1,1,0,,,,2,3,-1,0,-1
+"half crops converted to grasslands,  more low grassland (forests: EA/UA)",Age,S,3,0,0,0,6,0,4,1,1,,,,6,6,-1,0,-1
+Low-lui and med-lui grasslands become uneven-aged forests,Age,A,3,0,0,0,6,5,0,0,1,,,,1,11,1,0,1
+All grasslands are high int,Age,S,5,0,0,0,6,2,0,0,2,,,,2,8,1,0,1
+All grasslands are low int,Age,S,5,0,0,0,6,2,2,0,0,,,,2,8,1,0,1
+100% forest (EA/UA),Age,A,0,0,0,0,14,1,0,0,0,,,,0,15,-1,0,-1
+33% each (EA/UA),Age,A,5,0,0,0,4,1,2,2,1,,,,5,5,1,0,1
+33% each (EA/UA),Age,All,5,0,0,0,4,0,2,2,2,,,,6,4,-1,0,-1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_3_good__H,Age,H,9,0,0,0,1,4,1,0,0,59_295_4900_4901,4,5326,1,5,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_both_good__H,Age,H,9,0,0,0,1,4,1,0,0,59_295_4900_4901,4,5326,1,5,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser_best__S,Age,S,3,0,0,0,1,8,3,0,0,5207_5208,2,5326,3,9,1,0,1
+Scenario_post_env_corr_by_regionTRUEscale_withinFALSE_SBFALSE-weightedTRUE_biggroupFALSE_no_loser__S,Age,S,3,0,0,0,3,4,3,1,1,49_58_68_157_192_4735_4736_4933_4934_4935_4963_4964_4966_4967_4968_4969_4970_5084_5086_5113_5114_5115_5116_5117_5118_5119_5120_5172_5176_5177_5178_5199_5201_5202_5204_5205_5206_5207_5208_5226,40,5326,5,7,-1,0,-1
+Add 50% crops,Age,All,9,0,0,0,4,0,0,1,1,,,,2,4,-2,-1,-1
+Add 50% crops,Age,All,9,0,0,0,4,0,1,0,1,,,,2,4,-2,-1,-1
+Add 50% crops,Age,All,9,0,0,0,4,0,1,1,0,,,,2,4,-2,-1,-1

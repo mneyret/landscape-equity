@@ -43,7 +43,7 @@ for (constrain_crop in c(FALSE, TRUE)) {
     if (constrain_crop == TRUE) {
       if (by_region == TRUE) {
         fixed_crop <- round(no_plots / 100 * c(21, 60, 35))
-        plot_seq <- c(0, 1, 2, 3, 5, 7, 9, 11, 13, 15)
+        plot_seq <- c(0, 1, 2, 3, 5, 7, 9, 11, 13, 14, 15)
 }
       if (by_region == FALSE) {
         fixed_crop <- round(no_plots * 39 / 100)
