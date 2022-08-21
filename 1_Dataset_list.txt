@@ -1,0 +1,74 @@
+Data to load from BEXIS (to put in folder (Data_to_load)
+
+Note that dataset names can change (name of the zip file and dataset within), but url and dataset id (first 5 numbers in the names, last 5 in the url) remain the same. Make sure to match names in the script to import the data.
+
+Forest classification
+- 17706_New_forest_type_classification_of_all_forest_EPs_2008-2014_1.2.6 from
+https://www.bexis.uni-jena.de/ddm/data/Showdata/17706 (OPEN)
+
+Grassland land use intensity
+- LUI_standardized_regional.txt. 
+Use the LUI tool from Bexis: https://www.bexis.uni-jena.de/lui/LUICalculation/index 
+with options: standardised, regional, all regions, years 2008-2015 (OPEN)
+
+Plot information
+- 20826_Basic Information of all Experimental Plots_EPs_1.7.5 from https://www.bexis.uni-jena.de/ddm/data/Showdata/20826 (Not yet public at time of publication)
+
+Acoustic diversity
+- 27569_Acoustic diversity index based on environmental sound recordings on all forest EPs, Alb, 2016_1.1.0 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27569 (Not yet public at time of publication) 
+- 27570_Acoustic diversity index based on environmental sound recordings on all forest EPs, SCH, 2016_1.1.0 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27570 (Not yet public at time of publication)
+- 27568_Acoustic diversity index based on environmental sound recordings on all forest EPs, HAI, 2016_4.1.5 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27568 (Not yet public at time of publication)
+- 24666/Acoustic indices based on environmental sound recordings on all grassland EPs, Alb, 2016_4 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24666 (Not yet public at time of publication)
+- 24691/Acoustic indices based on environmental sound recordings on all grassland EPs, HAI, 2016_2 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24691
+- 24692/Acoustic indices based on environmental sound recordings on all grassland EPs, SCH, 2016_2 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24692
+
+
+Bird and plant abundance and data information
+- 31207_Assembled species information from forest EPs (2007-2020) for multidiversity synthesis - January 2022_6 from
+https://www.bexis.uni-jena.de/ddm/data/Showdata/31207 (Not yet public at time of publication) 
+- 31206_Assembled RAW diversity from forest EPs (2007-2020) for multidiversity synthesis - January 2022_5 from
+https://www.bexis.uni-jena.de/ddm/data/Showdata/31206 (Not yet public at time of publication) 
+- 27706_Assembled species information from grassland EPs (2008-2020) for multidiversity synthesis - November 2020_3 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27706 (Not yet public at time of publication) 
+- 27707_Assembled RAW diversity from grassland EPs (2008-2020) for multidiversity synthesis - November 2020_2 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27707 (Not yet public at time of publication) 
+
+Fungi abundances
+- 24286_Abundant fungi_2011_relative_abundance_1.1.7 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24286 (OPEN)
+- 24306_Abundant_fungi_2011_taxonomic_look_uptable_1.1.8 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24306 (OPEN)
+
+Forest plant structure
+- 25886_Vegetation_Records_for_151_Forest_EPs_2009-2018_1.5.4 from https://www.bexis.uni-jena.de/ddm/data/Showdata/25886 (OPEN)
+
+Forest attributes
+- 25146_Canopy_openness_of_forest_EPs_2014_1.2.8 from https://www.bexis.uni-jena.de/ddm/data/Showdata/25146 (OPEN)
+- 17687_Stand_structure_and_composition_on_all_forest_EPs_2008-2014_1.4.8 from https://www.bexis.uni-jena.de/ddm/data/Showdata/17687 (OPEN) 
+- 22907_Stand_composition_based_on_2nd_forest_inventory_on_all_forest_EPs_2014_2018_1.7.8 from https://www.bexis.uni-jena.de/ddm/data/Showdata/22907 (OPEN)
+- 22868_Timber production on all forest EPs, 2008 – 2016_4 from https://www.bexis.uni-jena.de/ddm/data/Showdata/22868 (OPEN) 
+
+Moss cover:
+- 4141_Bryophyte diversity in forests_1.6.8_PublicDataset from
+https://www.bexis.uni-jena.de/ddm/data/Showdata/4141 (OPEN)
+
+Flower cover:
+- 21688_2_Dataset from https://www.bexis.uni-jena.de/ddm/data/Showdata/21688 (Not yet public at time of publication)
+
+Environmental data:
+- Aggregated environmental and land-use covariates of the 150 grassland EPs used in "Contrasting responses of above- and belowground diversity to multiple components of land-use intensity" Dataset: https://www.bexis.uni-jena.de/ddm/data/Showdata/31018 (Not yet public at time of publication)
+- 14686_MinSoil_2011_Soil_Texture_1.9.13 from https://www.bexis.uni-jena.de/ddm/data/Showdata/14686 (OPEN)
+- 14447_8_Dataset from https://www.bexis.uni-jena.de/ddm/data/Showdata/14447 (OPEN)
+- 19067_3_Dataset from https://www.bexis.uni-jena.de/ddm/data/Showdata/19067 (OPEN)
+- 17086_3_Dataset from https://www.bexis.uni-jena.de/ddm/data/Showdata/17086 (OPEN)
+- precipitation_radolan from Bexis climate tool 2008 to 2018 https://www.bexis.uni-jena.de/tcd/ClimateData/index (OPEN)
+- Ta_200_2008_2018 from Bexis climate tool 2008 to 2018 https://www.bexis.uni-jena.de/tcd/ClimateData/index (OPEN)
+
+
+
+
+For additional analyses (checking baseline proportions)
+Grassland management in 1000 grid plots in the region
+- 5120_Grassland land use identification on all Grid Plots 2006 - 2008_1.98.55 from 
+https://www.bexis.uni-jena.de/ddm/data/Showdata/5120 (Not yet public at time of publication)
+
+- Corine data U2018_CLC2018_V2020_20u1.tif from http://data.tools4msp.eu/layers/geonode%3Au2018_clc2018_v2020_20u1
+- Exploratories shapefiles: https://www.bexis.uni-jena.de/ddm/data/Showdata/5460
+
+

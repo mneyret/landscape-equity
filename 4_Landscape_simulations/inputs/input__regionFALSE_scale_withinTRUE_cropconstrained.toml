@@ -1,0 +1,20 @@
+services = "../Temporary_data/All_ES_data_classif__regionFALSE_scale_withinTRUE.csv"
+services_ignore = ["Region", "LU", "Classif", "Classif2"]
+
+environments = "../Temporary_data/environments_new.csv"
+environments_ignore = ["Region", "LU"]
+
+environments_pca = "../Temporary_data/environments_pca.csv"
+plant_abundances = "../Temporary_data/Plants_abundance.csv"
+bird_abundances = "../Temporary_data/Birds_abundance.csv"
+fungi_abundances = "../Temporary_data/Fungi_abundance.csv" 
+bird_charism_abundances = "../Temporary_data/Birds_charism_abundance.csv" 
+
+
+scenario = "../Temporary_data/scenarios_by_regionFALSE_constrainedTRUE.csv"
+max_tentative = 100
+replica = 500
+
+logfile = "../Temporary_data/output__regionFALSE_scale_withinTRUE_cropconstrained.log"
+output_picked = "../Temporary_data/picked__regionFALSE_scale_withinTRUE_cropconstrained.csv.gz"
+output_landscapes = "../Temporary_data/landscapes__regionFALSE_scale_withinTRUEconstrained.csv.gz"

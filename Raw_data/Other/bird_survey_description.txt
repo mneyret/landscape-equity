@@ -1,0 +1,7 @@
+Survey with people describing each bird species as more or less culturally important.
+
+Legend	Code
+Leistet einen wichtigen Beitrag. / Makes an important contribution.	4
+Leistet einen geringen Beitrag. / Makes a minor contribution.	3
+Leistet keinen Beitrag. / Makes no contribution.	2
+Weiß ich nicht. / I don't know.	1

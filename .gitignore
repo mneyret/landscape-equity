@@ -26,7 +26,13 @@
 .Rdata
 .Rhistory
 
-Data/Raw_data/New_synthesis_data/
+# Exclude most data
+Raw_data/Data_to_load/
+Temporary_data/
+# But keep an invisible file in to keep the folders
+!Raw_data/Data_to_load/.gitkeep
+Temporary_data/.gitkeep
+
 
 
 

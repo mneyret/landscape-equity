@@ -1,0 +1,11 @@
+Data acquired from Bundesministerium für Ernährung und Landwirtschaft. Statistisches Jahrbuch über Ernährung, Landwirtschaft und Forsten der Bundesrepublik Deutschland. vol. 63 (2019).
+
+Region: One of the three Exploratories. A: Alb (South-West), H: Hainich (Central), S: Schorfheide (North)
+
+Crop_type: identity of the crop
+
+Proportion: proportion of the area covered by the crop relative to total crop area in the region
+
+Market_value_euro_perT_without_tax: market value of the crop in the region
+
+Yield_t_per_ha: yield of the corp in the region

@@ -1,0 +1,4 @@
+Wood prices were obtained from  http://www.wald-prinz.de/holzpreise-und-holzpreisentwicklung-fichte/383 and https://fbg-amberg.de/brennholz/brennholzboerse (Firewood) and adapted according to diameter.
+
+E.g. line Fagus Sylvatica, column from25: price for Fagus timber with diameter between 25 and 30cm.
+Industrial: all wood below 25 or unusable

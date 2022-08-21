@@ -1,0 +1,29 @@
+Species,Occurence_quali,Frequency
+Buteo buteo,SF,15
+Ciconia ciconia,R,1
+Corvus corone corone,F,5
+Passer montanus,F,5
+Carduelis carduelis,F,5
+Corvus corax,SF,15
+Milvus milvus,SF,15
+Sturnus vulgaris,F,5
+Turdus pilaris,SF,15
+Alauda arvensis,F,5
+Acrocephalus palustris,F,5
+Hirundo rustica,SF,15
+Anthus pratensis,SF,15
+Phasianus colchicus,F,5
+Crex crex,SF,15
+Carduelis cannabina,SF,15
+Emberiza schoeniclus,F,5
+Coturnix coturnix,SF,15
+Gallinago gallinago,SF,15
+Emberiza citrinella,F,5
+Motacilla flava,SF,15
+Lanius collurio,SF,15
+Saxicola rubetra,SF,15
+Emberiza calandra,SF,15
+Vanellus vanellus,SF,15
+Passer domesticus,F,5
+Perdix perdix,SF,15
+Sylvia communis,F,5

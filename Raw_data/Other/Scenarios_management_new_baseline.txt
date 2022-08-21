@@ -1,0 +1,23 @@
+This file shows the proportion of each land use and land use type within a set of predefined scenarios.
+
+Scenario name: short name of the scenario
+
+Scenario type: Baseline scenario (Current proportions), LU change scenarios (Change proportions of LU types, keep the others in proportion), Management change scenarios (Keep proportions of LU types constant, change proportions of management types within), Theoretical: These actually mostly serve as a value to scale the indicator values at the landscape level between 0 and 1 (x' = (x -min)/(max-min))
+
+Scenario_description: short description of the scenario
+
+Forest classification: scenario based on forest age or forest type
+
+Region:mixed, Region:coniferous, Region: deciduous: proportion of forest from each type in the region for the considered scenario, relative to overall forest cover (sums to 1)
+
+EA, UA: proportion of Even Aged or Uneven Aged forests in the region for the considered scenario, relative to overall forest cover (sums to 1)
+
+Region:low, medium, high intensity: proportion of low, medium, high intensity grassnads in the region for the considered scenario, relative to overall grassland cover (sums to 1)
+
+Region: A (Alb), H (Hainich), S (Schorfheide) or average across regions
+
+Forest, Grassland, Crop: proportion of each land use type in the considered scenario (sums to 1)
+
+Forest_Mixed	Forest_Coniferous	Forest_Deciduous	Forest_even_aged	Forest_uneven_aged	Grassland_low	Grassland_medium	Grassland_high : absolute proportion of each land-use management type (sum to 1)
+
+check_sum_forest_type	check_sum_forest_age check that our final proportion sum to correct number (might slightly differ due to rounding error)

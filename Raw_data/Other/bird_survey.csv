@@ -1,0 +1,104 @@
+﻿Species;Species_German_Latin;Bird_species_English;Resp.1;Resp.2;Resp.3;Resp.4;Resp.5;Resp.6;Resp.7;Resp.8;Resp.9;Resp.10;Resp.11;Resp.12;Resp.13;Resp.14;Resp.15;Resp.16;Resp.17;Resp.18;Resp.19;Resp.20;Resp.21;Resp.22;Resp.23;Resp.24;Resp.25;Resp.26;Resp.27;Resp.28;Resp.29;Resp.30;Resp.31;Resp.32;Resp.33;Resp.34;Resp.35;Resp.36;Resp.37;Resp.38;Resp.39;Resp.40;Resp.41;Resp.42;Resp.43;Resp.44;Resp.45;Resp.46;Resp.47;Resp.48;Resp.49;Resp.50;Resp.51;Resp.52;Resp.53;Resp.54
+Acrocephalus palustris;Sumpfrohrsänger (Acrocephalus palustris);Marsh Warbler;3;1;;3;1;1;3;2;;2;3;2;3;1;2;1;2;3;2;2;3;2;2;2;2;2;3;2;2;2;2;;4;2;3;2;4;2;1;2;4;3;2;2;;3;3;2;2;4;3;2;;1
+Acrocephalus scirpaceus;Teichrohrsänger (Acrocephalus scirpaceus);Reed Warbler;3;1;;1;1;1;1;3;;2;3;2;4;1;2;3;2;3;2;2;3;2;2;2;2;2;3;2;2;2;2;;4;2;3;3;4;2;1;2;4;3;3;2;;3;3;2;2;4;3;2;;4
+Alauda arvensis;Feldlerche (Alauda arvensis);Skylark;4;4;;4;4;4;4;4;4;2;4;2;4;4;4;4;4;4;4;2;4;3;3;4;3;4;4;2;2;2;3;;4;4;4;3;4;3;4;1;4;4;4;4;;4;4;4;4;4;4;4;;4
+Anser anser;Graugans (Anser anser);Greylag Goose;3;4;;3;2;4;4;4;;2;4;3;4;1;4;4;3;4;4;2;4;3;2;3;4;3;3;3;2;3;4;;4;4;4;4;4;4;3;4;4;4;3;4;;4;4;3;4;4;3;3;;1
+Anthus pratensis;Wiesenpieper (Anthus pratensis);Meadow pipit;3;1;;1;3;4;3;2;;2;1;2;2;3;2;1;2;3;3;2;3;2;2;2;2;2;3;2;2;2;2;;4;2;3;2;4;1;1;1;1;3;2;2;;3;3;3;2;4;3;2;;1
+Anthus trivialis;Baumpieper (Anthus trivialis);Tree pipit;3;1;;1;3;4;1;2;;2;1;2;3;1;2;1;2;3;2;2;3;2;2;2;2;2;3;2;2;2;2;;4;2;3;3;4;1;1;2;1;1;2;2;;3;3;3;2;4;3;2;;4
+Ardea cinerea;Graureiher (Ardea cinerea);Grey Heron;4;3;;3;1;4;4;4;;3;4;2;4;4;3;4;3;3;4;2;4;4;3;3;3;4;3;2;2;4;4;4;4;4;4;3;4;4;4;4;4;4;4;2;;4;4;2;3;4;4;2;;4
+Buteo buteo;Mäusebussard (Buteo buteo);Common buzzard;3;4;4;4;3;4;4;4;;4;4;4;4;4;4;4;3;4;4;2;4;4;4;3;4;4;4;4;2;4;4;4;4;4;4;4;4;4;4;4;4;4;4;3;;4;4;3;3;4;4;2;;4
+Carduelis cannabina;"Bluthänfling 	(Carduelis cannabina)";Common linnet;3;1;;3;2;1;1;2;;3;1;2;3;;2;1;2;3;3;2;3;2;2;2;2;3;4;2;2;3;2;;4;2;3;2;4;2;1;2;1;1;2;2;;3;3;3;3;4;3;2;;1
+Carduelis carduelis;"Stieglitz	(Carduelis carduelis)";Goldfinch;4;3;4;4;2;4;3;3;;4;4;2;4;4;3;4;2;3;4;2;4;2;2;3;4;4;4;2;2;4;;;4;4;4;4;4;3;3;3;4;4;2;3;;4;4;3;4;4;4;2;;4
+Carduelis chloris;Grünfink (Carduelis chloris);Greenfinch;4;1;4;3;1;3;3;4;;4;4;3;4;3;4;3;3;3;2;2;4;3;3;2;4;4;4;3;2;4;4;;4;4;4;4;4;4;3;4;4;1;3;2;;3;3;2;2;4;4;2;;4
+Carduelis spinus;"Erlenzeisig	(Carduelis spinus)";Siskin;3;1;;3;1;1;1;2;;3;4;2;3;1;2;4;2;3;2;2;3;2;2;2;3;3;4;2;2;3;3;;4;4;3;3;4;3;1;2;1;1;3;3;;2;3;2;4;4;3;2;;1
+Ciconia ciconia;"Weißstorch	(Ciconia ciconia)";White Stork;4;4;;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;2;4;4;4;4;4;4;4;4;2;4;4;4;4;4;4;4;4;3;4;3;4;4;4;4;;4;4;4;4;4;4;4;;4
+Coccothraustes coccothraustes;"Kernbeißer	(Coccothraustes coccothraustes)";Hawfinch;3;1;;4;;1;1;3;;3;4;3;4;1;2;1;2;3;2;2;4;3;2;2;2;3;4;3;2;4;2;;4;4;4;3;4;3;3;2;1;4;3;2;;3;3;3;2;4;4;2;;3
+Columba oenas;"Hohltaube	(Columba oenas)";Stock dove;3;1;;3;2;2;1;2;;3;3;2;2;3;2;1;2;3;1;2;4;2;2;2;2;3;4;2;2;2;2;;4;4;4;2;3;1;2;2;1;1;3;2;;3;3;2;2;4;3;2;;1
+Columba palumbus;"Ringeltaube	(Columba palumbus)";Wood pigeon;4;3;;4;2;4;4;4;;4;4;3;4;4;2;4;2;3;4;2;4;3;2;2;4;3;4;3;2;3;4;4;4;4;4;3;3;3;2;2;4;4;4;2;;4;3;2;3;4;4;4;;3
+Corvus corax;"Kolkrabe	(Corvus corax)";Common raven;4;4;;4;2;4;4;3;4;4;4;3;4;4;2;4;4;4;4;2;4;4;4;3;4;4;4;3;2;4;4;4;4;4;4;4;4;4;3;2;4;4;4;4;4;4;4;4;4;4;4;4;;4
+Corvus corone cornix;"Nebelkrähe	(Corvus corone cornix)";Carrion crow;3;1;;4;2;3;4;3;4;3;3;3;3;4;2;1;3;3;4;2;3;3;2;2;2;3;4;3;2;3;4;;4;3;4;3;4;4;3;2;4;4;4;2;;3;4;2;2;4;3;2;;4
+Corvus corone corone;"Rabenkrähe	(Corvus corone corone)";Hooded Crow;3;2;;4;2;4;4;4;4;4;4;4;4;4;3;1;3;3;2;2;4;3;3;2;3;3;4;4;2;4;4;;4;4;4;4;4;4;3;4;4;3;4;3;;3;4;2;3;4;4;3;;4
+Coturnix coturnix;"Wachtel	(Coturnix coturnix)";Common quail;4;1;;3;3;3;4;3;;3;4;3;3;1;2;1;3;3;2;2;4;3;2;3;4;3;4;3;2;3;3;;4;3;3;4;4;3;2;4;4;4;2;2;;4;4;3;3;4;4;3;;4
+Cuculus canorus;"Kuckuck	(Cuculus canorus)";Cuckoo;4;4;;4;4;4;4;3;;4;4;4;4;4;4;4;4;4;4;2;4;4;4;4;4;4;4;4;2;3;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;;4
+Cyanistes caeruleus;"Blaumeise	(Cyanistes caeruleus)";Blue tit;4;1;4;4;3;4;2;4;;4;4;4;4;4;4;4;4;4;4;2;4;4;3;3;4;3;4;4;2;4;4;4;4;4;4;3;4;4;4;4;4;4;4;3;;4;3;3;2;4;4;3;;4
+Delichon urbicum;"Mehlschwalbe	(Delichon urbicum)";House Martin;4;4;;4;4;2;1;4;4;3;4;4;4;4;4;3;2;4;4;2;3;4;2;4;3;4;4;4;2;2;3;4;4;4;4;3;4;3;4;1;1;4;3;3;;4;3;4;3;4;4;4;;4
+Dryocopus martius;"Schwarzspecht	(Dryocopus martius)";Black Woodpecker;3;1;;3;3;4;1;2;;2;3;4;4;4;3;3;2;3;3;2;3;4;3;3;3;3;3;4;2;2;3;;4;3;4;4;4;3;1;3;1;4;3;4;;3;3;3;2;4;4;2;;1
+Emberiza calandra;"Grauammer	(Emberiza calandra)";Corn bunting;3;1;;1;3;3;3;2;;2;1;2;2;1;2;1;2;1;2;2;3;2;2;2;2;2;3;2;2;2;3;;4;2;3;3;4;1;1;2;1;3;3;2;;3;3;3;2;4;3;2;;1
+Emberiza citrinella;"Goldammer	(Emberiza citrinella)";Yellowhammer;4;3;;3;4;3;3;3;;2;4;3;4;4;2;1;2;1;3;2;3;2;2;3;3;3;3;3;2;3;4;;4;3;4;2;4;1;3;2;1;4;3;3;;3;3;4;2;4;4;2;;4
+Erithacus rubecula;"Rotkehlchen	(Erithacus rubecula)";Robin;4;3;;4;4;4;3;4;;4;4;4;4;4;4;4;3;4;4;2;4;3;4;4;4;4;4;4;2;4;4;4;4;4;4;4;4;4;4;4;4;4;4;3;;4;3;4;3;4;4;3;;4
+Falco tinnunculus;"Turmfalke	(Falco tinnunculus)";Kestrel;4;4;4;3;4;4;4;4;;4;4;4;4;;2;4;3;4;4;2;4;4;3;3;4;3;4;4;2;4;3;4;4;4;4;4;4;3;4;4;4;4;4;2;;4;3;4;2;4;4;4;;4
+Fringilla coelebs;"Buchfink	(Fringilla coelebs)";Chaffinch;3;4;4;3;1;4;1;4;;3;4;3;4;4;4;4;4;3;4;2;4;3;3;3;4;4;4;3;2;4;3;4;4;4;4;4;4;4;4;4;4;4;4;3;;4;3;3;3;4;4;4;;4
+Gallinago gallinago;"Bekassine	(Gallinago gallinago)";Snipe;2;1;;3;4;3;2;3;;2;3;2;4;1;2;4;1;3;2;2;3;2;2;2;2;2;4;2;2;2;3;;;2;3;2;4;1;1;2;1;3;1;2;;3;4;3;2;4;4;2;;1
+Garrulus glandarius;"Eichelhäher	(Garrulus glandarius)";Jay;4;4;4;4;3;4;3;4;;4;4;3;4;4;4;4;4;4;2;2;4;3;4;3;4;4;4;3;2;4;4;4;4;4;4;4;4;4;4;3;4;4;4;2;;4;4;4;4;4;4;3;;4
+Grus grus;"Kranich	(Grus grus)";Crane;4;4;;4;3;4;4;3;4;2;4;3;4;3;2;4;4;4;4;2;4;3;4;4;2;3;4;3;2;3;4;;4;3;4;3;4;3;4;4;4;4;4;4;;4;4;3;4;4;4;4;;4
+Hippolais icterina;"Gelbspötter	(Hippolais icterina)";Icterine warbler;3;1;;3;1;1;1;2;;2;1;2;2;1;2;3;2;3;2;2;3;2;2;2;2;2;3;2;2;2;3;;4;2;3;3;3;1;1;2;1;2;2;2;;3;3;2;2;4;3;2;;1
+Hirundo rustica;"Rauchschwalbe	(Hirundo rustica)";Swallow;4;4;;4;3;4;4;4;4;3;4;4;4;4;4;1;3;4;4;2;3;4;2;4;4;4;4;4;2;3;3;;4;4;4;4;4;3;3;2;4;4;2;3;;4;4;4;4;4;4;4;;4
+Jynx torquilla;"Wendehals	(Jynx torquilla)";Wryneck;3;4;;4;1;1;3;3;;2;4;2;4;1;2;3;2;3;2;2;3;2;2;2;4;3;3;2;2;2;2;;4;4;3;4;3;1;1;2;1;3;2;2;;3;4;3;3;4;4;4;;3
+Lanius collurio;"Neuntöter	(Lanius collurio)";Red-backed shrike;3;3;;4;3;1;3;3;;2;4;3;4;1;2;4;2;4;3;2;4;2;3;3;3;3;4;3;2;2;2;;4;3;3;3;4;1;1;2;1;3;2;2;;3;4;4;3;4;4;2;;3
+Locustella naevia;"Feldschwirl	(Locustella naevia)";Grasshopper Warbler;2;1;;3;2;1;1;2;;2;1;2;3;;2;1;2;3;2;2;3;2;3;2;3;2;3;2;2;2;2;;4;2;3;2;3;1;1;2;1;1;2;2;;3;3;2;2;4;3;2;;1
+Lullula arborea;"Heidelerche	(Lullula arborea)";Woodlark;3;1;;3;2;1;1;2;;2;4;2;4;1;3;1;2;3;4;2;3;2;2;2;3;3;4;2;2;2;3;;4;2;3;2;4;1;1;2;4;4;2;2;;4;3;2;4;4;4;4;;1
+Luscinia megarhynchos;"Nachtigall	(Luscinia megarhynchos)";Nightingale;4;4;;4;4;4;4;3;4;4;4;4;4;4;4;4;4;4;4;2;4;4;4;4;4;4;4;4;2;3;4;;4;4;4;4;4;3;4;4;4;4;4;2;4;4;4;4;4;4;4;4;;4
+Milvus migrans;"Schwarzmilan	(Milvus migrans)";Black Kite;3;1;;3;1;3;1;3;;3;4;4;3;4;2;4;2;3;3;2;3;2;2;2;3;3;4;4;2;2;4;;4;2;4;4;4;3;4;3;4;3;4;2;;3;4;2;2;4;4;2;;3
+Milvus milvus;"Rotmilan	(Milvus milvus)";Red Kite;4;3;4;4;4;4;4;4;;4;4;4;4;4;2;4;3;3;4;2;4;3;3;4;4;4;4;4;2;4;4;4;4;3;4;4;4;4;4;4;4;4;4;4;;4;4;3;3;4;4;2;;4
+Motacilla alba;"Bachstelze	(Motacilla alba)";Pied Wagtail;3;1;;4;3;4;2;4;;3;4;3;4;4;2;1;3;3;4;2;4;2;3;3;4;4;4;3;2;4;4;;4;3;4;3;4;4;4;4;4;4;2;2;;4;3;3;2;4;4;2;;4
+Motacilla flava;"Schafstelze	(Motacilla flava)";Yellow wagtail;2;1;;3;2;1;1;2;;2;3;2;4;1;2;1;2;3;3;2;3;2;2;2;2;3;3;2;2;2;;;4;3;3;2;3;2;1;1;1;3;2;2;;3;3;3;2;4;3;2;;1
+Muscicapa striata;"Grauschnäpper	(Muscicapa striata)";Spotted flycatcher;3;1;;1;2;1;1;2;;2;1;2;3;1;2;1;2;3;2;2;3;2;2;2;2;2;3;2;2;2;2;;4;3;3;2;4;2;1;1;1;1;2;2;;2;2;2;2;4;3;2;;1
+Oenanthe oenanthe;"Steinschmätzer	(Oenanthe oenanthe)";Wheatear;3;1;;1;2;1;1;2;;2;1;2;2;1;2;1;2;3;2;2;3;2;2;2;2;2;3;2;2;2;2;;4;3;3;2;4;2;1;1;1;1;2;2;;2;3;2;2;4;3;2;;1
+Parus cristatus;"Haubenmeise	(Parus cristatus)";Crested tit;3;1;;3;1;4;1;2;;3;4;2;2;3;2;1;2;3;2;2;4;2;2;2;3;2;4;2;2;4;3;;4;3;3;3;4;3;1;3;1;1;2;2;;3;3;2;2;4;4;2;;1
+Parus major;"Kohlmeise	(Parus major)";Great tit;4;1;4;4;2;4;2;4;;4;4;2;4;4;4;1;4;4;4;2;4;3;3;3;4;4;4;2;2;4;4;;4;4;4;3;4;4;4;4;4;4;4;4;;4;3;3;3;4;4;2;;4
+Parus palustris;"Sumpfmeise	(Parus palustris)";Marsh tit;2;1;;3;2;1;1;2;;3;1;2;3;1;2;1;2;3;2;2;3;2;2;2;3;2;4;2;2;3;3;;4;3;3;2;4;2;1;3;1;1;2;2;;3;2;2;2;4;3;2;;1
+Passer montanus;"Feldsperling	(Passer montanus)";Field Sparrow;3;1;;4;3;4;1;4;;3;4;2;4;4;4;1;2;4;4;2;4;4;3;3;3;3;4;2;2;4;3;4;4;3;4;3;4;3;3;1;4;4;4;4;;4;4;3;3;4;4;2;;4
+Periparus ater;"Tannenmeise	(Periparus ater)";Coal tit;2;1;;3;1;3;1;2;;3;1;2;4;3;;1;2;3;2;2;3;2;2;2;3;3;4;2;2;3;3;;4;3;3;2;4;3;1;1;1;1;2;2;;3;3;2;2;4;4;2;;4
+Pernis apivorus;"Wespenbussard	(Pernis apivorus)";Honey Buzzard;2;1;;1;3;2;1;2;;1;2;2;2;1;2;1;2;3;1;2;3;2;2;2;3;2;4;2;2;2;3;;4;2;4;2;4;2;1;2;1;1;3;2;;3;3;3;2;4;4;2;;1
+Phoenicurus ochruros;"Hausrotschwanz	(Phoenicurus ochruros)";Black redstart;4;1;4;3;4;3;1;4;;4;4;3;4;4;3;1;2;4;4;2;4;2;3;3;3;4;4;3;2;2;3;;4;4;4;3;4;2;4;2;1;4;3;3;;3;3;2;3;4;3;2;;4
+Phoenicurus phoenicurus;"Gartenrotschwanz	(Phoenicurus phoenicurus)";Redstart;4;1;;3;4;3;1;3;;4;4;3;4;1;3;4;2;4;4;2;4;2;3;2;4;3;4;3;2;4;3;4;4;2;4;3;4;2;4;2;1;4;2;3;;3;3;3;3;4;3;2;;4
+Phylloscopus collybita;"Zilpzalp	(Phylloscopus collybita)";Chiff-Chaff;3;1;4;3;1;4;2;4;;4;4;2;4;4;3;1;2;3;4;2;4;3;2;3;4;3;4;2;2;4;3;;4;2;3;3;4;4;3;3;1;4;2;3;;3;3;2;2;4;4;2;;4
+Phylloscopus trochilus;"Fitis	(Phylloscopus trochilus)";Wilow Warbler;3;1;;;1;2;1;3;;2;2;2;4;4;3;1;2;3;2;2;3;3;2;2;2;3;3;2;2;3;3;;4;2;3;2;4;2;1;2;1;1;2;2;;3;3;2;2;4;3;2;;1
+Pica pica;"Elster	(Pica pica)";Magpie;4;3;;3;3;4;4;3;;4;4;3;4;4;3;4;3;4;4;2;4;4;2;3;4;4;3;3;2;4;4;4;4;4;4;4;4;4;4;4;4;4;4;3;4;4;4;2;3;4;4;4;;4
+Picus viridis;"Grünspecht	(Picus viridis)";Green Woodpecker;4;1;;3;3;4;2;3;;3;4;;4;4;3;4;3;4;4;2;4;4;3;2;4;4;4;;2;4;4;;4;4;4;4;4;4;4;4;4;3;4;2;;4;3;2;3;4;4;2;;4
+Prunella modularis;"Heckenbraunelle	(Prunella modularis)";Dunnock;3;1;;3;3;1;2;2;;3;2;2;4;4;2;1;2;3;2;2;3;2;2;2;2;2;4;2;2;3;3;;4;2;4;2;4;1;4;2;;1;2;2;;3;3;2;2;4;4;2;;1
+Pyrrhula pyrrhula;"Gimpel	(Pyrrhula pyrrhula)";Bullfinch;3;4;;3;4;1;1;2;;3;4;3;4;4;2;1;2;3;3;2;4;2;2;2;2;3;4;3;2;4;3;;4;3;3;3;4;2;;2;4;4;4;2;;4;3;3;4;4;4;2;;1
+Regulus ignicapillus;"Sommergoldhähnchen	(Regulus ignicapillus)";Firecrest;3;1;;3;;1;1;3;;2;2;2;3;1;2;1;2;3;2;2;3;2;2;2;3;3;4;2;2;3;4;;4;3;3;2;4;3;4;2;;3;3;2;;3;3;2;2;4;4;2;;3
+Regulus regulus;"Wintergoldhähnchen	(Regulus regulus)";Goldcrest;3;1;;3;1;1;1;2;;2;3;3;3;3;2;1;2;3;3;2;3;3;2;2;2;3;4;3;2;3;3;;4;2;4;2;3;3;4;2;1;3;2;2;;3;3;2;2;4;3;2;;4
+Saxicola rubetra;"Braunkehlchen	(Saxicola rubetra)";Whinchat;3;1;;4;3;3;3;2;;2;2;4;3;1;2;3;2;1;2;2;3;2;2;2;4;3;4;4;2;2;3;;4;2;3;2;4;3;4;2;1;1;3;3;;3;4;3;2;4;3;2;;1
+Saxicola rubicola;"Schwarzkehlchen	(Saxicola rubicola)";Stonechat;3;1;;3;3;3;1;2;;2;2;3;3;1;2;1;2;1;2;2;3;2;2;2;4;3;4;3;2;2;3;;4;2;3;2;4;3;1;2;1;1;3;2;;3;4;3;2;4;3;2;;1
+Sitta europaea;"Kleiber	(Sitta europaea)";Nuthatch;4;3;;3;3;4;1;4;;2;4;3;4;3;3;3;2;3;3;2;4;3;2;2;4;4;4;3;2;4;3;4;4;4;4;3;4;4;3;3;4;4;2;2;;4;4;4;2;4;4;2;;4
+Sturnus vulgaris;"Star	(Sturnus vulgaris)";Starling;4;4;4;4;3;4;4;4;4;4;4;4;4;4;4;4;4;4;4;2;4;4;4;3;4;4;4;4;2;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;;4;4;4;4;4;4;4;;4
+Sylvia atricapilla;"Mönchsgrasmücke	(Sylvia atricapilla)";Blackcap;3;1;4;3;2;4;1;4;;2;3;3;4;4;3;1;2;3;2;2;3;2;3;2;2;4;4;3;2;3;3;;4;3;3;3;4;4;3;1;1;1;3;2;;3;3;4;3;3;4;2;;3
+Sylvia borin;"Gartengrasmücke	(Sylvia borin)";Garden warbler;3;1;;3;2;4;1;3;;2;3;3;3;4;2;1;2;3;2;2;3;2;2;2;2;2;4;3;2;3;3;;4;2;4;2;4;4;4;1;1;1;3;2;;3;1;2;2;4;3;2;;1
+Sylvia communis;"Dorngrasmücke	(Sylvia communis)";Whitethroat;2;1;;3;2;2;1;2;;2;3;3;3;1;2;1;2;1;2;2;3;2;2;2;2;3;4;3;2;1;3;;4;2;3;2;4;3;3;1;1;1;3;2;;3;3;2;2;4;3;2;;1
+Sylvia curucca;"Klappergrasmücke	(Sylvia curucca)";Lesser whitethroat;2;1;;1;2;2;1;2;;2;2;3;3;1;2;1;2;1;2;2;3;2;2;2;2;2;3;3;2;1;3;;4;2;3;2;4;3;1;1;1;1;3;2;;3;3;2;2;4;3;2;;1
+Troglodytes troglodytes;"Zaunkönig	(Troglodytes troglodytes)";Wren;4;4;;3;3;4;3;3;4;4;4;4;4;4;3;4;3;4;4;2;4;2;4;3;4;4;4;4;2;2;4;;4;4;4;4;4;4;3;4;4;4;4;4;;4;3;4;3;4;4;4;;4
+Turdus iliacus;"Rotdrossel	(Turdus iliacus)";Redwing;3;1;;1;2;4;1;2;;3;1;2;2;;2;1;2;3;2;2;3;2;2;2;3;2;3;2;2;3;4;;4;2;4;2;4;1;3;2;1;1;3;2;;3;3;2;2;4;3;2;;3
+Turdus merula;"Amsel	(Turdus merula)";Blackbird;4;4;;4;3;4;4;4;4;4;4;4;4;4;4;4;4;4;4;2;4;4;4;4;4;4;4;4;2;4;4;;4;4;4;4;4;4;4;4;4;4;4;4;;4;3;3;4;4;4;4;;4
+Turdus philomelos;"Singdrossel	(Turdus philomelos)";Song thrush;2;4;;3;2;4;4;2;;4;4;3;4;4;4;3;2;4;4;2;4;4;2;3;4;4;4;3;2;4;4;;4;3;4;4;4;3;3;4;4;4;4;3;;3;4;3;2;4;4;4;;4
+Turdus pilaris;"Wacholderdrossel	(Turdus pilaris)";Fieldfare;2;1;;3;1;2;1;3;;3;1;2;2;3;3;1;2;3;3;2;3;3;2;2;3;3;3;2;2;3;3;;4;4;3;3;4;3;3;2;1;3;3;2;;3;3;2;3;4;3;2;;3
+Turdus viscivorus;"Misteldrossel	(Turdus viscivorus)";Mistle thrush;2;1;;1;1;2;1;2;;3;1;2;2;1;3;1;2;3;2;2;3;2;2;2;3;3;3;2;2;3;3;;4;3;3;2;4;3;1;2;1;3;3;2;;3;3;2;2;4;3;2;;3
+Vanellus vanellus;"Kiebitz	(Vanellus vanellus)";Lapwing;4;4;;3;4;1;1;3;;2;4;2;4;1;3;1;3;3;4;2;4;3;2;3;4;4;3;2;2;3;3;;4;4;3;3;4;4;1;2;4;4;3;3;4;4;4;4;4;4;4;3;;4
+Accipiter gentilis;"Habicht	(Accipiter gentilis)";Goshawk;3;4;;4;3;4;3;3;;4;4;4;4;4;2;1;2;3;4;2;4;3;3;2;4;4;3;4;2;4;2;4;4;4;4;4;4;4;4;3;4;3;4;2;;4;4;3;3;4;4;4;;4
+Aegithalos caudatus;"Schwanzmeise	(Aegithalos caudatus)";Long tailed tit;3;1;;3;2;1;1;3;;3;1;3;3;3;2;1;2;3;3;2;4;3;2;3;;3;3;3;2;3;3;;4;3;3;2;4;3;1;2;;2;3;2;;3;3;2;2;4;3;2;;1
+Apus apus;"Mauersegler	(Apus apus)";Swift;4;4;;4;3;4;1;4;;4;4;4;4;4;4;1;3;4;4;2;4;4;3;4;4;4;4;4;2;3;4;;4;4;4;4;4;3;4;3;4;1;3;3;;4;3;4;3;4;4;2;;4
+Certhia brachydactyla;"Gartenbaumläufer	(Certhia brachydactyla)";Short toed treecreeper;3;1;;1;2;1;1;2;;3;1;3;4;1;2;1;2;3;3;2;4;2;2;2;2;2;3;3;2;3;3;;4;2;4;2;4;3;4;2;1;1;3;2;;3;3;2;2;4;3;2;;4
+Certhia familiaris;"Waldbaumläufer	(Certhia familiaris)";Treecreeper;2;1;1;1;3;1;1;2;;3;;2;3;4;2;1;2;3;2;2;4;2;2;2;2;2;3;2;2;3;3;;4;3;3;2;3;4;3;;1;2;1;2;;2;3;2;2;4;3;2;;1
+Corvus monedula;"Dohle	(Corvus monedula)";Jackdaw;4;3;1;3;3;3;2;2;;3;4;2;4;3;2;1;2;3;3;2;4;3;2;3;4;4;3;2;2;3;3;;4;3;4;3;4;4;3;;4;3;1;3;;3;3;3;3;4;3;2;;4
+Dendrocopos major;"Buntspecht	(Dendrocopos major)";Greater Spotted Woodpecker;3;4;4;3;4;4;3;4;;4;4;4;4;4;4;4;3;4;4;2;4;4;3;3;4;4;4;4;2;4;4;4;4;4;4;4;4;4;4;;4;4;4;4;;4;3;3;3;4;4;2;;4
+Dendrocopos medius;"Mittelspecht	(Dendrocopos medius)";Middle spotted woodpecker;2;1;1;3;1;3;1;3;;2;2;2;2;1;3;1;2;3;3;2;3;2;2;2;2;2;3;2;2;3;3;;4;3;3;2;3;3;4;;1;3;3;2;;3;3;2;2;4;3;2;;
+Dendrocopos minor;"Kleinspecht	(Dendrocopos minor)";Lesser spotted woodpecker;2;1;1;3;1;3;1;2;;2;2;2;2;1;2;1;2;3;3;2;3;2;2;2;3;2;3;2;2;2;3;;4;3;3;2;3;3;3;;1;3;3;2;;3;3;2;2;4;4;2;4;1
+Dendrocopos syriacus;"Blutspecht	(Dendrocopos syriacus)";Syrian woodpecker;2;1;4;1;1;1;1;2;;2;2;2;2;1;2;1;2;3;2;2;3;2;2;2;2;2;3;2;2;2;3;;4;3;3;2;3;3;1;;1;1;2;2;;3;2;2;2;4;3;2;;1
+Ficedula hypoleuca;"Trauerschnäpper	(Ficedula hypoleuca)";Pied Flycatcher;3;1;1;1;1;1;1;2;;2;3;2;3;1;2;1;2;3;2;2;3;2;2;2;2;3;3;2;2;2;3;;4;2;3;2;4;4;1;;1;1;2;2;;3;3;2;2;4;3;2;;1
+Ficedula parva;"Zwergschnäpper	(Ficedula parva)";Red-breasted flycatcher;2;1;1;1;;1;1;2;;2;1;2;2;1;2;1;2;3;2;2;3;2;2;2;2;2;3;2;2;2;3;;4;2;3;3;4;2;1;;1;1;2;2;;3;2;2;2;4;3;2;;1
+Fringilla montifringilla;"Bergfink	(Fringilla montifringilla)";Brambling;2;1;3;3;1;1;1;2;;3;1;2;2;1;2;1;2;3;2;2;3;2;2;2;4;2;4;2;2;4;3;;4;2;3;3;4;3;1;;1;3;2;2;;3;3;2;2;4;4;2;;1
+Loxia curvirostra;"Fichtenkreuzschnabel	(Loxia curvirostra)";Crossbill;2;1;1;3;3;1;1;3;;3;3;2;3;1;2;1;2;3;2;2;3;3;2;2;4;3;3;2;2;1;3;;4;3;3;3;4;2;3;;1;1;2;2;;3;3;2;2;4;4;2;;1
+Oriolus oriolus;"Pirol	(Oriolus oriolus)";Golden Oriole;3;4;;3;4;4;1;2;;2;4;2;4;1;2;3;3;3;4;2;4;2;2;3;3;3;3;2;2;3;2;;4;4;3;2;;3;3;2;4;4;4;2;;4;3;3;4;4;4;2;;3
+Passer domesticus;"Haussperling	(Passer domesticus)";House sparrow;4;3;4;4;1;4;4;4;4;4;4;4;4;4;4;1;3;4;4;2;4;4;3;4;4;4;4;4;2;4;4;4;4;4;4;4;4;3;4;4;4;4;4;4;4;4;4;3;4;4;4;4;;4
+Phasianus colchicus;"Fasan	(Phasianus colchicus)";Pheasant;3;1;4;4;1;4;3;3;;4;4;4;4;4;4;3;4;3;3;2;4;3;4;2;4;3;4;4;2;3;3;;4;4;3;4;4;2;1;3;4;4;3;2;;4;3;3;3;4;4;2;;4
+Phylloscopus bonelli;"Berglaubsänger	(Phylloscopus bonelli)";Western Bonelli's warbler;2;1;;1;1;1;1;2;;3;1;2;2;1;2;1;2;3;2;2;3;2;2;2;3;2;3;2;2;3;2;;4;3;3;2;3;1;1;1;1;1;2;2;;3;2;2;2;4;3;2;;1
+Phylloscopus sibilatrix;"Waldlaubsänger	(Phylloscopus sibilatrix)";Wood Warbler;2;1;;1;1;1;1;2;;2;3;2;4;1;2;1;2;3;2;2;3;2;2;2;3;2;3;2;2;3;2;;4;3;3;3;3;4;1;2;1;1;2;2;;3;3;2;2;4;4;2;;1
+Picus canus;"Grauspecht	(Picus canus)";Grey-headed woodpecker;3;1;;1;2;3;1;2;;2;3;3;3;4;2;4;2;3;2;2;3;2;2;2;3;2;4;3;2;3;3;;4;3;3;3;4;2;1;1;4;1;3;2;;3;3;2;3;4;4;2;;1
+Scolopax rusticola;"Waldschnepfe	(Scolopax rusticola)";Woodcock;3;1;;1;2;3;3;2;;2;4;2;4;1;2;1;2;3;2;2;3;2;2;2;;3;4;2;2;3;3;;4;3;3;3;4;2;1;1;4;1;3;3;;3;4;3;3;4;4;3;;1
+Streptopelia turtur;"Turteltaube	(Streptopelia turtur)";Turtle dove;3;4;;3;3;2;4;3;;4;4;3;4;1;2;4;2;3;4;2;4;4;2;3;4;2;4;3;2;3;3;;4;3;4;4;3;3;3;3;4;3;4;2;4;4;3;4;4;4;4;4;;4
+Strix aluco;"Waldkauz	(Strix aluco)";Tawny Owl;3;4;;4;3;4;4;3;4;4;4;3;4;4;2;4;3;4;4;2;4;4;3;3;4;3;4;3;2;4;4;;4;4;4;4;4;4;3;3;4;4;4;4;;4;4;4;4;4;4;4;;4
+Sylvia nisoria;"Sperbergrasmücke	(Sylvia nisoria)";Barred Warbler;2;1;;1;1;3;1;2;;2;1;1;2;1;2;1;2;3;2;2;3;2;2;2;2;2;4;1;2;4;3;;4;3;3;2;4;4;1;3;1;1;2;2;;2;3;2;2;4;3;2;;3
+;Bird species missing?;;;;;;Eagle owl, white-tailed eagle, curlew;;;;;;;;;;;;;Little owl, eagle owl;Blackbird;;;;;golden eagle, peregrine falcon, eagle owl, sea eagle, osprey;thrush, ducks, owl, sparrow, cuckoo, pigeon, lark, capercaillie, finches, cock, owl;mallard duck, partridge;;;;;;;;;;;Turmfalke, Dreizehenmöwe, Eisvogel, Schleiereule, Habicht, Großtrappe, Mauersegler, Mäusebussard, Orpheusspötter, Rohrweihe, Schleiereule, Wespenbussard, Uhu, Turmfalke, Star, Sperber, Schwarzmilan, Steinkauz, Stockente - Common Kestrel, Kittiwake, Kingfisher, Barn Owl, Goshawk, Great Bustard, Swift, Buzzard, Orphean Mockingbird, Marsh Harrier, Barn Owl, Honey Buzzard, Eagle Owl, Kestrel, Starling, Sparrowhawk, Black Kite, Little Owl, Mallard;;;;;"What about the water birds, like swan. Great diver, mallard. Coot?
+The Crane is missing";Eagle Owl;eagle (in the south golden eagle, in the north sea eagle), nightjar (as a character species of the formerly widespread heath and pine forests (Hermann Löns)), eagle owl;"Owl
+";;Little owl and nightjar with high value;Wiedehopf (sehr hoher Beitrag) / Hoopoe (very high contribution);Gr. Brachvogel,  Ziegenmelker, Birkhahn, Schleiereule, Steinadler  - Gr. curlew, nightjar, black grouse, barn owl, golden eagle  ;;;;;
