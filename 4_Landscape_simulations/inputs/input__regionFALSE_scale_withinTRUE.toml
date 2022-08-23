@@ -15,6 +15,6 @@ scenario = "../Temporary_data/scenarios_new.csv"
 max_tentative = 100
 replica = 200
 
-logfile = "../Temporary_data/utput__regionFALSE_scale_withinTRUE.log"
+logfile = "../Temporary_data/output__regionFALSE_scale_withinTRUE.log"
 output_picked = "../Temporary_data/picked__regionFALSE_scale_withinTRUE.csv.gz"
 output_landscapes = "../Temporary_data/landscapes__regionFALSE_scale_withinTRUE.csv.gz"

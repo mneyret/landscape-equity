@@ -12,6 +12,8 @@ library(Rmisc)
 library(cowplot)
 library(ggcorrplot)
 library(ggpubr)
+
+
 scale01 <- function(x) {
   x <- as.numeric(x)
   max <- quantile(x, 0.975, na.rm = T)
@@ -23,15 +25,11 @@ scale01 <- function(x) {
 }
 my_palette_services <- c("lightsteelblue1","lightsteelblue2","lightsteelblue3","lightsteelblue4","burlywood1","sandybrown","lightsalmon1","darksalmon","lightsalmon3","salmon4","paleturquoise4"
 )
-big_groups <- FALSE
 
 for (crop_constrained in c(TRUE, FALSE
                            )) {
   for (by_region in c(TRUE,
                     FALSE  )) {
-    for (scale_within_land_use in c(FALSE, 
-      TRUE
-      )) {
       # * --- Loop on environment correction ####
       for (env_corr in c("env_corr", ""
                          )) {
@@ -40,35 +38,33 @@ for (crop_constrained in c(TRUE, FALSE
                          )) {
 
           #  *--- Loop on Forest classification ####
-          for (forest_class in c("Type", "Age"
-                                 )) {
+          for (forest_class in c("Type", "Age" )) {
             #  *--- Loop on power weighting ####
-            for (weighted in c(FALSE, TRUE
-                               )) {
+            for (weighted in c(FALSE, TRUE )) {
               
         #      for (R in c('All', 'H', 'A', 'S')) {
-        #     dir.create(paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",
+        #     dir.create(paste("Results/",
         #    R,"/env_corr", env_corr, "/by_region", by_region, 
-        #            "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, 
+        #            "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
         #               "/constrained", crop_constrained, "/", collapse = '',  sep = ''), recursive = T)}}}}}}}}
               
 
               com_file <-
-                paste( "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Community_average", 
-                       env_corr, "-by_region", by_region, "scale_within", scale_within_land_use, "-SB", use_SB, "-weighted", weighted, "-biggroup", 
-                       big_groups, "_forest", forest_class, "_constrained", crop_constrained, "-hunting5045.csv", sep = ""
+                paste( "Temporary_data/Community_average", 
+                       env_corr, "-by_region", by_region,  "-SB", use_SB, "-weighted", weighted,
+                       "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
                 )
               
               service_file <-
-                paste( "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Community_services", 
-                       env_corr, "-by_region", by_region, "scale_within", scale_within_land_use, "-SB", use_SB, "-weighted", weighted, "-biggroup",
-                       big_groups, "_forest", forest_class, "_constrained", crop_constrained, "-hunting5045.csv", sep = ""
+                paste( "Temporary_data/Community_services", 
+                       env_corr, "-by_region", by_region,  "-SB", use_SB, "-weighted", weighted, 
+                       "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
                 )
               
               service_file_full = paste(
-                "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Community_services_full",
-                env_corr, "-by_region", by_region, "scale_within", scale_within_land_use, "-SB", use_SB, "-biggroup",
-                big_groups, "_forest", forest_class, "_constrained", crop_constrained, "-hunting5045.csv", sep = ""
+                "Temporary_data/Community_services_full",
+                env_corr, "-by_region", by_region, "-SB", use_SB, 
+                "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
               )
          
               if (file.exists(com_file)) {
@@ -194,20 +190,22 @@ for (crop_constrained in c(TRUE, FALSE
                   "All forests are coniferous" =  "2. All forests are coniferous",
                   "All forests are deciduous" =  "3. All forests are deciduous",
                   "All forests are mixed" =  "4. All forests are mixed",
-                  "Same prop of each forest type" =  "10. Equal proportions of mixed, coniferous and deciduous forests",
+                  "Same prop of each forest type" =  "9. Equal proportions of mixed, coniferous and deciduous forests",
                   "50% more high int grasslands" =  "6. 50% more high intensity grasslands",
-                  "50% more low int grasslands" =  "11. 50% more low intensity grasslands",
+                  "50% more low int grasslands" =  "10. 50% more low intensity grasslands",
                   "All grasslands are high int" =  "5. All grasslands are high intensity",
                   "All grasslands are low int" =  "All grasslands are low intensity",
-                  "All mixed forests and low-intensity grasslands (same crops)" =  "8. All forests are mixed forests and all grasslands are low-intensity",
-                  "Only coniferous forests and only high LUI grasslands" =  "7. All forests are coniferous and all grasslands are high intensity",
+                  "All mixed forests and low-intensity grasslands (same crops)" =  "7. All forests are mixed forests and all grasslands are low-intensity",
+                 
+                  
+                   "Only coniferous forests and only high LUI grasslands" =  "13. All forests are coniferous and all grasslands are high intensity",
 
                   "Deforestation" =  "1. Deforestation: 50% less forests",
                   "Add 50% grasslands" =  "14. 50% more grasslands",
-                  "Low-lui and med-lui grasslands become coniferous forests" =  "12. Low- and medium-intensity grasslands become coniferous forests",
+                  "Low-lui and med-lui grasslands become coniferous forests" =  "11. Low- and medium-intensity grasslands become coniferous forests",
                   "33% each" =  "15. Equal proportions of grasslands, crops and forests",
-                  "Reforestation" =  "9. Reforestation: 50% more forests",
-                  "Low-lui and med-lui grasslands become mixed forests" =  "13. Low- and medium-intensity grasslands become mixed forests",
+                  "Reforestation" =  "8. Reforestation: 50% more forests",
+                  "Low-lui and med-lui grasslands become mixed forests" =  "12. Low- and medium-intensity grasslands become mixed forests",
                   "All forests are even-aged" = "16. All forests are even-aged",
                   "All forests are uneven-aged" = "19. All forests are uneven-aged",
                   "Low-lui and med-lui grasslands become uneven-aged forests" = "18. Low-lui and med-lui grasslands become uneven-aged forests",
@@ -215,13 +213,15 @@ for (crop_constrained in c(TRUE, FALSE
                 )]
                 
                 Community_MF_average_by_predef[, Scenario_description := factor(Scenario_description, levels = c(
-                  '1. Deforestation: 50% less forests', "2. All forests are coniferous" ,"3. All forests are deciduous",                                         
-                  "4. All forests are mixed", "5. All grasslands are high intensity", "6. 50% more high intensity grasslands",
-                  "7. All forests are coniferous and all grasslands are high intensity",  '8. All forests are mixed forests and all grasslands are low-intensity' ,
-                  '9. Reforestation: 50% more forests' ,  '10. Equal proportions of mixed, coniferous and deciduous forests',
-                  '11. 50% more low intensity grasslands',  '12. Low- and medium-intensity grasslands become coniferous forests',
-                  '13. Low- and medium-intensity grasslands become mixed forests', 
-                  '14. 50% more grasslands',  '15. Equal proportions of grasslands, crops and forests',  "16. All forests are even-aged",
+                  '1. Deforestation: 50% less forests', '2. All forests are coniferous' ,'3. All forests are deciduous',                                         
+                  '4. All forests are mixed', '5. All grasslands are high intensity', '6. 50% more high intensity grasslands',
+                  '7. All forests are mixed forests and all grasslands are low-intensity' ,
+                  '8. Reforestation: 50% more forests' ,  '9. Equal proportions of mixed, coniferous and deciduous forests',
+                  '10. 50% more low intensity grasslands',  '11. Low- and medium-intensity grasslands become coniferous forests',
+                  '12. Low- and medium-intensity grasslands become mixed forests', 
+                  '13. All forests are coniferous and all grasslands are high intensity', 
+                  '15. Equal proportions of grasslands, crops and forests',  
+                  '14. 50% more grasslands',  "16. All forests are even-aged",
                   "17. All forests are uneven-aged and grasslands low-intensity","18. Low-lui and med-lui grasslands become uneven-aged forests"
                 ))]
 
@@ -281,41 +281,37 @@ for (crop_constrained in c(TRUE, FALSE
                 new_scale_color() +
                 new_scale_fill() +
                 guides(fill=guide_legend(ncol=3), shape=guide_legend(ncol=3),  color=guide_legend(ncol=3)) +
-                scale_color_manual(breaks =   c( '1. Deforestation: 50% less forests', 
-                                                 '2. All forests are coniferous' ,
-                                                 '3. All forests are deciduous',                                         
-                                                 '4. All forests are mixed', 
-                                                 '5. All grasslands are high intensity', 
-                                                 '6. 50% more high intensity grasslands',
-                                                 '7. All forests are coniferous and all grasslands are high intensity', 
-                                                 '8. All forests are mixed forests and all grasslands are low-intensity' ,
-                                                 '9. Reforestation: 50% more forests' ,  
-                                                 '10. Equal proportions of mixed, coniferous and deciduous forests',
-                                                 '11. 50% more low intensity grasslands',  
-                                                 '12. Low- and medium-intensity grasslands become coniferous forests',
-                                                 '13. Low- and medium-intensity grasslands become mixed forests', 
-                                                 '14. 50% more grasslands',
+                scale_color_manual(breaks =   c( '1. Deforestation: 50% less forests', '2. All forests are coniferous' ,'3. All forests are deciduous',                                         
+                                                 '4. All forests are mixed', '5. All grasslands are high intensity', '6. 50% more high intensity grasslands',
+                                                 '7. All forests are mixed forests and all grasslands are low-intensity' ,
+                                                 '8. Reforestation: 50% more forests' ,  '9. Equal proportions of mixed, coniferous and deciduous forests',
+                                                 '10. 50% more low intensity grasslands',  '11. Low- and medium-intensity grasslands become coniferous forests',
+                                                 '12. Low- and medium-intensity grasslands become mixed forests', 
+                                                 '13. All forests are coniferous and all grasslands are high intensity', 
                                                  '15. Equal proportions of grasslands, crops and forests',  
-                                                 "16. All forests are even-aged",
-                                                 "17. All forests are uneven-aged and grasslands low-intensity",
-                                                 "18. Low-lui and med-lui grasslands become uneven-aged forests"),   
+                                                 '14. 50% more grasslands',  "16. All forests are even-aged",
+                                                 "17. All forests are uneven-aged and grasslands low-intensity","18. Low-lui and med-lui grasslands become uneven-aged forests"),   
                                   
                                    values = c(palette_test, palette_test, palette_test)) + #  +
                 scale_fill_manual(breaks =   c('1. Deforestation: 50% less forests', '2. All forests are coniferous' ,'3. All forests are deciduous',                                         
                                                '4. All forests are mixed', '5. All grasslands are high intensity', '6. 50% more high intensity grasslands',
-                                               '7. All forests are coniferous and all grasslands are high intensity',  '8. All forests are mixed forests and all grasslands are low-intensity' ,
-                                               '9. Reforestation: 50% more forests' ,  '10. Equal proportions of mixed, coniferous and deciduous forests',
-                                               '11. 50% more low intensity grasslands',  '12. Low- and medium-intensity grasslands become coniferous forests',
-                                               '13. Low- and medium-intensity grasslands become mixed forests',  '15. Equal proportions of grasslands, crops and forests',  
+                                               '7. All forests are mixed forests and all grasslands are low-intensity' ,
+                                               '8. Reforestation: 50% more forests' ,  '9. Equal proportions of mixed, coniferous and deciduous forests',
+                                               '10. 50% more low intensity grasslands',  '11. Low- and medium-intensity grasslands become coniferous forests',
+                                               '12. Low- and medium-intensity grasslands become mixed forests', 
+                                               '13. All forests are coniferous and all grasslands are high intensity', 
+                                               '15. Equal proportions of grasslands, crops and forests',  
                                                '14. 50% more grasslands',  "16. All forests are even-aged",
                                                "17. All forests are uneven-aged and grasslands low-intensity","18. Low-lui and med-lui grasslands become uneven-aged forests"), ,
                                   values  = c(palette_test, rep("white", 8), rep('grey', 8))) +
                 scale_shape_manual(breaks =   c('1. Deforestation: 50% less forests', '2. All forests are coniferous' ,'3. All forests are deciduous',                                         
                                                 '4. All forests are mixed', '5. All grasslands are high intensity', '6. 50% more high intensity grasslands',
-                                                '7. All forests are coniferous and all grasslands are high intensity',  '8. All forests are mixed forests and all grasslands are low-intensity' ,
-                                                '9. Reforestation: 50% more forests' ,  '10. Equal proportions of mixed, coniferous and deciduous forests',
-                                                '11. 50% more low intensity grasslands',  '12. Low- and medium-intensity grasslands become coniferous forests',
-                                                '13. Low- and medium-intensity grasslands become mixed forests',  '15. Equal proportions of grasslands, crops and forests',  
+                                                '7. All forests are mixed forests and all grasslands are low-intensity' ,
+                                                '8. Reforestation: 50% more forests' ,  '9. Equal proportions of mixed, coniferous and deciduous forests',
+                                                '10. 50% more low intensity grasslands',  '11. Low- and medium-intensity grasslands become coniferous forests',
+                                                '12. Low- and medium-intensity grasslands become mixed forests', 
+                                                '13. All forests are coniferous and all grasslands are high intensity', 
+                                                '15. Equal proportions of grasslands, crops and forests',  
                                                 '14. 50% more grasslands',  "16. All forests are even-aged",
                                                 "17. All forests are uneven-aged and grasslands low-intensity","18. Low-lui and med-lui grasslands become uneven-aged forests"), 
                                    values = rep(c(22, 23, 24), 8)) +
@@ -368,20 +364,20 @@ for (crop_constrained in c(TRUE, FALSE
                 
                 # Convert to a ggplot and print
                 
-                if (R == 'All' & env_corr == 'env_corr' & by_region == FALSE & scale_within_land_use == TRUE &
-                    use_SB == FALSE & weighted == FALSE & big_groups == FALSE & forest_class == "Type" & crop_constrained == TRUE){
+                if (R == 'All' & env_corr == 'env_corr' & by_region == FALSE  &
+                    use_SB == FALSE & weighted == FALSE & forest_class == "Type" & crop_constrained == TRUE){
                 
                 Fig2 = plot_big_plot(Community_MF_average_to_plot[variable == 'equity_diff' &  mean_MF_diff > min_MF,], Community_MF_average_by_predef[variable == 'equity_diff',])
                 Fig4 = plot_big_plot(Community_MF_average_to_plot[variable != 'equity_diff' &  mean_MF_diff > min_MF,], Community_MF_average_by_predef[variable != 'equity_diff',])
                 Fig4 = Fig4 + scale_y_reverse()
                 
-                dir.create(file.path(paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
+                dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
                 
                ggsave(plot = Fig2 + theme(legend.position = 'none'),
-                file = paste( "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF-hunting5045.pdf", sep = ""
+                file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF.pdf", sep = ""
                 ),  width = 6, height = 6)
                ggsave(plot = Fig4 + theme(legend.position = 'none'),
-                 file = paste( "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, "/constrained", crop_constrained, "/plot_loss-hunting5045.pdf", sep = ""
+                 file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_loss.pdf", sep = ""
                  ),width = 8, height = 4)
                 }
                 
@@ -397,14 +393,14 @@ for (crop_constrained in c(TRUE, FALSE
                 
                 Fig2_4 = plot_grid(Fig2 + theme(legend.position = 'none'), Fig4 + theme(legend.position = 'none'), ncol = 2, rel_widths = c(1.05, 2))
 
-                dir.create(file.path(paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
+                dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
                 
                 ggsave(plot = gg_leg,
-                       file = paste( "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, "/constrained", crop_constrained, "/legend-hunting5045.pdf", sep = ""
+                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/legend.pdf", sep = ""
                        ))
                 
                 ggsave(plot = Fig2_4  + theme(legend.position = 'none'),
-                       file = paste( "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, "/constrained", crop_constrained, "/big_plot_MF-hunting5045.pdf", sep = ""
+                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/big_plot_MF.pdf", sep = ""
                        ),  width = 8, height = 4)
                 }
 
@@ -428,7 +424,7 @@ for (crop_constrained in c(TRUE, FALSE
                          colors = c("#6D9EC1", "white", "#E46726"))
               
               ggsave(plot = cor_plot,
-                     file = paste( "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, "/constrained", crop_constrained, "/cor_plot-hunting5045.pdf", sep = ""
+                     file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/cor_plot.pdf", sep = ""
                      ),  width = 8, height = 8)
           
               
@@ -623,9 +619,9 @@ for (crop_constrained in c(TRUE, FALSE
               }
               ggsave(
                 plot = landscape_box_baseline,
-                file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                             "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, 
-                             "/constrained", crop_constrained, "/landscape_baseline-hunting5045.pdf", sep = ""
+                file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                              "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
+                             "/constrained", crop_constrained, "/landscape_baseline.pdf", sep = ""
                 ),
                 height = 6,
                 width = 6
@@ -663,9 +659,9 @@ for (crop_constrained in c(TRUE, FALSE
               
               ggsave(
                 plot = forest_plot,
-                file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                             "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, 
-                             "/constrained", crop_constrained, "/forest_plot-hunting5045.pdf", sep = ""
+                file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                              "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
+                             "/constrained", crop_constrained, "/forest_plot.pdf", sep = ""
                 ),
                 height = 6,
                 width = 6
@@ -677,7 +673,7 @@ for (crop_constrained in c(TRUE, FALSE
               for (criteria in c(  'best_no_loser_no_threat', 'best_diversity',
                                   'both_best', 'best_Cstock'
               )) {
-               #dir.create(paste( "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/", criteria, sep = ''))
+               #dir.create(paste( "Results/", criteria, sep = ''))
                 ### Plot: change in new landscape
                 new_scenarios <- Community_MF_average[get(criteria) == 1, list(scenario = unique(scenario), 'keep_scenario' = TRUE), by = 'region']
 
@@ -710,8 +706,8 @@ for (crop_constrained in c(TRUE, FALSE
  "Hunting__MF", "Landowner__MF", "Forestry__MF", "Quarrying__MF", "Agric__MF"
                     )
                   )]
-                  stakeholder_palette <- c( "#F4882A", "#F69E51", "#4C622D", "#6C8B40", "#82A84D", "#258EBB", "#33A5D7", "#55B4DD", "#77C3E4", "#88CBE7", "#6E7B8B", "#818D9C", "#98A2AE", "#BAC1C9"
-                  )
+                 # stakeholder_palette <- c( "#F4882A", "#F69E51", "#4C622D", "#6C8B40", "#82A84D", "#258EBB", "#33A5D7", "#55B4DD", "#77C3E4", "#88CBE7", "#6E7B8B", "#818D9C", "#98A2AE", "#BAC1C9"
+                 # )
 
                   plot_optimum_change[, group := factor(
                     gsub("__MF", "", variable),
@@ -724,53 +720,61 @@ for (crop_constrained in c(TRUE, FALSE
                   
                   gg_optimum_MF <- ggplot(
                     plot_optimum_change[grepl("MF", variable) & plot_optimum_change$region == R, ],
-                    aes(  mean,  ymin = lower,  ymax = upper,  x = group,  fill = group)
+                    aes(  mean,  ymin = lower,  ymax = upper,  x = group)
                   ) +
-                    geom_col() + geom_errorbar() + theme_bw() +
+                    geom_col(fill = '#98A2AE') + geom_errorbar() + theme_bw() +
                     ylab("") +
                     xlab("") +
                     coord_flip() +
-                    xlab("") +
-                    scale_fill_manual(    breaks = levels(plot_optimum_change$group),    values = stakeholder_palette  ) +
-                    theme(legend.position = "none", axis.text.y = element_blank(), panel.grid.minor =   element_blank(),
-                          axis.ticks.y = element_blank())
+                   theme(legend.position = "none", 
+                                     text = element_text(size=20),
+                                     axis.ticks.y = element_blank(),
+                                     axis.text.y = element_blank(), 
+                                     panel.grid.minor =   element_blank())
                   
                   
-                  gg_optimum_MF_abs <- ggplot(
-                    plot_optimum_change[grepl("MF", variable) & plot_optimum_change$region == R, ],
-                    aes(  mean_abs,  ymin = lower_abs,  ymax = upper_abs,  x = group,  fill = group)
-                  ) + geom_col() + geom_errorbar() + theme_bw() +
-                    geom_point(aes(y = value_baseline, x = group), color = 'black') +
-                    ylab("") +
-                    xlab("") +
-                    coord_flip() +
-                    xlab("") +
-                    scale_fill_manual(    breaks = levels(plot_optimum_change$group),    values = stakeholder_palette  ) +
-                    theme(legend.position = "none", axis.text.y = element_blank(), panel.grid.minor =   element_blank(),
-                          axis.ticks.y = element_blank())
+                #  gg_optimum_MF_abs <- ggplot(
+                #    plot_optimum_change[grepl("MF", variable) & plot_optimum_change$region == R, ],
+                #    aes(  mean_abs,  ymin = lower_abs,  ymax = upper_abs,  x = group),  fill = '#98A2AE'
+                #  ) + geom_col() + geom_errorbar() + theme_bw() +
+                #    geom_point(aes(y = value_baseline, x = group), color = 'black') +
+                #    ylab("") +
+                #    xlab("") +
+                #    coord_flip() + 
+                #    theme(legend.position = "none", 
+                #          text = element_text(size=18),
+                #          axis.ticks.y = element_blank(),
+                #          axis.text.y = element_blank(), 
+                #          panel.grid.minor =   element_blank())
                   
                   gg_optimum_services <- ggplot(
                     plot_optimum_change[!grepl("MF", variable) & plot_optimum_change$region == R, ],
                     aes(  mean,  ymin = lower,  ymax = upper,  x = variable,  fill = variable)
                   ) +
                      geom_col() + geom_errorbar() + theme_bw() + ylab("") +
-                    xlab("") + coord_flip() + xlab("") + scale_fill_manual(values = my_palette_services) +
-                    theme(legend.position = "none", panel.grid.minor =   element_blank(),
-                                                axis.text.y = element_blank(),
-                                                            axis.ticks.y = element_blank())
+                    xlab("") + coord_flip() + 
+                    scale_fill_manual(
+                      values = my_palette_services,
+                      breaks = c("Ric","Aesthetic","Reg_id","Leisure","Production_food","Production_livestock","Production_timber","Production_energy","Harvesting","Hunting","C_stock")) +
+                   scale_x_discrete(limits=rev)+
+                    theme(legend.position = "none", 
+                          text = element_text(size=20),
+                          axis.ticks.y = element_blank(),
+                          axis.text.y = element_blank(), 
+                          panel.grid.minor =   element_blank())
                   
-                  ggsave(  plot = gg_optimum_MF_abs,  
-                           file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                           "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, 
-                           "/constrained", crop_constrained, "/gg_optimum_MF_abs", criteria, "-hunting5045.pdf", sep = ""  ),  width =  4.5,  height = 5)
+                 # ggsave(  plot = gg_optimum_MF_abs,  
+                 #          file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                 #           "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
+                 #          "/constrained", crop_constrained, "/gg_optimum_MF_abs", criteria, ".pdf", sep = ""  ),  width =  5,  height = 6)
                   ggsave(  plot = gg_optimum_MF,  
-                           file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                                        "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, 
-                                        "/constrained", crop_constrained, "/gg_optimum_MF", criteria, "-hunting5045.pdf", sep = ""  ),  width =  4.5,  height = 5)
+                           file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                                         "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
+                                        "/constrained", crop_constrained, "/gg_optimum_MF", criteria, ".pdf", sep = ""  ),  width =  5,  height = 6)
                   ggsave(  plot = gg_optimum_services,  
-                           file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                                        "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, 
-                                        "/constrained", crop_constrained, "/gg_optimum_services", criteria, "-hunting5045.pdf", sep = ""  ),  width =  4.5,  height = 5)
+                           file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                                        "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
+                                        "/constrained", crop_constrained, "/gg_optimum_services", criteria, ".pdf", sep = ""  ),  width =  5,  height = 6)
                 
                   }
 
@@ -892,17 +896,14 @@ for (crop_constrained in c(TRUE, FALSE
                       geom_rect(
                         fill = "#4d708a",
                         aes(  xmin = grass_med_right,  xmax = 1,  ymin = forest_top,  ymax = 1)
-                      ) # +
-                    #   geom_emoji(aes(x = plot_landscape$Grassland_low/2, y = plot_landscape$Crop + plot_landscape$Forest + plot_landscape$Grassland/2), emoji = '1f3f5') +
-                    #   geom_emoji(aes(x= plot_landscape$Grassland_low + plot_landscape$Grassland_med/2, y =  plot_landscape$Crop + plot_landscape$Forest + plot_landscape$Grassland/2), emoji = '1f3f5') +
-                    #   geom_emoji(aes(x= plot_landscape$Grassland_low + plot_landscape$Grassland_med + plot_landscape$Grassland_high/2, y =  plot_landscape$Crop + plot_landscape$Forest + plot_landscape$Grassland/2), emoji = '1f69c')
-                  }
+                      ) 
+                    }
                   ggsave(
                     plot = landscape_box,
                     file = 
-                      paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                            "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, 
-                            "/constrained", crop_constrained, "/landscape_box", criteria, "-hunting5045.pdf", sep = ""
+                      paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                             "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
+                            "/constrained", crop_constrained, "/landscape_box", criteria, ".pdf", sep = ""
                     ),
                     height = 6,
                     width = 6
@@ -933,13 +934,12 @@ for (crop_constrained in c(TRUE, FALSE
                     return(ci)
                   }
 
-
                   Confidence_intervals <- Community_MF_average[get(criteria) == 1, lapply(.SD, calculate.ci),
                     by = region,
                     .SDcols = c("mean_MF","mean_equity","Score","Crop","Forest_all","Grassland_all" ,'prop_grass_low', 'prop_grass_med', 'prop_grass_high',
                                 'prop_for_dec', 'prop_for_mix', 'prop_for_con', 'prop_for_ea', 'prop_for_ua'
                     )
-                  ]
+                  ] # UA = uneven aged, EA = even aged
                   Confidence_intervals <- Confidence_intervals[, lapply(.SD, function(x) {
                     y <- x
                     y[y == -1] <-
@@ -988,6 +988,7 @@ for (crop_constrained in c(TRUE, FALSE
 
                     Best_landscape_plus_baseline$variable <- droplevels(Best_landscape_plus_baseline$variable)
                     # Plot differences in landscape composition
+                    # These plots show the % change in each land use type compared to baseline (changes management types are shown relative to land use type)
                    
                     for (R in unique(Best_landscape_plus_baseline$region)){
                      gg_diff_LU <-
@@ -1040,16 +1041,16 @@ for (crop_constrained in c(TRUE, FALSE
                      
                     ggsave(
                       plot = gg_diff_LU,
-                      file =  paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                                    "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted, "/biggroup", big_groups, "/forest", forest_class, 
-                                    "/constrained", crop_constrained, "/gg_diff_LU",criteria, "-hunting5045.pdf",sep = ""
+                      file =  paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                                    "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
+                                    "/constrained", crop_constrained, "/gg_diff_LU",criteria, ".pdf",sep = ""
                       ),
                       width =13
                     )}
 
                     # Export best landscape composition to rerun whole analysis
                     mean_export <- Average[, .SD, .SDcols = c( "region", "Grassland_low", "Grassland_medium", "Grassland_high", "Forest_Deciduous", "Forest_Mixed", "Forest_Coniferous", "Forest_even_aged", "Forest_uneven_aged", "Crop"
-                    )][, Scenario_description := paste( "Scenario_post_", env_corr, "_by_region", by_region, "scale_within", scale_within_land_use, "_SB", use_SB, "-weighted", weighted, "_biggroup", big_groups, "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, "-hunting5045", sep = ""
+                    )][, Scenario_description := paste( "Scenario_post_", env_corr, "_by_region", by_region,  "_SB", use_SB, "-weighted", weighted, "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, "", sep = ""
                     )]
                     # print('n')
                     mean_no <- Community_MF_average[get(criteria) == 1, .N, by = region]
@@ -1058,9 +1059,9 @@ for (crop_constrained in c(TRUE, FALSE
                     # print('p')
                     write.csv(
                       mean_export,
-                        paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R, "/Scenario_post_",
-                        env_corr, "by_region", by_region, "scale_within", scale_within_land_use, "_SB", use_SB, "-weighted", weighted, "_biggroup",
-                        big_groups, "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, "-hunting5045.csv", sep = ""
+                        paste("Results/",R, "/Scenario_post_",
+                        env_corr, "by_region", by_region, "_SB", use_SB, "-weighted", weighted,
+                        "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, ".csv", sep = ""
                       )
                     )
                   }
@@ -1070,6 +1071,6 @@ for (crop_constrained in c(TRUE, FALSE
           }
         }
       }
-    }
+    
   }
 

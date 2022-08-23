@@ -12,9 +12,6 @@
 library(lubridate)
 library(hms)
 
-setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code')
-set.seed(101)
-
 
 # Load data
 SCH_grasslands = fread("Raw_data/Data_to_load/24692_Acoustic indices based on environmental sound recordings on all grassland EPs, SCH, 2016_2/24692.txt")

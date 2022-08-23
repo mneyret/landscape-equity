@@ -17,6 +17,8 @@ library(rgeos)
 library(sf)
 library(data.table)
 
+setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition')
+
 # %%%%%%%%%%%%%%%% #
 #### Grasslands ####
 # %%%%%%%%%%%%%%%% #
@@ -135,6 +137,7 @@ Prop_Age = grid_plot_forests[, .N, by = c('Age_class', 'EXP')][, prop := N/sum(N
 
 ### Forest type from Corine ###
 corine = raster('Raw_data/Data_to_load/Corine/DATA/U2018_CLC2018_V2020_20u1.tif')
+Germany = readOGR("Raw_data/Data_to_load/Germany_shapefile/de_10km.shp")
 Alb =  readOGR("Raw_data/Data_to_load/5460_2_Dataset/ConvexHullAlb.shp")
 Hai =  readOGR("Raw_data/Data_to_load/5460_2_Dataset/convexHullHai.shp")
 Sch =  readOGR("Raw_data/Data_to_load/5460_2_Dataset/convexHullSch.shp")
@@ -150,6 +153,7 @@ Hai <- spTransform(Hai, crs(corine))
 Sch <- spTransform(Sch, crs(corine))
 
 plot(corine)
+plot(Germany, add = T)
 plot(Alb, add = T, col = 'black')
 plot(Hai, add = T, col = 'black')
 plot(Sch, add = T, col = 'black')
@@ -157,6 +161,9 @@ plot(Sch, add = T, col = 'black')
 Alb_rast = extract(corine, Alb)
 Hai_rast = extract(corine, Hai)
 Sch_rast = extract(corine, Sch)
+#Germany_rast = mask( corine, Germany)
+#Germany_ex = extract( Germany_rast, Germany)
+#Germany_list = 
 
 cropAlb <- crop(corine, extent(Alb))
 plot(cropAlb)
@@ -171,10 +178,36 @@ setMinMax(cropHai)
 All_table = rbind(data.table(table(Alb_rast))[, c('Region', 'Value') := list('Alb', Alb_rast)][, 2:4],
                   rbind(data.table(table(Hai_rast))[, c('Region', 'Value') := list('Hai',Hai_rast)][, 2:4],
                                   data.table(table(Sch_rast))[, c('Region', 'Value') := list('Sch',Sch_rast)][, 2:4]))
+Germany_table = data.table(Value = Germany_list)
 
 clcLeg[, Value := as.numeric(Raster_value)]
 
 All_table = merge(All_table[, Value := as.numeric(Value)], clcLeg[, c('Value', 'Label')])
+#Germany_table = merge(Germany_table[, Value := as.numeric(Value)], clcLeg[, c('Value', 'Label')])
+#fwrite(Germany_table, 'Temporary_data/Germany_baseline.csv')
+Germany_short = Germany_table[, list(N = .N), by = 'Label']
+Germany_short[, Land_use_type := dplyr::recode(Label, 'Continuous urban fabric' = 'remove',
+                                               'Discontinuous urban fabric' = 'remove',
+                                               'Mineral extraction sites' = 'remove',
+                                               'Agriculture with natural vegetation' = 'crops',
+                                               'Complex cultivation patterns' = 'crops',
+                                               'Non-irrigated arable land' = 'crops',
+                                               'Pastures' = 'grasslands',
+                                               'Moors and heathland' = 'remove',
+                                               'Natural grasslands' = 'grasslands',
+                                               'Transitional woodland-shrub' = 'forests',
+                                               'Coniferous forest' = 'forests',
+                                               'Broad-leaved forest' = 'forests',
+                                               'Mixed forest' = 'forests',
+                                               'Water courses' = 'remove',
+                                               'Water bodies' = 'remove',
+                                               'Vineyards' = 'crops')
+]
+
+Prop_Germany = Germany_short[Land_use_type != 'remove', list(N = sum(N)), by = c('Land_use_type')]
+Prop_Germany[, prop := N/sum(N)]
+
+
 
 All_table[, prop := N/sum(N)*100, by = c('Region')]
 All_table[, Land_use_type := dplyr::recode(Label, 'Continuous urban fabric' = 'remove',

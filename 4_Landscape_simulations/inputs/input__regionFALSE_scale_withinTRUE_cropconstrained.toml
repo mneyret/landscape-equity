@@ -13,7 +13,7 @@ bird_charism_abundances = "../Temporary_data/Birds_charism_abundance.csv"
 
 scenario = "../Temporary_data/scenarios_by_regionFALSE_constrainedTRUE.csv"
 max_tentative = 100
-replica = 500
+replica = 200
 
 logfile = "../Temporary_data/output__regionFALSE_scale_withinTRUE_cropconstrained.log"
 output_picked = "../Temporary_data/picked__regionFALSE_scale_withinTRUE_cropconstrained.csv.gz"

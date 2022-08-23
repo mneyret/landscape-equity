@@ -60,7 +60,8 @@ Environmental data:
 - precipitation_radolan from Bexis climate tool 2008 to 2018 https://www.bexis.uni-jena.de/tcd/ClimateData/index (OPEN)
 - Ta_200_2008_2018 from Bexis climate tool 2008 to 2018 https://www.bexis.uni-jena.de/tcd/ClimateData/index (OPEN)
 
-
+Stakeholder power:
+Power_interest_groups: from https://www.bexis.uni-jena.de/ddm/data/Showdata/31341
 
 
 For additional analyses (checking baseline proportions)
@@ -70,5 +71,8 @@ https://www.bexis.uni-jena.de/ddm/data/Showdata/5120 (Not yet public at time of 
 
 - Corine data U2018_CLC2018_V2020_20u1.tif from http://data.tools4msp.eu/layers/geonode%3Au2018_clc2018_v2020_20u1
 - Exploratories shapefiles: https://www.bexis.uni-jena.de/ddm/data/Showdata/5460
+
+
+
 
 

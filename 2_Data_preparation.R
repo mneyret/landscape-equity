@@ -18,11 +18,10 @@ library(zoo)
 library(plyr)
 library(ade4)
 
-setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code')
+setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition')
 set.seed(101)
 
-
-# Useful functions
+# Useful function
 scale01 <- function(x) {
   # Scales a variable between 0 and 1
   x <- as.numeric(x)
@@ -44,9 +43,9 @@ scale01 <- function(x) {
 #         - env_corr: are indicators corrected for environmental drivers? (TRUE = 'env_corr', default)
 # The parameters are included in all the intermediate data and figure file names to keep track of which are used
 
-for (by_region in c(TRUE ,FALSE
+for (by_region in c(TRUE ,  FALSE
 )) {
-  for (scale_within_land_use in c(TRUE, FALSE
+  for (scale_within_land_use in c(TRUE#, FALSE
   )) {
     for (env_corr in c("env_corr", ""
     )) {
@@ -131,10 +130,10 @@ for (by_region in c(TRUE ,FALSE
       # Removing  trees, except oak which is less common, because it double counts with forest type
       charismatic_plants <- charismatic_plants[!(charismatic_plants %in% c("Abies_alba", "Picea_abies"))]
       
-      # Data from mini twitter survey asking people what birds are most important for german culture
+      # Data from mini twitter survey asking people what birds are most important for German culture
       Charismatic_birds <- fread("Raw_data/Other/bird_survey.csv")
       Charismatic_birds_melt <- melt.data.table(Charismatic_birds[Species_German_Latin != "Bird species missing?"], id.vars = c("Species", "Species_German_Latin", "Bird_species_English"))
-      #Very important species are scored 5, less important species are scored 1, others are scored 0
+      # Very important species are scored 5, less important species are scored 1, not important are scored 0
       Charismatic_birds_melt[, value_use := dplyr::recode(value, "1" = "NA", "2" = "0", "3" = "1", "4" = "5")]
       bird_scores <- Charismatic_birds_melt[, list(
         species_score = mean(as.numeric(value_use), na.rm = T),
@@ -179,15 +178,15 @@ for (by_region in c(TRUE ,FALSE
 
       Abundance_grasslands_forests0[, Group_broad := tolower(gsub("s", "", Group_broad))]
       Abundance_grasslands_forests <- Abundance_grasslands_forests0[Year < 2016, list(value = sum(value, na.rm = T)), by = c("Species", "Plot", "Group_broad")]
-      Abundance_grasslands_forests[Species == "Delichon_urbica", Species := "Delichon_urbicum"]
+      Abundance_grasslands_forests[Species == "Delichon_urbica", Species := "Delichon_urbicum"] # Correct spelling
       Abundance_grasslands_forests[, Region := substr(Plot, 1, 1)]
       Abundance_grasslands_forests01 <- copy(Abundance_grasslands_forests)
       Abundance_grasslands_forests01[value > 0, value := 1]
-      ab_birds <- dcast(Abundance_grasslands_forests01[Species %in% most_charismatic_birds, ], Plot ~ Species, value.var = "value", fill = 0)
+      #ab_birds <- dcast(Abundance_grasslands_forests01[Species %in% most_charismatic_birds, ], Plot ~ Species, value.var = "value", fill = 0)
       
-      Ric= dcast.data.table(Abundance_grasslands_forests[value>0, .N, by = c('Plot', 'Group_broad', 'Region')],
-                            Plot + Region ~ Group_broad, value.var = 'N')
-      Ric_LUI = merge.data.table(Grassland_LUI, Ric, by = 'Plot')
+      #Ric= dcast.data.table(Abundance_grasslands_forests[value>0, .N, by = c('Plot', 'Group_broad', 'Region')],
+      #                      Plot + Region ~ Group_broad, value.var = 'N')
+      #Ric_LUI = merge.data.table(Grassland_LUI, Ric, by = 'Plot')
       
       Edible_charismatic_richness <- Abundance_grasslands_forests[value > 0,
                                                                   list(
@@ -211,7 +210,7 @@ for (by_region in c(TRUE ,FALSE
       Fungi_ab[, Plot := ifelse(nchar(Plotid) == 5, Plotid, paste(substr(Plotid, 1, 3), 0, substr(Plotid, 4, 4), sep = ""))]
       Fungi_ab_plot <- Fungi_ab[, list(Abundance = sum(Abundance)), by = c("Species", "Plot")]
       Fungi_ab_plot[Abundance >= 1 & Species %in% all_edible_fungi, Abundance := 1]
-      Fungi_ab_plot[Abundance >= 1 & Species %in% top_edible_fungi, Abundance := 2]
+      Fungi_ab_plot[Abundance >= 1 & Species %in% top_edible_fungi, Abundance := 2] # Most commonly harvested species are are double weighted
       
       Fungi_cast <- dcast.data.table(Fungi_ab_plot, Plot ~ Species, value.var = "Abundance", fill = 0)
       Fungi_edible_cast <- Fungi_cast[, .SD, .SDcols = c("Plot", all_edible_fungi)]
@@ -647,8 +646,8 @@ for (by_region in c(TRUE ,FALSE
       
       ### Environmental correction ###
       # Transform before fitting to linear models
-      ES_grasslands[, c("sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants") :=
-                      lapply(.SD, sqrt), .SDcols = c("Total_flower_cover", "butterfly_abundance", "Cover_edible", "Charismatic_plants")]
+      ES_grasslands[, c("sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "sqrtProductivity") :=
+                      lapply(.SD, sqrt), .SDcols = c("Total_flower_cover", "butterfly_abundance", "Cover_edible", "Charismatic_plants", "Productivity")]
       ES_forests[, c("sqrtCover_edible", "sqrtCharismatic_plants", "sqrtCover_bryophytes") :=
                    lapply(.SD, sqrt), .SDcols = c("Cover_edible", "Charismatic_plants", "Cover_bryophytes")]
       
@@ -666,7 +665,7 @@ for (by_region in c(TRUE ,FALSE
                           return(pred_val)
                         }),
                         by = Exploratory,
-                        .SDcols = c("Total_flower_cover", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "ADI", "NDSI", "butterfly_abundance", "Productivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")
+                        .SDcols = c("Total_flower_cover", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "ADI", "NDSI", "butterfly_abundance", "sqrtProductivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")
           ]
         )
         ES_forests_corr <- cbind(
@@ -696,7 +695,7 @@ for (by_region in c(TRUE ,FALSE
                           print(length(pred_val))
                           return(pred_val)
                         }),
-                        .SDcols = c("Total_flower_cover", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "ADI", "NDSI", "butterfly_abundance", "Productivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")
+                        .SDcols = c("Total_flower_cover", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "ADI", "NDSI", "butterfly_abundance", "sqrtProductivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")
           ]
         )
         ES_forests_corr <- cbind(
@@ -716,10 +715,10 @@ for (by_region in c(TRUE ,FALSE
       
       ES_grasslands[, lapply(.SD, function(x) {
         list(min(x), mean(x), max(x))
-      }), .SDcols = c("Total_flower_cover", "ADI", "NDSI", "butterfly_abundance", "Productivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")]
+      }), .SDcols = c("Total_flower_cover", "ADI", "NDSI", "butterfly_abundance", "sqrtProductivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")]
       ES_grasslands_corr[, lapply(.SD, function(x) {
         list(min(x, na.rm = TRUE), mean(x), max(x))
-      }), .SDcols = c("sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "Total_flower_cover", "ADI", "NDSI", "butterfly_abundance", "Productivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")]
+      }), .SDcols = c("sqrtTotal_flower_cover", "sqrtbutterfly_abundance", "sqrtCover_edible", "sqrtCharismatic_plants", "Total_flower_cover", "ADI", "NDSI", "butterfly_abundance", "sqrtProductivity", "C.stock", "Cover_edible", "Charismatic_plants", "Plant_richness")]
       ES_grasslands_corr[, c("sqrtCover_edible", "sqrtCharismatic_plants", "sqrtTotal_flower_cover", "sqrtbutterfly_abundance") := lapply(.SD, function(x) {
         x[x < 0] <- 0
         return(x)
@@ -762,19 +761,19 @@ for (by_region in c(TRUE ,FALSE
       
       #### Provisioning services ####
       ## Food/ fodder production ##
-      ES_grasslands_use[, Productivity := Productivity]
+      ES_grasslands_use[, Productivity := sqrtProductivity]
       # ------ in grasslands
-      ES_grasslands_use[, Production_livestock := Productivity * 12.3] # Productivity is dt/ha, price is about 123€/t according to agrarheute
+      ES_grasslands_use[, Production_livestock := sqrtProductivity^2 * sqrt(12.3)] # Productivity is dt/ha, price is about 123€/t according to agrarheute. sqrt transformation to conserve units
       ES_grasslands_use[, Production_food := 0]
       # ------ in forests:  No food
       ES_forests_use[, Production_food := 0]
       ES_forests_use[, Production_livestock := 0]
       # ------ in crops: corresponds to productivity of the given crop
-      ES_crops[, Production_food := Productivity]
+      ES_crops[, Production_food := sqrt(Productivity)]
       ES_crops[, Production_livestock := 0]
-      ES_crops[Crop_type %in% "Maize", c("Production_food", "Production_livestock") := list(0, Productivity * 0.6)]
+      ES_crops[Crop_type %in% "Maize", c("Production_food", "Production_livestock") := list(0, sqrt(Productivity) * 0.6)]
       ES_crops[Crop_type %in% "Oilseed rape", Production_food := 0]
-      ES_crops[Crop_type %in% "Alfalfa", c("Production_food", "Production_livestock") := list(0, Productivity)]
+      ES_crops[Crop_type %in% "Alfalfa", c("Production_food", "Production_livestock") := list(0, sqrt(Productivity))]
       
       ## Timber production ##
       ES_grasslands_use[, Production_timber := 0] # No timber in grasslands
@@ -836,7 +835,7 @@ for (by_region in c(TRUE ,FALSE
       # Aesthetic is divided into two classes: naturalness and diversity
       # ------ in forests
       ES_forests_use[, c("Aesth_uniqueness_charismatic_plants") := sqrtCharismatic_plants]
-      ES_forests_use[, Reg_ID_habitat := Uniqueness]
+      ES_forests_use[, Reg_ID_habitat := scale01(Uniqueness)]
       # ------ in grasslands
       ES_grasslands_use[, "Aesth_uniqueness_charismatic_plants" := sqrtCharismatic_plants]
       ES_grasslands_use[, Reg_ID_habitat := (Uniqueness_juniperus)]
@@ -919,38 +918,42 @@ for (by_region in c(TRUE ,FALSE
         ES_crops[, .SD, .SDcols = c('Plot', "Plant_richness", "Bird_richness", "Fungi_richness",indicators_plot)]
       ))
       
+    
       All_ES_data_classif = merge.data.table(All_ES_data_classif, Classif, by = 'Plot')
-      All_ES_data_classif2 = copy(All_ES_data_classif)
+      
+      # We homogenise the "Region" variable if all regions are taken together
+      if (by_region == FALSE) {
+        All_ES_data_classif$Region <- "All"
+      }
+      
+      All_ES_data_classif_scale = copy(All_ES_data_classif)
+      
       
       if (scale_within_land_use == TRUE) {
         # For richness (for plot-level analyses only) as well as cover of edible and charismatic plants, we rescale between 0 and 1 independently for forests and grasslands
-        All_ES_data_classif2[, c("Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, as.numeric), .SDcols = c("Plant_richness", "Bird_richness", "Fungi_richness")]
+        All_ES_data_classif_scale[, c("Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, as.numeric), .SDcols = c("Plant_richness", "Bird_richness", "Fungi_richness")]
         
         if (by_region == TRUE) {
-          All_ES_data_classif2[LU == "Forest", c("Harvesting_plants",  "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness","Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
+          All_ES_data_classif_scale[LU == "Forest", c("Harvesting_plants",  "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness","Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
                                .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness"), by = Region]
           
-          All_ES_data_classif2[LU != "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Aesthetic_naturalness","Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
+          All_ES_data_classif_scale[LU != "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Aesthetic_naturalness","Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
                                .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Aesthetic_naturalness","Plant_richness", "Bird_richness", "Fungi_richness"), by = Region]
           
         }
         if (by_region == FALSE) {
-          All_ES_data_classif2[LU == "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
+          All_ES_data_classif_scale[LU == "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
                                .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness")]
           
-          All_ES_data_classif2[LU != "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Aesthetic_naturalness","Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
+          All_ES_data_classif_scale[LU != "Forest", c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants", "Aesthetic_naturalness","Plant_richness", "Bird_richness", "Fungi_richness") := lapply(.SD, scale01),
                                .SDcols = c("Harvesting_plants", "Aesth_uniqueness_charismatic_plants","Aesthetic_naturalness", "Plant_richness", "Bird_richness", "Fungi_richness")]
           
         }
       }
       
-      # We homogenise the "Region" variable if all regions are taken together
-      if (by_region == FALSE) {
-        All_ES_data_classif2$Region <- "All"
-      }
-      
+
       #### Export data for further use in simulations ####
-      fwrite(All_ES_data_classif2, 
+      fwrite(All_ES_data_classif_scale, 
              paste("Temporary_data/All_ES_data_classif_", env_corr, "_region", by_region, "_scale_within", scale_within_land_use, ".csv", sep = ""))
       
       #### Export environmental variables for landscape-level correction - this does not change based on parameters so we export it only once for default parameters ####
@@ -982,8 +985,7 @@ for (by_region in c(TRUE ,FALSE
     
       #### Prepare Fig. S1 (all regions together or separate, other parameters only default)
       if (scale_within_land_use == TRUE & env_corr == "env_corr"){
-
-        All_ES_plot <- melt.data.table(All_ES_data_classif, id.vars = c("Plot", "Region", "LU", "Classif", "Classif2"),
+        All_ES_plot <- melt.data.table(All_ES_data_classif_scale, id.vars = c("Plot", "Region", "LU", "Classif", "Classif2"),
                                        measure.vars = c('Production_food', 'Production_livestock','Production_energy' ,
                                                         'Production_timber','Harvesting_plants', 'C_stock',
                                                         'Aesthetic_naturalness','Aesth_diversity_ADI', 'Reg_ID_habitat',
@@ -1047,146 +1049,54 @@ for (by_region in c(TRUE ,FALSE
         if (length(unique(All_ES_plot$Region)) == 1){
           gg =  gg_ES + facet_wrap(~pretty_variables, ncol = 2)
           ggsave(plot =gg,
-                 '/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/FigS1_all.png', width = 12, height = 12)
+                 'Results/FigS1_all.png', width = 12, height = 12)
         }
         
         if (length(unique(All_ES_plot$Region)) > 1){
-          ggsave(plot = gg_ES, '/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/FigS1_by_region.png', width = 10, height = 40)}
+          ggsave(plot = gg_ES, 'Results/FigS1_by_region.png', width = 10, height = 40)}
         
       }
     
       }
   }}
 
-#All_ES_data_classif2 = fread(
-#       paste("Temporary_data/All_ES_data_classif_", env_corr, "_region", by_region, "_scale_within", scale_within_land_use, ".csv", sep = ""))
 
-#
-##  All_ES_data_classif2[, colnames(All_ES_data_classif2)[6:19] := lapply(.SD, as.numeric), .SDcols = colnames(All_ES_data_classif2)[6:19]]
-#  All_ES_data_classif2[, colnames(All_ES_data_classif2)[c(6:19)] := lapply(.SD, function(x) {
-#     Max <- quantile(x, 0.975, na.rm = F)
-#    Min <- quantile(x, 0.025, na.rm = F)
-#    y <- (x - Min) / (Max - Min)
-#    y[y < 0] <- 0
-#    y[y > 1] <- 1
-#    return(y)
-#  }), .SDcols = colnames(All_ES_data_classif)[c(6:19)], by = "Region"]
-#  
-#  All_ES_scaled_MF <- cbind(
-#    All_ES_data_classif2[, c(1:5)],
-#    All_ES_data_classif2[, list(
-#      Ric = (Plant_richness + Bird_richness) / 2,
-#      Hunting = Hunting,
-#      Harvesting = (Harvesting_plants) / 2,
-#      Production_food = Production_food,
-#      Production_livestock = Production_livestock,
-#      Production_timber = Production_timber,
-#      Production_energy = Production_energy,
-#      Aesthetic = (Aesthetic_naturalness + (0.5 + Aesth_diversity_ADI) / 2) / 2,
-#      Reg_id = (Aesth_uniqueness_charismatic_plants),
-#      C_stock = C_stock
-#    )]
-#  )
-#  #Demand <- fread("data/Demand.csv")
-#  groups <- data.table(Group = unique(Demand$Group))
-#  whole_data <- data.table(groups[, All_ES_scaled_MF[], by = Group])
-#  List_scenario_MF <- apply(Demand, 1, function(x) {
-#    # print(x)
-#    x <- as.list(x)
-#    Weights <- lapply(x[3:13], as.numeric)
-#    group <- x$Group
-#    Average_with_MF <- whole_data[
-#      Group == group,
-#      list(
-#        Region = Region,
-#        Plot = Plot, LU = LU, Classif = Classif,
-#        Group = group,
-#        Ric = Weights$Ric * Ric / sum(unlist(Weights)),
-#        Hunting = Weights$Hunting * Hunting / sum(unlist(Weights)),
-#        Harvesting = Weights$Harvesting * Harvesting / sum(unlist(Weights)),
-#        Production_food = Weights$Production_food * Production_food / sum(unlist(Weights)),
-#        Production_livestock = Weights$Production_livestock * Production_livestock / sum(unlist(Weights)),
-#        Production_energy = Weights$Production_energy * Production_energy / sum(unlist(Weights)),
-#        Reg_id = Weights$Reg_id * Reg_id / sum(unlist(Weights)),
-#        Leisure = Weights$Leisure * 0.5 / sum(unlist(Weights)),
-#        Production_timber = Weights$Production_timber * Production_timber / sum(unlist(Weights)),
-#        Aesthetic = Weights$Aesthetic * Aesthetic / sum(unlist(Weights)),
-#        C_stock = Weights$C_stock * C_stock / sum(unlist(Weights))
-#      )
-#    ]
-#    Average_with_MF[, MF := sum(Ric, Hunting, Harvesting, Production_food, Production_livestock, Production_energy, Reg_id, Leisure, Production_timber, Aesthetic, C_stock),
-#                    by = 1:nrow(Average_with_MF)
-#    ]
-#    return(Average_with_MF)
-#  })
-#  
-#  MF_melt <- melt(rbindlist(List_scenario_MF), id.vars = c("Region", "Group", "Plot", "LU", "Classif"))
-#  MF_melt[LU == "Crop", c("Classif", "Classif2") := list("Crop", "Crop")]
-#  MF_average <- MF_melt[variable != "MF", list(value = mean(value)), by = c("Region", "LU", "Classif", "variable")]
-#  MF_average[, variable := factor(variable, levels = c(
-#    "Production_timber", "Ric", "Aesthetic", "Reg_id", "Leisure",
-#    "Production_food", "Production_livestock", "Production_energy", "Harvesting", "Hunting",
-#    "C_stock"
-#  )[11:1])]
-#  my_palette_services <- c(
-#    "lightsteelblue1", "lightsteelblue2", "lightsteelblue3", "lightsteelblue4",
-#    "burlywood1", "sandybrown", "lightsalmon1", "darksalmon", "lightsalmon3", "salmon4",
-#    "paleturquoise4"
-#  )[11:1]
-#  ggplot(
-#    MF_average # [!(variable %in% c('Ric', 'Leisure')),]
-#    , aes(value, x = Classif, fill = variable)
-#  ) +
-#    facet_wrap(~Region, ncol = 1) +
-#    theme_bw() +
-#    geom_col() +
-#    scale_fill_manual(values = my_palette_services)
-  
-#  MF_melt[variable == "MF", mean(value), by = c("Region", "LU", "Classif", "variable")]
-  
-#  # }
-  
-
-  
   # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% #
   ##### Preparing scenarios, priority, power, and availability data #####
   # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% #
   
- # # LAND USE SCENARIOS
- # Scenarios_land_use <- data.table(read_excel("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Scenarios/Scenarios_management2.xlsx"))
- # scenarios_land_use <- unique(Scenarios_land_use$Scenario_name)
- # no_scenarios_land_use <- length(scenarios_land_use)
-  
+Survey_data = fread("Raw_data/Data_to_load/31110_7_Dataset/31110_7_data.csv")
   
   # Priority scores
-  Priority <- data.table(read_excel("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Stakeholders\ weightings/Data_Socudes270720.xlsx", sheet = 3))[!is.na(ID) & cluster != 'NA',]
-  Priority[, Stakeholder := dplyr::recode(Group, 
-                                        'Agriculture' = "Agric",
-                                        "Economy" = "Econ",
-                                        'Forestry' = "Forestry",
-                                        "Hunting"= "Hunting" ,
-                                        'Landowner'= "Landowner" ,
-                                        "Local heritage association"  = "Loc_her_asso",
-                                        'Locals' = "Locals",
-                                        "Nature conservation associations" = "Nat_cons_asso" ,
-                                        "Policy & administration" = "Policy_admin",
-                                        "Press" = "Press" ,
-                                        "Quarrying" = "Quarrying",
-                                        "Regional development programmes"= "Reg_dev_prog",
-                                        'Research' = "Research" ,
-                                        'Tourism' = "Tourism"
+  #Priority0 <- data.table(read_excel("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Stakeholders\ weightings/Data_Socudes270720.xlsx", sheet = 3))[!is.na(ID) & cluster != 'NA',]
+
+# Select priority data 
+Priority = Survey_data[, .SD, .SDcols = c(colnames(Survey_data)[grepl('Pref', colnames(Survey_data))], 'Group') ]
+# Some respondents didn't provide preference data
+Priority = Priority[Pref_ES_SM>0,]
+Priority = Priority[,-1]
+
+Priority[, Stakeholder := dplyr::recode(Group, 
+                                        '2' = "Agric",
+                                        "8" = "Econ",
+                                        '1' = "Forestry",
+                                        "12"= "Hunting" ,
+                                        '5'= "Landowner" ,
+                                        "10"  = "Loc_her_asso",
+                                        '9' = "Locals",
+                                        "7" = "Nat_cons_asso" ,
+                                        "6" = "Policy_admin",
+                                        "4" = "Press" ,
+                                        "13" = "Quarrying",
+                                        "14"= "Reg_dev_prog",
+                                        '3' = "Research" ,
+                                        '11' = "Tourism"
   )]
   
- # Priority[, cluster := dplyr::recode(cluster, 
- #                                   "1" = "Conservation" ,
- #                                   "2" = "Forest" ,
- #                                   "3" = "Open_land",
- #                                   "4" = "Cultural"
- # )]
-  colnames(Priority) <- c('ID', 'Cluster', 
-                        "Group",  "Production_livestock","Production_food", "Ric",
-                        "C_stock", "Production_timber", "Production_energy", "REMOVE",
-                        "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting", 'Stakeholder'
+  colnames(Priority) <- c("Production_livestock","Production_food", "Ric",
+                          "C_stock", "Production_timber", "Production_energy", "REMOVE",
+                          "Harvesting", "Aesthetic", "Reg_id", "Leisure", "Hunting",
+                        "Group",   'Stakeholder'
   )
   
   Priority_clean <- Priority[, .SD, .SDcols = colnames(Priority)[!(colnames(Priority) %in% c("REMOVE", 'ID', 'Group', 'Cluster'))]]
@@ -1206,11 +1116,10 @@ for (by_region in c(TRUE ,FALSE
  # Priority_cluster = Priority_melt0[, list(Priority =mean(current_priority), Category = 'Cluster'), by = list('Group' =Cluster,Service_name)]
   Priority_stakeholder = Priority_melt0[, list(Priority =mean(current_priority), Category = 'Stakeholder'), by = list('Group' =Stakeholder,Service_name)]
  # Priority_all = rbind(Priority_cluster, Priority_stakeholder)
- #Priority_all_cast = dcast(rbind(Priority_cluster, Priority_stakeholder), Category+Group ~Service_name, value.var = 'Priority')
+ # Priority_all_cast = dcast(rbind(Priority_cluster, Priority_stakeholder), Category+Group ~Service_name, value.var = 'Priority')
   Priority_stakeholder[, Service_name := factor(
     Service_name,
     levels = c( "Ric", "Aesthetic", "Reg_id", "Leisure", "Production_food", "Production_livestock", "Production_timber", "Production_energy", "Harvesting", "Hunting", "C_stock")[11:1])]
-  
   
 
   # Export fig S2
@@ -1235,19 +1144,10 @@ for (by_region in c(TRUE ,FALSE
                                   levels = c( "Hunting",  "Forestry", "Landowner", "Econ", "Nat_cons_asso", "Research", "Reg_dev_prog", "Quarrying", "Agric", "Tourism", "Loc_her_asso", "Policy_admin", "Press", "Locals"
                                   ) )] 
   
-  
- # All_ES_data_classif[, c('Ric', 'Harvesting', 'Aesthetic', 'Reg_id', 'Leisure')
- #                     :=
- #                       list( scale01(Plant_richness) + scale01(Bird_richness),
- #                             scale01(Harvesting_plants) ,
- #                             scale01(Aesthetic_naturalness) + scale01(Aesth_diversity_ADI),
- #                             scale01(Reg_ID_habitat) + scale01(Aesth_uniqueness_charismatic_plants),
- #                             NA)
- # ]
-  
-  
+
   # Power
-  Power <- data.table(read_excel("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Stakeholders\ weightings/Power_interest_groups.xlsx"))
+  Power <- fread("Raw_data/Data_to_load/Power_interest_groups.csv")
+  # from https://www.bexis.uni-jena.de/ddm/data/Showdata/31341
   Power[, Group := dplyr::recode(Group,
                                  "Agriculture" = "Agric",
                                  "Economy" = "Econ",
@@ -1268,10 +1168,29 @@ for (by_region in c(TRUE ,FALSE
                                                                        
   
   # Availability
-  Availability =  data.table(read_excel("/Users/Margot/Desktop/Research/Senckenberg/Data/Sophie/2020-2-6_Dataset_SoCuDES.xlsx", sheet = 1))
-  Availability = Availability[, .SD, .SDcols = colnames(Availability)[grepl('Avail', colnames(Availability))]]
+  Availability = Survey_data[, .SD, .SDcols = colnames(Survey_data)[grepl('Avail', colnames(Survey_data))]]
+  Availability =  Availability[, lapply(.SD, as.numeric)]
   
-  Availability[, lapply(.SD, function(x){length(x[x%in%c(1,2)])/length(x[x != "NA"])})]
+  service_endangered= Availability[, lapply(.SD, function(x){length(x[x%in%c(1,2)])/length(x[!is.na(x)& x!= "NA"])})]
+  Availability_table = data.table(variable = names(service_endangered), endangered = as.numeric(service_endangered))
+  Availability_table = Availability_table[variable != 'Avail_ES_energy_tech',] # Not included
   
-  fwrite(Availability, 'Temporary_data/Availability.csv')
+  Availability_table[, variable := dplyr::recode(variable, 'Avail_ES_biodiv' = 'Ric',
+                                                 'Avail_ES_hunting' = 'Hunting',
+                                                 "Avail_ES_mushroom" = 'Harvesting',
+                                                 "Avail_ES_food" = 'Production_food',
+                                                 'Avail_ES_animal' = 'Production_livestock',
+                                                 "Avail_ES_identity" = 'Reg_id',
+                                                 "Avail_ES_leisure" = 'Leisure',
+                                                 "Avail_ES_wood" = 'Production_timber',
+                                                 "Avail_ES_landscape" = 'Aesthetic',
+                                                 "Avail_ES_climate" = 'C_stock',
+                                                 "Avail_ES_energy_raw" = "Production_energy")]
+
+  Availability_final = rbind(Availability_table[, list(variable, endangered, region = 'All')],
+                       Availability_table[, list(variable, endangered, region = 'A')],
+                       Availability_table[, list(variable, endangered, region = 'H')],
+                       Availability_table[, list(variable, endangered, region = 'S')])
+
+  fwrite(Availability_final, 'Temporary_data/Availability.csv')
   

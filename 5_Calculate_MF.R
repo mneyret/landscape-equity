@@ -1,4 +1,13 @@
-# This script takes as input the results of the full simulations, calculate multifunctionality, and indentifies the best landscapes
+# -------------------------------------------------------------------------------------------
+# This is part of the work used for the publication Neyret et al. 2022. Landscape management for multifunctionality and Equity. Nature Sustainability.
+# by Margot Neyret
+
+# In this script, we calculate multifunctionality from all the generated scenarios
+
+# Input: 
+# Output: 
+# -------------------------------------------------------------------------------------------
+
 library(data.table)
 library(vegan)
 library(ggplot2)
@@ -12,7 +21,9 @@ library(R.utils)
 library(Rmisc)
 library(cowplot)
 library(DescTools)
+library(tidyr)
 
+setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition')
 
 scale01 <- function(x) {
   x <- as.numeric(x)
@@ -24,23 +35,21 @@ scale01 <- function(x) {
   return(y)
 }
 
-for (crop_constrained in c(#FALSE,
-  TRUE)) {
+for (crop_constrained in c(FALSE, TRUE)) {
 
   #### Data ####
-  # Demand and service availability
+  # Priority and service availability
   Availability <-
     fread(
-      "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Availability.csv"
+      "Temporary_data/Availability.csv"
     )
-  Demand_raw <-
+  Priority <-
     fread(
-      "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Demand_Power.csv"
+      "Temporary_data/Priority_Power.csv"
     )
 
   ### Parameters loop
-  for (by_region in c(#TRUE, 
-    FALSE
+  for (by_region in c(TRUE, FALSE
                       )){ 
     print(paste("by_region: ", by_region))
 
@@ -48,7 +57,7 @@ for (crop_constrained in c(#FALSE,
     landscape_scenarios <-
       fread(
         paste(
-          "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/data/scenarios_",
+          "Temporary_data/scenarios_",
           "by_region",
           by_region,
           "_constrained",
@@ -119,13 +128,8 @@ for (crop_constrained in c(#FALSE,
 
     # Load model for area correction
     source(
-      "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Area_correction.R"
+      "Area_correction.R"
     )
-
-    # * --- Loop on scale_within ####
-    scale_within_land_use <- TRUE
-    print(paste("scale_within_land_use: ", scale_within_land_use))
-
 
     # * --- Loop on environment correction ####
     if (by_region == FALSE & crop_constrained == TRUE) {
@@ -133,36 +137,29 @@ for (crop_constrained in c(#FALSE,
     }   else {
       env_choices <- "env_corr"
     }
-    for (env_corr in "env_corr"#env_choices
+    for (env_corr in env_choices
          ) {
       print(paste("env_corr: ", env_corr))
 
       file <-
         paste(
-          "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/landscapes_",
+          "Temporary_data/landscapes_",
           env_corr,
           "_region",
           by_region,
-          "_scale_within",
-          scale_within_land_use,
           ifelse(crop_constrained == TRUE, "constrained",''),
           ".csv.gz",
           sep = ""
         )
       picked_file <- paste(
-        "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/picked_",
+        "Temporary_data/picked_",
         env_corr,
         "_region",
         by_region,
-        "_scale_within",
-        scale_within_land_use,
         ifelse(crop_constrained == TRUE, "_cropconstrained",''),
         ".csv.gz",
         sep = ""
       )
-
-      # file = '/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/landscapes_env_corr_regionTRUE_scale_withinFALSE.csv'
-      #  log_file =  '/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_simulation/output_env_corr_regionTRUE_scale_withinFALSE.log'
 
       if (file.exists(file)) {
         print("********** File exists **************")
@@ -173,15 +170,14 @@ for (crop_constrained in c(#FALSE,
         print("********** File does not exist, SKIPPED **************")
         next
       }
-      # Temporarily shorten for easier management
-       sim_data_complete <- sim_data_complete[replica < 200, ]
-  
+
       # Identify faulty scenarios (i.e. asks for more plot than what exists)
        sim_data_complete = merge.data.table(sim_data_complete, picked[, c('scenario', 'replica', 'region', 'not_enough_plots')], 
                                  by = c('scenario', 'replica', 'region'))
        sim_data_complete = sim_data_complete[not_enough_plots == FALSE,]
        rm(picked)
        print('a')
+       
       # Add data calculated from landscape_scenario proportions
       sim_data_complete <-
         merge.data.table(
@@ -203,6 +199,7 @@ for (crop_constrained in c(#FALSE,
           by = c("scenario"),
           all.x = T
         )
+      
       # Also adds corresponding description, if exists
       only_predef <- landscape_scenarios[Scenario_description != "", ]
       sim_data_complete <- merge.data.table(
@@ -229,9 +226,7 @@ for (crop_constrained in c(#FALSE,
         "salmon4",
         "paleturquoise4"
       )
-
-       print('e')
-
+      
       ### Start working on simulation results
        
      ### Correcting diversities
@@ -249,6 +244,7 @@ for (crop_constrained in c(#FALSE,
       )]
 
        print('f')
+       
       # Area correction
       if (by_region == FALSE) {
         area_model <- gam(Ric_plants ~ Area, data = Area_correction_data)
@@ -268,14 +264,6 @@ for (crop_constrained in c(#FALSE,
       sim_data_complete[, c("plants_diversity_corr") := plants_diversity - predicted_plant_richness]
 
        print('i')
-     
-        # Plot service per landscape area <=> proportion of forests
-     #  gg_forest = ggplot(
-    #      sim_data_complete[, list(div = mean(plants_diversity_corr), area = mean(Area)), by = c("region", "scenario")],
-    #      aes(div, x = area, color = region)
-    #    ) +
-    #      geom_smooth()
-
 
       if (env_corr == "env_corr") {
         sim_data_complete[, c(
@@ -295,8 +283,7 @@ for (crop_constrained in c(#FALSE,
           "birds_diversity",
           "birds_charism_diversity",
           "fungi_diversity"
-        )#,
-      #  by = region
+        )
         ]
 
       }
@@ -308,8 +295,8 @@ for (crop_constrained in c(#FALSE,
                             'Hunting_other_habitat_boar') := list(
                               Hunting_habitat_deer,
                               proportion_forests,
-                              ifelse(proportion_grasslands + Crop/no_plots <= 0.5, proportion_grasslands + Crop/no_plots, 0.5),
-                              ifelse(proportion_grasslands + Crop/no_plots <= 0.45, proportion_grasslands + Crop/no_plots, 0.45))
+                              ifelse(proportion_grasslands + Crop/no_plots <= 0.20, proportion_grasslands + Crop/no_plots, 0.20), # Change to check other habitat suitability thresholds
+                              ifelse(proportion_grasslands + Crop/no_plots <= 0.10, proportion_grasslands + Crop/no_plots, 0.10)) # Change to check other habitat suitability thresholds
                             ]
        
 
@@ -352,7 +339,6 @@ for (crop_constrained in c(#FALSE,
         "Harvesting_plants",
         'Hunting_forest_deer', 
         'Hunting_forest_boar', 
-    #   'Hunting_other_habitat_red_deer',
         'Hunting_other_habitat_roe_deer',
         "Production_energy",
         "Production_food",
@@ -370,20 +356,18 @@ for (crop_constrained in c(#FALSE,
       by = region
       ]
       
+      # There are some Nan for landscapes with only grasslands or crops, we replace them with 0
+     # if (is.nan(unique(sim_data_complete$Hunting_other_habitat_roe_deer))  == TRUE){
+     #   sim_data_complete$Hunting_other_habitat_roe_deer = 0
+     # }
+     # if (is.nan(unique(sim_data_complete$Hunting_other_habitat_boar))  == TRUE){
+     #   sim_data_complete$Hunting_other_habitat_boar = 0
+     # }
       
-      if (is.nan(unique(sim_data_complete$Hunting_other_habitat_roe_deer))  == TRUE){
-        sim_data_complete$Hunting_other_habitat_roe_deer = 0
-      }
-      if (is.nan(unique(sim_data_complete$Hunting_other_habitat_boar))  == TRUE){
-        sim_data_complete$Hunting_other_habitat_boar = 0
-      }
-      
-      
-
       ## Check: indicators min/max
-      sim_data_complete[, lapply(.SD, function(x) {
-        list(min(x), mean(x), max(x))
-      }), .SDcols = colnames(sim_data_complete)[-c(1:3)]]
+     # sim_data_complete[, lapply(.SD, function(x) {
+     #   list(min(x), mean(x), max(x))
+     # }), .SDcols = colnames(sim_data_complete)[-c(1:3)]]
 
       ### Aggregating all indicators into services
       services <- c(
@@ -400,7 +384,6 @@ for (crop_constrained in c(#FALSE,
         "C_stock"
       )
 
-      
       sim_data_complete <- sim_data_complete[, c(
         "Ric",
         "Hunting",
@@ -415,8 +398,7 @@ for (crop_constrained in c(#FALSE,
         "C_stock"
       ) := list(
         (plants_diversity_corr + birds_diversity),
-       (#(Hunting_forest_deer + Hunting_other_habitat_red_deer)/ 2 +  
-         (Hunting_forest_deer + Hunting_other_habitat_roe_deer)/ 2 + (
+       ((Hunting_forest_deer + Hunting_other_habitat_roe_deer)/ 2 + (
            Hunting_forest_boar + Hunting_other_habitat_boar
          )/ 2)/2,
         (Harvesting_plants + fungi_diversity) / 2,
@@ -486,7 +468,6 @@ for (crop_constrained in c(#FALSE,
       
       sim_average_melt[, Forest_prop := (Area - 320)/84 * 100/20]
       
-      
       gg_forest_prop =  ggplot(sim_average_melt, aes(value, x = Forest_prop)) +
         theme_bw() +
         geom_point(alpha = 0.01, size = 0.1) +
@@ -495,11 +476,10 @@ for (crop_constrained in c(#FALSE,
         xlab('Proportion of forest plots (%)') +
         ylab('Service value (scaled)')
       
-      
       ggsave(
         plot = gg_forest_prop,
-        file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/forest_prop_env_corr", env_corr, "by_region", by_region,
-                     "_scale_within", scale_within_land_use,"_crop_constrained", crop_constrained, "-hunting5045.png", sep = ""
+        file = paste("Results/forest_prop_env_corr", env_corr, "by_region", by_region,
+                     "_crop_constrained", crop_constrained, ".png", sep = ""
         ),
         height = 6,
         width = 8
@@ -513,9 +493,8 @@ for (crop_constrained in c(#FALSE,
         SB_choices <- FALSE
       }
 
-      for (use_SB in FALSE#SB_choices
+      for (use_SB in SB_choices
            ) {
-       # use_SB <- FALSE
         print(paste("SB: ", use_SB))
         ### If we're using supply-benefit relationship, we transform the services accordingly
         if (use_SB == TRUE) {
@@ -593,7 +572,7 @@ for (crop_constrained in c(#FALSE,
           forest_choices <- "Type"
         }
 
-        for (forest_class in "Type"#forest_choices
+        for (forest_class in forest_choices
              ) {
           print(forest_class)
           if (forest_class == "Type") {
@@ -623,15 +602,8 @@ for (crop_constrained in c(#FALSE,
               )]
           }
           
-          big_groups <- FALSE
-          if (big_groups == TRUE) {
-            Demand <- Demand_raw[Category == "Cluster", ]
-          } else {
-            Demand <- Demand_raw[Category == "Stakeholder", ]
-          }
-          # print('b')
-          for (gr in unique(Demand$Group)) {
-            Weights <- lapply(unique(Demand[Group == gr, 3:13]), as.numeric)
+          for (gr in unique(Priority$Group)) {
+            Weights <- lapply(unique(Priority[Group == gr, .SD, .SDcols = colnames(Priority)[!(colnames(Priority)%in% c('Group','Perceived_influence'))]]), as.numeric)
             service_data[, paste(gr, "MF", sep = "__") := (
               Weights$Ric * Ric
                 + Weights$Hunting * Hunting
@@ -666,27 +638,23 @@ for (crop_constrained in c(#FALSE,
             Variable == variable, Value], by = c("region", "variable")]
           service_data2[, value_diff := value - value_baseline]
 
-
           fwrite(service_data2[, .SD, .SDcols = c('value_diff', 'value', 'LUI_corr', 'variable', 'scenario', 'region', 'replica', 'value_baseline', 'Scenario_description', 'concatenate')],
-                 paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Community_services_full",
-                 env_corr, "-by_region", by_region, "scale_within", scale_within_land_use, "-SB", use_SB, "-biggroup",
-                 big_groups, "_forest", forest_class, "_constrained", crop_constrained, "-hunting5045.csv", sep = "")
+                 paste("Temporary_data/Community_services_full",
+                 env_corr, "-by_region", by_region, "-SB", use_SB,
+                 "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = "")
           )
-          
           
           # Add Power value in
           service_data2[, is.MF := grepl("__MF", variable, perl = TRUE), by = variable]
           service_data2[is.MF == TRUE, Group := gsub("([A-z]*)__MF", "\\1", variable, perl = TRUE), by = variable]
           service_data2 <-
-            merge.data.table(service_data2, Demand[, list(
+            merge.data.table(service_data2, Priority[, list(
               "Group" = Group,
-              "region" = Region,
               "Power" = Perceived_influence
             )], all.x = T)
 
 
           #### Plots for interest groups in individual scenarios ####
-
           if (forest_class == "Type") {
             Data_detailed <-
               sim_data_complete[Scenario_description %in% c("Baseline") &
@@ -704,16 +672,12 @@ for (crop_constrained in c(#FALSE,
               ]
           }
 
-
-          # hist(sim_data_complete[region == 'H', Aesthetic])
-          # mean(Data_detailed[region == 'H', Aesthetic])
           Data_detailed$Scenario_description <- "Baseline"
-          groups <- data.table(unique(data.frame(Group = Demand$Group)))
+          groups <- data.table(unique(data.frame(Group = Priority$Group)))
           Data_detailed <- data.table(groups[, Data_detailed[], by = Group])
 
-          for (gr in unique(Demand$Group)) {
-            # print(gr)
-            Weights <- unique(data.frame(Demand[Group == gr, 3:13]))
+          for (gr in unique(Priority$Group)) {
+            Weights <- unique(data.frame(Priority[Group == gr, .SD, .SDcols = colnames(Priority)[!colnames(Priority) %in% c('Group','Perceived_influence')] ]))
             Data_detailed[Group == gr, c(
               "Ric_w",
               "Hunting_w",
@@ -726,8 +690,7 @@ for (crop_constrained in c(#FALSE,
               "Production_timber_w",
               "Aesthetic_w",
               "C_stock_w"
-            ) :=
-              list(
+            ) := list(
                 Weights$Ric * Ric,
                 Weights$Hunting * Hunting,
                 Weights$Harvesting * Harvesting,
@@ -799,60 +762,37 @@ for (crop_constrained in c(#FALSE,
               "Reg_dev_prog"
             )
           )
-          Data_detailed_melt$line <-
-            ifelse(Data_detailed_melt$Group %in%  c("Hunting",
-                   "Forestry",
-                   "Landowner",
-                   "Econ",
-                   "Nat_cons_asso",
-                   "Research",
-                   "Reg_dev_prog"
-                   ), 1, 2)
-          
           
           for (R in unique(Data_detailed_melt$region)){
-          plot_baseline1 <- ggplot(
-            Data_detailed_melt[region == R & line == 1,],
-            aes(x = Group,y = value,fill = variable,group = region)
-          ) + geom_col() + theme_bw() + xlab('')+
-            ylab("") + theme(legend.position = "none", 
-                             axis.text.x = element_blank(), 
-                             panel.grid.minor =   element_blank(),
-                             plot.margin = margin(b = 20)) +
-            scale_fill_manual(
-              values = my_palette_services,
-              breaks = c("Ric_w","Aesthetic_w","Reg_id_w","Leisure_w","Production_food_w","Production_livestock_w","Production_timber_w","Production_energy_w","Harvesting_w","Hunting_w","C_stock_w"))
             
-          plot_baseline2 <- ggplot(
-            Data_detailed_melt[region == R & line == 2,],
-            aes(x = Group,y = value,fill = variable,group = region)
-          ) + geom_col() + theme_bw() + xlab('')+
-            ylab("") + theme(legend.position = "none", 
-                             axis.text.x = element_blank(), 
-                             panel.grid.minor =   element_blank(),
-                             plot.margin = margin(b = 20)) +
-            
-            scale_fill_manual(
-              values = my_palette_services,
-              breaks = c("Ric_w","Aesthetic_w","Reg_id_w","Leisure_w","Production_food_w","Production_livestock_w","Production_timber_w","Production_energy_w","Harvesting_w","Hunting_w","C_stock_w"))
+            plot_baseline <- ggplot(
+               Data_detailed_melt,
+               aes(x = Group,y = value,fill = variable,group = region)
+             ) + geom_col() + theme_bw() + xlab('')+
+               ylab("") + theme(legend.position = "none", 
+                                text = element_text(size=20),
+                                axis.ticks.y = element_blank(),
+                                axis.text.y = element_blank(), 
+                                panel.grid.minor =   element_blank()) +
+              coord_flip()+
+               scale_fill_manual(
+                 values = my_palette_services,
+                 breaks = c("Ric_w","Aesthetic_w","Reg_id_w","Leisure_w","Production_food_w","Production_livestock_w","Production_timber_w","Production_energy_w","Harvesting_w","Hunting_w","C_stock_w"))
+             
           
-          plot_baseline = plot_grid(plot_baseline1,plot_baseline2,
-                     nrow = 2)
-          
-          dir.create(file.path(paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-            "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", 'TRUE', "/biggroup", big_groups, "/forest", forest_class, 
+          dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+            "/SB", use_SB, "/weighted", weighted, "/forest", forest_class, 
             "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
             
           ggsave(
             plot = plot_baseline,
-            file = paste("/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-            "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", 'TRUE', "/biggroup", big_groups, "/forest", forest_class, 
-            "/constrained", crop_constrained, "/plot_baseline_MF-hunting5045.pdf", sep = ""),
-            width = 7,
+            file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+            "/SB", use_SB, "/weighted", weighted, "/forest", forest_class, 
+            "/constrained", crop_constrained, "/plot_baseline_MF.pdf", sep = ""),
+            width = 5,
             height = 6
           )
           }
-          
           
           #  *--- Loop on power weighting ####
           if (by_region == FALSE &
@@ -861,21 +801,15 @@ for (crop_constrained in c(#FALSE,
             use_SB == FALSE | forest_class == "Type") {
             weighting_choices <- c(TRUE, FALSE)
           }  else {
-            weighting_choices <- TRUE
+            weighting_choices <- FALSE
           }
 
-
           for (weighted in weighting_choices) {
-            print(paste("weighted:", weighted))
-            if (big_groups == TRUE & weighted == TRUE) {
-              next
-            }
 
             ### Now we can calculate the community-level MF
             if (weighted == TRUE) {
               Community_MF <- service_data2[is.MF == TRUE, list(
                 mean_MF = wtd.mean(value, Power),
-              #  mean_MF_diff = wtd.mean(value_diff, Power),
                 gini = Gini(value, Power),
                 gini_unwtd = Gini(value),
                 LUI = mean(LUI_corr)
@@ -924,15 +858,13 @@ for (crop_constrained in c(#FALSE,
               ]
 
             # Besides, we need to know how much each scenario decreases endangered services
-            Availability_merged <-
+              Availability_merged <-
               merge.data.table(
                 merge.data.table(
                   service_data2[is.MF == FALSE, list(value_diff = mean(value_diff)), by = c("scenario", "concatenate", "region", "variable")],
                   service_data2[is.MF == FALSE, as.list(CI(value_diff)), by = c("scenario", "concatenate", "region", "variable")],
-                  
-                  #service_data2[is.MF == FALSE, list(value_rel = mean(value_diff/value_baseline)), by = c("scenario", "concatenate", "region", "variable")],
-                by = c('variable', 'region', 'scenario',        'concatenate')),
-                Availability[, list(variable, "region" = Region, endangered)],
+                                  by = c('variable', 'region', 'scenario', 'concatenate')),
+                Availability[, list(variable = as.factor(variable), region, endangered)],
                 by = c("variable", "region"),
                 all.x = T
               )
@@ -986,8 +918,6 @@ for (crop_constrained in c(#FALSE,
             Community_MF_average[, LUI_diff := LUI - LUI_baseline]
             
 
-            # print('g')
-
             # Add threat scores
             Community_MF_average <-
               merge.data.table(
@@ -1006,43 +936,35 @@ for (crop_constrained in c(#FALSE,
 
 
             write.csv(Community_MF_average,  paste(
-              "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Community_average",
+              "Temporary_data/Community_average",
               env_corr,
               "-by_region",
               by_region,
-              "scale_within",
-              scale_within_land_use,
               "-SB",
               use_SB,
               "-weighted",
               weighted,
-              "-biggroup",
-              big_groups,
               "_forest",
               forest_class,
               "_constrained",
               crop_constrained,
-              "-hunting5045.csv",
+              ".csv",
               sep = ""
             ))
             write.csv(Community_services,  paste(
-              "/Users/Margot/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition/Code/Temporary_data/Community_services",
+              "Temporary_data/Community_services",
               env_corr,
               "-by_region",
               by_region,
-              "scale_within",
-              scale_within_land_use,
               "-SB",
               use_SB,
               "-weighted",
               weighted,
-              "-biggroup",
-              big_groups,
               "_forest",
               forest_class,
               "_constrained",
               crop_constrained,
-              "-hunting5045.csv",
+              ".csv",
               sep = ""
             ))
           }
