@@ -18,9 +18,9 @@ Acoustic diversity
 - 27569_Acoustic diversity index based on environmental sound recordings on all forest EPs, Alb, 2016_1.1.0 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27569 (Not yet public at time of publication) 
 - 27570_Acoustic diversity index based on environmental sound recordings on all forest EPs, SCH, 2016_1.1.0 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27570 (Not yet public at time of publication)
 - 27568_Acoustic diversity index based on environmental sound recordings on all forest EPs, HAI, 2016_4.1.5 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27568 (Not yet public at time of publication)
-- 24666/Acoustic indices based on environmental sound recordings on all grassland EPs, Alb, 2016_4 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24666 (Not yet public at time of publication)
-- 24691/Acoustic indices based on environmental sound recordings on all grassland EPs, HAI, 2016_2 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24691
-- 24692/Acoustic indices based on environmental sound recordings on all grassland EPs, SCH, 2016_2 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24692
+- 24666/Acoustic indices based on environmental sound recordings on all grassland EPs, Alb, 2016_4 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24666 (OPEN)
+- 24691/Acoustic indices based on environmental sound recordings on all grassland EPs, HAI, 2016_2 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24691 (OPEN)
+- 24692/Acoustic indices based on environmental sound recordings on all grassland EPs, SCH, 2016_2 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24692 (OPEN)
 
 
 Bird and plant abundance and data information
@@ -30,6 +30,13 @@ https://www.bexis.uni-jena.de/ddm/data/Showdata/31207 (Not yet public at time of
 https://www.bexis.uni-jena.de/ddm/data/Showdata/31206 (Not yet public at time of publication) 
 - 27706_Assembled species information from grassland EPs (2008-2020) for multidiversity synthesis - November 2020_3 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27706 (Not yet public at time of publication) 
 - 27707_Assembled RAW diversity from grassland EPs (2008-2020) for multidiversity synthesis - November 2020_2 from https://www.bexis.uni-jena.de/ddm/data/Showdata/27707 (Not yet public at time of publication) 
+
+
+Although the assembled species dataset is not accessible the he data can be accessed for birds and plants separately:
+birds https://www.bexis.uni-jena.de/ddm/data/Showdata/21446, https://www.bexis.uni-jena.de/ddm/data/Showdata/21447, https://www.bexis.uni-jena.de/ddm/data/Showdata/21448, https://www.bexis.uni-jena.de/ddm/data/Showdata/21449, https://www.bexis.uni-jena.de/ddm/data/Showdata/21690
+
+
+
 
 Fungi abundances
 - 24286_Abundant fungi_2011_relative_abundance_1.1.7 from https://www.bexis.uni-jena.de/ddm/data/Showdata/24286 (OPEN)

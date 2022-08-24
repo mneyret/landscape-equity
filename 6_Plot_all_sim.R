@@ -26,29 +26,25 @@ scale01 <- function(x) {
 my_palette_services <- c("lightsteelblue1","lightsteelblue2","lightsteelblue3","lightsteelblue4","burlywood1","sandybrown","lightsalmon1","darksalmon","lightsalmon3","salmon4","paleturquoise4"
 )
 
-for (crop_constrained in c(TRUE, FALSE
+for (crop_constrained in c(TRUE#, FALSE
                            )) {
-  for (by_region in c(TRUE,
-                    FALSE  )) {
+  for (by_region in c(#TRUE,
+                    FALSE  
+                    )) {
       # * --- Loop on environment correction ####
-      for (env_corr in c("env_corr", ""
+      for (env_corr in c("env_corr"#, ""
                          )) {
         # * --- Loop on SB ####
-        for (use_SB in c(FALSE, TRUE
+        for (use_SB in c(FALSE#, TRUE
                          )) {
 
           #  *--- Loop on Forest classification ####
-          for (forest_class in c("Type", "Age" )) {
+          for (forest_class in c("Type"#, "Age" 
+                                 )) {
             #  *--- Loop on power weighting ####
-            for (weighted in c(FALSE, TRUE )) {
+            for (weighted in c(FALSE#, TRUE 
+                               )) {
               
-        #      for (R in c('All', 'H', 'A', 'S')) {
-        #     dir.create(paste("Results/",
-        #    R,"/env_corr", env_corr, "/by_region", by_region, 
-        #            "/scale_within", scale_within_land_use, "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-        #               "/constrained", crop_constrained, "/", collapse = '',  sep = ''), recursive = T)}}}}}}}}
-              
-
               com_file <-
                 paste( "Temporary_data/Community_average", 
                        env_corr, "-by_region", by_region,  "-SB", use_SB, "-weighted", weighted,
@@ -98,7 +94,6 @@ for (crop_constrained in c(TRUE, FALSE
               Community_MF_average[, equity_diff := - mean_gini_diff]
               Community_MF_average[, mean_equity := - mean_gini]
               Community_MF_average[, n_losers := - n_losers]
-              
               
               # Decide maximum number of plots included in the best scenarios
               n_max = 15#Community_MF_average[, length(unique(concatenate))] * 0.002
@@ -187,42 +182,51 @@ for (crop_constrained in c(TRUE, FALSE
 
 
                 Community_MF_average_by_predef[, Scenario_description := dplyr::recode(Scenario_description,
-                  "All forests are coniferous" =  "2. All forests are coniferous",
-                  "All forests are deciduous" =  "3. All forests are deciduous",
-                  "All forests are mixed" =  "4. All forests are mixed",
-                  "Same prop of each forest type" =  "9. Equal proportions of mixed, coniferous and deciduous forests",
-                  "50% more high int grasslands" =  "6. 50% more high intensity grasslands",
-                  "50% more low int grasslands" =  "10. 50% more low intensity grasslands",
-                  "All grasslands are high int" =  "5. All grasslands are high intensity",
-                  "All grasslands are low int" =  "All grasslands are low intensity",
+                  "Deforestation"                                               =  "1. Deforestation: 50% less forests",
+                  "All forests are coniferous"                                  =  "2. All forests are coniferous",
+                  "All forests are deciduous"                                   =  "3. All forests are deciduous",
+                  "All forests are mixed"                                       =  "4. All forests are mixed",
+                  "All grasslands are high int"                                 =  "5. All grasslands are high intensity",
+                  "50% more high int grasslands"                                =  "6. 50% more high intensity grasslands",
                   "All mixed forests and low-intensity grasslands (same crops)" =  "7. All forests are mixed forests and all grasslands are low-intensity",
-                 
-                  
-                   "Only coniferous forests and only high LUI grasslands" =  "13. All forests are coniferous and all grasslands are high intensity",
+                  "Reforestation"                                               =  "8. Reforestation: 50% more forests",
+                  "Same prop of each forest type"                               =  "9. Equal proportions of mixed, coniferous and deciduous forests",
+                  "50% more low int grasslands"                                 =  "10. 50% more low intensity grasslands",
+                  "Low-lui and med-lui grasslands become coniferous forests"    =  "11. Low- and medium-intensity grasslands become coniferous forests",
+                  "All grasslands are low int"                                  =  "12. All grasslands are low intensity",
+                  "Only coniferous forests and only high LUI grasslands"        =  "13. All forests are coniferous and all grasslands are high intensity",
 
-                  "Deforestation" =  "1. Deforestation: 50% less forests",
-                  "Add 50% grasslands" =  "14. 50% more grasslands",
-                  "Low-lui and med-lui grasslands become coniferous forests" =  "11. Low- and medium-intensity grasslands become coniferous forests",
-                  "33% each" =  "15. Equal proportions of grasslands, crops and forests",
-                  "Reforestation" =  "8. Reforestation: 50% more forests",
-                  "Low-lui and med-lui grasslands become mixed forests" =  "12. Low- and medium-intensity grasslands become mixed forests",
-                  "All forests are even-aged" = "16. All forests are even-aged",
-                  "All forests are uneven-aged" = "19. All forests are uneven-aged",
-                  "Low-lui and med-lui grasslands become uneven-aged forests" = "18. Low-lui and med-lui grasslands become uneven-aged forests",
-                  "All forests are uneven-aged and grasslands low-intensity" = "17. All forests are uneven-aged and grasslands low-intensity"
+
+                  "Add 50% grasslands"                                          =  "14. 50% more grasslands",
+                  "33% each"                                                    =  "15. Equal proportions of grasslands, crops and forests",
+                  "All forests are even-aged"                                   =  "16. All forests are even-aged",
+                  "All forests are uneven-aged"                                 =  "19. All forests are uneven-aged",
+                  "All forests are uneven-aged and grasslands low-intensity"    =  "17. All forests are uneven-aged and grasslands low-intensity",
+                  "Low-lui and med-lui grasslands become uneven-aged forests"   =  "18. Low-lui and med-lui grasslands become uneven-aged forests",
+                  "Low-lui and med-lui grasslands become mixed forests"         =  "19. Low- and medium-intensity grasslands become mixed forests"
                 )]
                 
                 Community_MF_average_by_predef[, Scenario_description := factor(Scenario_description, levels = c(
-                  '1. Deforestation: 50% less forests', '2. All forests are coniferous' ,'3. All forests are deciduous',                                         
-                  '4. All forests are mixed', '5. All grasslands are high intensity', '6. 50% more high intensity grasslands',
-                  '7. All forests are mixed forests and all grasslands are low-intensity' ,
-                  '8. Reforestation: 50% more forests' ,  '9. Equal proportions of mixed, coniferous and deciduous forests',
-                  '10. 50% more low intensity grasslands',  '11. Low- and medium-intensity grasslands become coniferous forests',
-                  '12. Low- and medium-intensity grasslands become mixed forests', 
-                  '13. All forests are coniferous and all grasslands are high intensity', 
-                  '15. Equal proportions of grasslands, crops and forests',  
-                  '14. 50% more grasslands',  "16. All forests are even-aged",
-                  "17. All forests are uneven-aged and grasslands low-intensity","18. Low-lui and med-lui grasslands become uneven-aged forests"
+                  "1. Deforestation: 50% less forests",
+                  "2. All forests are coniferous",
+                  "3. All forests are deciduous",
+                  "4. All forests are mixed",
+                  "5. All grasslands are high intensity",
+                  "6. 50% more high intensity grasslands",
+                  "7. All forests are mixed forests and all grasslands are low-intensity",
+                  "8. Reforestation: 50% more forests",
+                  "9. Equal proportions of mixed, coniferous and deciduous forests",
+                  "10. 50% more low intensity grasslands",
+                  "11. Low- and medium-intensity grasslands become coniferous forests",
+                  "12. All grasslands are low intensity",
+                  "13. All forests are coniferous and all grasslands are high intensity",
+                  "14. 50% more grasslands",
+                  "15. Equal proportions of grasslands, crops and forests",
+                  "16. All forests are even-aged",
+                  "19. All forests are uneven-aged",
+                  "17. All forests are uneven-aged and grasslands low-intensity",
+                  "18. Low-lui and med-lui grasslands become uneven-aged forests",
+                  "19. Low- and medium-intensity grasslands become mixed forests"
                 ))]
 
               Community_MF_average_by_predef <- Community_MF_average_by_predef[order(Scenario_description), ]
@@ -281,39 +285,69 @@ for (crop_constrained in c(TRUE, FALSE
                 new_scale_color() +
                 new_scale_fill() +
                 guides(fill=guide_legend(ncol=3), shape=guide_legend(ncol=3),  color=guide_legend(ncol=3)) +
-                scale_color_manual(breaks =   c( '1. Deforestation: 50% less forests', '2. All forests are coniferous' ,'3. All forests are deciduous',                                         
-                                                 '4. All forests are mixed', '5. All grasslands are high intensity', '6. 50% more high intensity grasslands',
-                                                 '7. All forests are mixed forests and all grasslands are low-intensity' ,
-                                                 '8. Reforestation: 50% more forests' ,  '9. Equal proportions of mixed, coniferous and deciduous forests',
-                                                 '10. 50% more low intensity grasslands',  '11. Low- and medium-intensity grasslands become coniferous forests',
-                                                 '12. Low- and medium-intensity grasslands become mixed forests', 
-                                                 '13. All forests are coniferous and all grasslands are high intensity', 
-                                                 '15. Equal proportions of grasslands, crops and forests',  
-                                                 '14. 50% more grasslands',  "16. All forests are even-aged",
-                                                 "17. All forests are uneven-aged and grasslands low-intensity","18. Low-lui and med-lui grasslands become uneven-aged forests"),   
+                scale_color_manual(breaks =   c( "1. Deforestation: 50% less forests",
+                                                 "2. All forests are coniferous",
+                                                 "3. All forests are deciduous",
+                                                 "4. All forests are mixed",
+                                                 "5. All grasslands are high intensity",
+                                                 "6. 50% more high intensity grasslands",
+                                                 "7. All forests are mixed forests and all grasslands are low-intensity",
+                                                 "8. Reforestation: 50% more forests",
+                                                 "9. Equal proportions of mixed, coniferous and deciduous forests",
+                                                 "10. 50% more low intensity grasslands",
+                                                 "11. Low- and medium-intensity grasslands become coniferous forests",
+                                                 "12. All grasslands are low intensity",
+                                                 "13. All forests are coniferous and all grasslands are high intensity",
+                                                 "14. 50% more grasslands",
+                                                 "15. Equal proportions of grasslands, crops and forests",
+                                                 "16. All forests are even-aged",
+                                                 "19. All forests are uneven-aged",
+                                                 "17. All forests are uneven-aged and grasslands low-intensity",
+                                                 "18. Low-lui and med-lui grasslands become uneven-aged forests",
+                                                 "19. Low- and medium-intensity grasslands become mixed forests"),   
                                   
-                                   values = c(palette_test, palette_test, palette_test)) + #  +
-                scale_fill_manual(breaks =   c('1. Deforestation: 50% less forests', '2. All forests are coniferous' ,'3. All forests are deciduous',                                         
-                                               '4. All forests are mixed', '5. All grasslands are high intensity', '6. 50% more high intensity grasslands',
-                                               '7. All forests are mixed forests and all grasslands are low-intensity' ,
-                                               '8. Reforestation: 50% more forests' ,  '9. Equal proportions of mixed, coniferous and deciduous forests',
-                                               '10. 50% more low intensity grasslands',  '11. Low- and medium-intensity grasslands become coniferous forests',
-                                               '12. Low- and medium-intensity grasslands become mixed forests', 
-                                               '13. All forests are coniferous and all grasslands are high intensity', 
-                                               '15. Equal proportions of grasslands, crops and forests',  
-                                               '14. 50% more grasslands',  "16. All forests are even-aged",
-                                               "17. All forests are uneven-aged and grasslands low-intensity","18. Low-lui and med-lui grasslands become uneven-aged forests"), ,
+                                   values = c(palette_test, palette_test, palette_test)) + 
+                scale_fill_manual(breaks =   c("1. Deforestation: 50% less forests",
+                                               "2. All forests are coniferous",
+                                               "3. All forests are deciduous",
+                                               "4. All forests are mixed",
+                                               "5. All grasslands are high intensity",
+                                               "6. 50% more high intensity grasslands",
+                                               "7. All forests are mixed forests and all grasslands are low-intensity",
+                                               "8. Reforestation: 50% more forests",
+                                               "9. Equal proportions of mixed, coniferous and deciduous forests",
+                                               "10. 50% more low intensity grasslands",
+                                               "11. Low- and medium-intensity grasslands become coniferous forests",
+                                               "12. All grasslands are low intensity",
+                                               "13. All forests are coniferous and all grasslands are high intensity",
+                                               "14. 50% more grasslands",
+                                               "15. Equal proportions of grasslands, crops and forests",
+                                               "16. All forests are even-aged",
+                                               "19. All forests are uneven-aged",
+                                               "17. All forests are uneven-aged and grasslands low-intensity",
+                                               "18. Low-lui and med-lui grasslands become uneven-aged forests",
+                                               "19. Low- and medium-intensity grasslands become mixed forests"), 
                                   values  = c(palette_test, rep("white", 8), rep('grey', 8))) +
-                scale_shape_manual(breaks =   c('1. Deforestation: 50% less forests', '2. All forests are coniferous' ,'3. All forests are deciduous',                                         
-                                                '4. All forests are mixed', '5. All grasslands are high intensity', '6. 50% more high intensity grasslands',
-                                                '7. All forests are mixed forests and all grasslands are low-intensity' ,
-                                                '8. Reforestation: 50% more forests' ,  '9. Equal proportions of mixed, coniferous and deciduous forests',
-                                                '10. 50% more low intensity grasslands',  '11. Low- and medium-intensity grasslands become coniferous forests',
-                                                '12. Low- and medium-intensity grasslands become mixed forests', 
-                                                '13. All forests are coniferous and all grasslands are high intensity', 
-                                                '15. Equal proportions of grasslands, crops and forests',  
-                                                '14. 50% more grasslands',  "16. All forests are even-aged",
-                                                "17. All forests are uneven-aged and grasslands low-intensity","18. Low-lui and med-lui grasslands become uneven-aged forests"), 
+                scale_shape_manual(breaks =   c("1. Deforestation: 50% less forests",
+                                                "2. All forests are coniferous",
+                                                "3. All forests are deciduous",
+                                                "4. All forests are mixed",
+                                                "5. All grasslands are high intensity",
+                                                "6. 50% more high intensity grasslands",
+                                                "7. All forests are mixed forests and all grasslands are low-intensity",
+                                                "8. Reforestation: 50% more forests",
+                                                "9. Equal proportions of mixed, coniferous and deciduous forests",
+                                                "10. 50% more low intensity grasslands",
+                                                "11. Low- and medium-intensity grasslands become coniferous forests",
+                                                "12. All grasslands are low intensity",
+                                                "13. All forests are coniferous and all grasslands are high intensity",
+                                                "14. 50% more grasslands",
+                                                "15. Equal proportions of grasslands, crops and forests",
+                                                "16. All forests are even-aged",
+                                                "19. All forests are uneven-aged",
+                                                "17. All forests are uneven-aged and grasslands low-intensity",
+                                                "18. Low-lui and med-lui grasslands become uneven-aged forests",
+                                                "19. Low- and medium-intensity grasslands become mixed forests"), 
                                    values = rep(c(22, 23, 24), 8)) +
 
                 geom_point(
@@ -323,7 +357,7 @@ for (crop_constrained in c(TRUE, FALSE
                     shape = Scenario_description,
                     fill = Scenario_description
                   ),
-                  size = 2,
+                  size = 3,
                   lwd = 0.5,
                   stroke = 1
                 ) +
@@ -333,7 +367,8 @@ for (crop_constrained in c(TRUE, FALSE
                  legend.title = element_blank(),
                  panel.spacing = unit(2, "lines"),
                  strip.background = element_blank(),
-                 strip.text.x = element_blank()
+                 strip.text.x = element_blank(),
+                 text = element_text(size=16)
                )  +
                    ylab('') + xlab('') +
                    new_scale_color() +
@@ -367,29 +402,31 @@ for (crop_constrained in c(TRUE, FALSE
                 if (R == 'All' & env_corr == 'env_corr' & by_region == FALSE  &
                     use_SB == FALSE & weighted == FALSE & forest_class == "Type" & crop_constrained == TRUE){
                 
+                Fig2wholerange = plot_big_plot(Community_MF_average_to_plot[variable == 'equity_diff',], Community_MF_average_by_predef[variable == 'equity_diff',])
                 Fig2 = plot_big_plot(Community_MF_average_to_plot[variable == 'equity_diff' &  mean_MF_diff > min_MF,], Community_MF_average_by_predef[variable == 'equity_diff',])
                 Fig4 = plot_big_plot(Community_MF_average_to_plot[variable != 'equity_diff' &  mean_MF_diff > min_MF,], Community_MF_average_by_predef[variable != 'equity_diff',])
                 Fig4 = Fig4 + scale_y_reverse()
                 
                 dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
                 
+               ggsave(plot = Fig2wholerange + theme(legend.position = 'none'),
+                file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF_wholerange.pdf", sep = ""
+                ),  width = 4.5, height = 3.8)
                ggsave(plot = Fig2 + theme(legend.position = 'none'),
-                file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF.pdf", sep = ""
-                ),  width = 6, height = 6)
-               ggsave(plot = Fig4 + theme(legend.position = 'none'),
+                      file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF.pdf", sep = ""
+                      ),  width = 8, height = 9)
+               ggsave(plot = Fig4 + theme(legend.position = 'none', panel.spacing = unit(5, "lines")),
                  file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_loss.pdf", sep = ""
-                 ),width = 8, height = 4)
+                 ),width = 9, height = 4)
                 }
                 
                # In all cases, save the non-cropped figure, all together, for SI 
-                
                 Fig2 =   plot_big_plot(Community_MF_average_to_plot[variable == 'equity_diff' & region == R,], Community_MF_average_by_predef[region == R & variable == 'equity_diff',])
                 Fig4 =   plot_big_plot(Community_MF_average_to_plot[variable != 'equity_diff' & region == R,], Community_MF_average_by_predef[region == R & variable != 'equity_diff',])
                 Fig4 =   Fig4+ scale_y_reverse()
                 
                 leg <- get_legend(Fig4)
                 gg_leg = as_ggplot(leg)
-                
                 
                 Fig2_4 = plot_grid(Fig2 + theme(legend.position = 'none'), Fig4 + theme(legend.position = 'none'), ncol = 2, rel_widths = c(1.05, 2))
 
@@ -770,11 +807,11 @@ for (crop_constrained in c(TRUE, FALSE
                   ggsave(  plot = gg_optimum_MF,  
                            file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                                          "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                                        "/constrained", crop_constrained, "/gg_optimum_MF", criteria, ".pdf", sep = ""  ),  width =  5,  height = 6)
+                                        "/constrained", crop_constrained, "/gg_optimum_MF", criteria, ".pdf", sep = ""  ),  width =  5,  height = 5)
                   ggsave(  plot = gg_optimum_services,  
                            file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                                         "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                                        "/constrained", crop_constrained, "/gg_optimum_services", criteria, ".pdf", sep = ""  ),  width =  5,  height = 6)
+                                        "/constrained", crop_constrained, "/gg_optimum_services", criteria, ".pdf", sep = ""  ),  width =  5,  height = 5)
                 
                   }
 
@@ -990,80 +1027,80 @@ for (crop_constrained in c(TRUE, FALSE
                     # Plot differences in landscape composition
                     # These plots show the % change in each land use type compared to baseline (changes management types are shown relative to land use type)
                    
-                    for (R in unique(Best_landscape_plus_baseline$region)){
-                     gg_diff_LU <-
-                      ggplot(
-                        Best_landscape_plus_baseline[region == R & variable %in% c("Crop",'Grassland_all', 'Forest_all', 'prop_grass_low', 'prop_grass_med', 'prop_grass_high',
-                                                                                   'prop_for_dec', 'prop_for_mix', 'prop_for_con', 'prop_for_ea', 'prop_for_ua'
-                        ), ],
-                        aes(
-                          Average_diff / no_plots * 100,
-                          x = variable,
-                          fill = variable,
-                          ymin = Average_diff / no_plots * 100 - CI / no_plots * 100,
-                          ymax = Average_diff / no_plots * 100 + CI / no_plots * 100
-                        )
-                      ) + # facet_grid(Metric ~ region + Forest_age_scenario) +
-                      ylab("Difference compare to the baseline") +
-                      geom_col() +
-                      scale_fill_manual(
-                        name = "LU type",
-                        values = c("darkorange","royalblue4", "darkolivegreen", "skyblue","skyblue3","skyblue4","olivedrab1","olivedrab3","olivedrab4","#ABE188","#00A375"
-                        ),
-                        breaks =
-                          c( "Crop", "Grassland_all", "Forest_all", "prop_grass_low", "prop_grass_med", "prop_grass_high", "prop_for_dec", "prop_for_mix", "prop_for_con", "prop_for_ea", "prop_for_ua"
-                          ),
-                        labels =
-                          c( "Crop", "Grassland (total)", "Forest (total)", "Grassland (low intensity)", "Grassland (medium intensity)", "Grassland (highintensity)", "Forest (deciduous)", "Forest (mixed)", "Forest (coniferous)", "Forest (even-aged)", "Forest (uneven-aged)"
-                    )
-                      ) + 
-                       scale_x_discrete( breaks =
-                                           c( "Crop", "Grassland_all", "Forest_all", "prop_grass_low", "prop_grass_med", "prop_grass_high", "prop_for_dec", "prop_for_mix", "prop_for_con", "prop_for_ea", "prop_for_ua"
-                                           ),
-                                         labels =
-                                           c( "Crop", "Grassland\n(total)", "Forest\n(total)", "Grassland\n(low intensity)", "Grassland\n(medium intensity)", "Grassland\n(high intensity)", "Forest\n(deciduous)", "Forest\n(mixed)", "Forest\n(coniferous)", "Forest\n(even-aged)", "Forest\n(uneven-aged)"
-                                           )) +
-                       geom_errorbar() +
-                       geom_vline(aes(xintercept =3.5), lwd = 2) +
-                       geom_text(data = Best_landscape_plus_baseline[region == R & variable %in% c("Crop","Grassland_all", "Forest_all", "Grassland_low","Grassland_medium","Grassland_high","Forest_Deciduous","Forest_Mixed","Forest_Coniferous","Forest_even_aged","Forest_uneven_aged"
-                       ), list(x = c(2, 6.5),
-                               y = max(Average_diff  / no_plots * 100 + CI / no_plots * 100, na.rm = T),
-                               lab = c('Land use types\nproportions', 'Land use management proportions\n(within land-use types)'))],
-                                  aes(x = x,
-                                      y = y,
-                                      label = lab), inherit.aes = F, size = 5) +
+              #     for (R in unique(Best_landscape_plus_baseline$region)){
+              #      gg_diff_LU <-
+              #       ggplot(
+              #         Best_landscape_plus_baseline[region == R & variable %in% c("Crop",'Grassland_all', 'Forest_all', 'prop_grass_low', 'prop_grass_med', 'prop_grass_high',
+              #                                                                    'prop_for_dec', 'prop_for_mix', 'prop_for_con', 'prop_for_ea', 'prop_for_ua'
+              #         ), ],
+              #         aes(
+              #           Average_diff / no_plots * 100,
+              #           x = variable,
+              #           fill = variable,
+              #           ymin = Average_diff / no_plots * 100 - CI / no_plots * 100,
+              #           ymax = Average_diff / no_plots * 100 + CI / no_plots * 100
+              #         )
+              #       ) + # facet_grid(Metric ~ region + Forest_age_scenario) +
+              #       ylab("Difference compare to the baseline") +
+              #       geom_col() +
+              #       scale_fill_manual(
+              #         name = "LU type",
+              #         values = c("darkorange","royalblue4", "darkolivegreen", "skyblue","skyblue3","skyblue4","olivedrab1","olivedrab3","olivedrab4","#ABE188","#00A375"
+              #         ),
+              #         breaks =
+              #           c( "Crop", "Grassland_all", "Forest_all", "prop_grass_low", "prop_grass_med", "prop_grass_high", "prop_for_dec", "prop_for_mix", "prop_for_con", "prop_for_ea", "prop_for_ua"
+              #           ),
+              #         labels =
+              #           c( "Crop", "Grassland (total)", "Forest (total)", "Grassland (low intensity)", "Grassland (medium intensity)", "Grassland (highintensity)", "Forest (deciduous)", "Forest (mixed)", "Forest (coniferous)", "Forest (even-aged)", "Forest (uneven-aged)"
+              #     )
+              #       ) + 
+              #        scale_x_discrete( breaks =
+              #                            c( "Crop", "Grassland_all", "Forest_all", "prop_grass_low", "prop_grass_med", "prop_grass_high", "prop_for_dec", "prop_for_mix", "prop_for_con", "prop_for_ea", "prop_for_ua"
+              #                            ),
+              #                          labels =
+              #                            c( "Crop", "Grassland\n(total)", "Forest\n(total)", "Grassland\n(low intensity)", "Grassland\n(medium intensity)", "Grassland\n(high intensity)", "Forest\n(deciduous)", "Forest\n(mixed)", "Forest\n(coniferous)", "Forest\n(even-aged)", "Forest\n(uneven-aged)"
+              #                            )) +
+              #        geom_errorbar() +
+              #        geom_vline(aes(xintercept =3.5), lwd = 2) +
+              #        geom_text(data = Best_landscape_plus_baseline[region == R & variable %in% c("Crop","Grassland_all", "Forest_all", "Grassland_low","Grassland_medium","Grassland_high","Forest_Deciduous","Forest_Mixed","Forest_Coniferous","Forest_even_aged","Forest_uneven_aged"
+              #        ), list(x = c(2, 6.5),
+              #                y = max(Average_diff  / no_plots * 100 + CI / no_plots * 100, na.rm = T),
+              #                lab = c('Land use types\nproportions', 'Land use management proportions\n(within land-use types)'))],
+              #                   aes(x = x,
+              #                       y = y,
+              #                       label = lab), inherit.aes = F, size = 5) +
            
-                      theme_bw() +
-                      xlab("") +
-                       theme(legend.position = 'bottom')
-                     
-                     gg_diff_LU
-                     
-                    ggsave(
-                      plot = gg_diff_LU,
-                      file =  paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                                    "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                                    "/constrained", crop_constrained, "/gg_diff_LU",criteria, ".pdf",sep = ""
-                      ),
-                      width =13
-                    )}
+              #       theme_bw() +
+              #       xlab("") +
+              #        theme(legend.position = 'bottom')
+              #      
+              #      gg_diff_LU
+              #      
+              #     ggsave(
+              #       plot = gg_diff_LU,
+              #       file =  paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+              #                     "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
+              #                     "/constrained", crop_constrained, "/gg_diff_LU",criteria, ".pdf",sep = ""
+              #       ),
+              #       width =13
+              #     )}
 
                     # Export best landscape composition to rerun whole analysis
-                    mean_export <- Average[, .SD, .SDcols = c( "region", "Grassland_low", "Grassland_medium", "Grassland_high", "Forest_Deciduous", "Forest_Mixed", "Forest_Coniferous", "Forest_even_aged", "Forest_uneven_aged", "Crop"
-                    )][, Scenario_description := paste( "Scenario_post_", env_corr, "_by_region", by_region,  "_SB", use_SB, "-weighted", weighted, "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, "", sep = ""
-                    )]
-                    # print('n')
-                    mean_no <- Community_MF_average[get(criteria) == 1, .N, by = region]
-                    # print('o')
-                    mean_export <- merge.data.table(mean_export, mean_no)[, Forest_classification := forest_class]
+               #     mean_export <- Average[, .SD, .SDcols = c( "region", "Grassland_low", "Grassland_medium", "Grassland_high", "Forest_Deciduous", "Forest_Mixed", "Forest_Coniferous", "Forest_even_aged", "Forest_uneven_aged", "Crop"
+               #     )][, Scenario_description := paste( "Scenario_post_", env_corr, "_by_region", by_region,  "_SB", use_SB, "-weighted", weighted, "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, "", sep = ""
+               #     )]
+               #     # print('n')
+               #     mean_no <- Community_MF_average[get(criteria) == 1, .N, by = region]
+               #     # print('o')
+               #     mean_export <- merge.data.table(mean_export, mean_no)[, Forest_classification := forest_class]
                     # print('p')
-                    write.csv(
-                      mean_export,
-                        paste("Results/",R, "/Scenario_post_",
-                        env_corr, "by_region", by_region, "_SB", use_SB, "-weighted", weighted,
-                        "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, ".csv", sep = ""
-                      )
-                    )
+                    #write.csv(
+                    #  mean_export,
+                    #    paste("Results/",R, "/Scenario_post_",
+                    #    env_corr, "by_region", by_region, "_SB", use_SB, "-weighted", weighted,
+                    #    "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, ".csv", sep = ""
+                      #)
+                   # )
                   }
                 }
               }
@@ -1073,4 +1110,4 @@ for (crop_constrained in c(TRUE, FALSE
       }
     
   }
-
+ 

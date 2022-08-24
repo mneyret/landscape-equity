@@ -1,5 +1,6 @@
-services = "../Temporary_data/All_ES_data_classif__regionFALSE_scale_withinTRUE.csv"
+services = "../Temporary_data/All_ES_data_classif_env_corr_regionFALSE_scale_withinTRUE.csv"
 services_ignore = ["Region", "LU", "Classif", "Classif2"]
+
 
 environments = "../Temporary_data/environments_new.csv"
 environments_ignore = ["Region", "LU"]
@@ -11,10 +12,10 @@ fungi_abundances = "../Temporary_data/Fungi_abundance.csv"
 bird_charism_abundances = "../Temporary_data/Birds_charism_abundance.csv" 
 
 
-scenario = "../Temporary_data/scenarios_new.csv"
+scenario = "../Temporary_data/scenarios_by_regionFALSE_constrainedFALSE.csv"
 max_tentative = 100
 replica = 200
 
-logfile = "../Temporary_data/output__regionFALSE_scale_withinTRUE.log"
-output_picked = "../Temporary_data/picked__regionFALSE_scale_withinTRUE.csv.gz"
-output_landscapes = "../Temporary_data/landscapes__regionFALSE_scale_withinTRUE.csv.gz"
+logfile = "../Temporary_data/output_env_corr_regionFALSE.log"
+output_picked = "../Temporary_data/picked_env_corr_regionFALSE.csv.gz"
+output_landscapes = "../Temporary_data/landscapes_env_corr_regionFALSE.csv.gz"

@@ -4,8 +4,8 @@
 
 # In this script, we calculate multifunctionality from all the generated scenarios
 
-# Input: 
-# Output: 
+# Input: Availability and power data, landscape simulation outputs
+# Output: Overall service values and multifunctionality for all stakeholders
 # -------------------------------------------------------------------------------------------
 
 library(data.table)
@@ -35,7 +35,20 @@ scale01 <- function(x) {
   return(y)
 }
 
-for (crop_constrained in c(FALSE, TRUE)) {
+### Parameters loop
+for (by_region in c(FALSE, TRUE
+)){ 
+  print(paste("by_region: ", by_region))
+  
+  # Load model for area correction
+  source(
+    "Area_correction.R"
+  )
+  
+  if (by_region == FALSE){ crop_choice = c(TRUE, FALSE)}
+  if (by_region == TRUE){ crop_choice = c(TRUE)}
+
+  for (crop_constrained in crop_choice) {
 
   #### Data ####
   # Priority and service availability
@@ -48,10 +61,6 @@ for (crop_constrained in c(FALSE, TRUE)) {
       "Temporary_data/Priority_Power.csv"
     )
 
-  ### Parameters loop
-  for (by_region in c(TRUE, FALSE
-                      )){ 
-    print(paste("by_region: ", by_region))
 
     # Scenario composition
     landscape_scenarios <-
@@ -126,11 +135,7 @@ for (crop_constrained in c(FALSE, TRUE)) {
     landscape_scenarios[Forest_Deciduous + Forest_Mixed + Forest_Coniferous > 0, Forest_age_scenario := "Type"]
     landscape_scenarios[Forest_Deciduous + Forest_Mixed + Forest_Coniferous + Forest_even_aged + Forest_uneven_aged == 0, Forest_age_scenario := "Both"]
 
-    # Load model for area correction
-    source(
-      "Area_correction.R"
-    )
-
+ 
     # * --- Loop on environment correction ####
     if (by_region == FALSE & crop_constrained == TRUE) {
       env_choices <- c("env_corr", "")
@@ -147,7 +152,7 @@ for (crop_constrained in c(FALSE, TRUE)) {
           env_corr,
           "_region",
           by_region,
-          ifelse(crop_constrained == TRUE, "constrained",''),
+          ifelse(crop_constrained == TRUE, "_cropconstrained",''),
           ".csv.gz",
           sep = ""
         )
@@ -763,37 +768,6 @@ for (crop_constrained in c(FALSE, TRUE)) {
             )
           )
           
-          for (R in unique(Data_detailed_melt$region)){
-            
-            plot_baseline <- ggplot(
-               Data_detailed_melt,
-               aes(x = Group,y = value,fill = variable,group = region)
-             ) + geom_col() + theme_bw() + xlab('')+
-               ylab("") + theme(legend.position = "none", 
-                                text = element_text(size=20),
-                                axis.ticks.y = element_blank(),
-                                axis.text.y = element_blank(), 
-                                panel.grid.minor =   element_blank()) +
-              coord_flip()+
-               scale_fill_manual(
-                 values = my_palette_services,
-                 breaks = c("Ric_w","Aesthetic_w","Reg_id_w","Leisure_w","Production_food_w","Production_livestock_w","Production_timber_w","Production_energy_w","Harvesting_w","Hunting_w","C_stock_w"))
-             
-          
-          dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-            "/SB", use_SB, "/weighted", weighted, "/forest", forest_class, 
-            "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
-            
-          ggsave(
-            plot = plot_baseline,
-            file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-            "/SB", use_SB, "/weighted", weighted, "/forest", forest_class, 
-            "/constrained", crop_constrained, "/plot_baseline_MF.pdf", sep = ""),
-            width = 5,
-            height = 6
-          )
-          }
-          
           #  *--- Loop on power weighting ####
           if (by_region == FALSE &
             crop_constrained == TRUE &
@@ -836,6 +810,41 @@ for (crop_constrained in c(FALSE, TRUE)) {
                 "concatenate"
               )]
             }
+            
+            
+            for (R in unique(Data_detailed_melt$region)){
+              plot_baseline <- ggplot(
+                Data_detailed_melt,
+                aes(x = Group,y = value,fill = variable,group = region)
+              ) + geom_col() + theme_bw() + xlab('')+
+                ylab("") + theme(legend.position = "none", 
+                                 text = element_text(size=20),
+                                 axis.ticks.y = element_blank(),
+                                 axis.text.y = element_blank(), 
+                                 panel.grid.minor =   element_blank()) +
+                coord_flip()+
+                scale_fill_manual(
+                  values = my_palette_services,
+                  breaks = c("Ric_w","Aesthetic_w","Reg_id_w","Leisure_w","Production_food_w","Production_livestock_w","Production_timber_w","Production_energy_w","Harvesting_w","Hunting_w","C_stock_w"))
+              
+              
+              dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                                         "/SB", use_SB, "/weighted", weighted, "/forest", forest_class, 
+                                         "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
+              
+              ggsave(
+                plot = plot_baseline,
+                file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
+                             "/SB", use_SB, "/weighted", weighted, "/forest", forest_class, 
+                             "/constrained", crop_constrained, "/plot_baseline_MF.pdf", sep = ""),
+                width = 5,
+                height = 6
+              )
+            }
+            
+            
+            
+            
             Community_services <- service_data2[, as.list(list(MEAN = mean(value, na.rm = T), SD = sd(value, na.rm = T))), by = c(
               'variable',
               "scenario",

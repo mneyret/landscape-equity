@@ -19,7 +19,7 @@ library(readxl)
 # Default parameters are used for the main results shown in the manuscript
 #         - by_region: should the optimisation should be done within (TRUE) or across regions (FALSE, default)
 #         - constrain_crop: is the proportion of cropland fixed to its baseline value? (efault: TRUE)
-
+setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition')
 for (constrain_crop in c(FALSE, TRUE)) {
   for (by_region in c(FALSE, TRUE)) {
     # Set number of plots per landscape

@@ -1,4 +1,4 @@
-services = "../Temporary_data/All_ES_data_classif_env_corr_regionFALSE_scale_withinTRUE.csv"
+services = "../Temporary_data/All_ES_data_classif__regionFALSE_scale_withinTRUE.csv"
 services_ignore = ["Region", "LU", "Classif", "Classif2"]
 
 environments = "../Temporary_data/environments_new.csv"
@@ -15,6 +15,6 @@ scenario = "../Temporary_data/scenarios_by_regionFALSE_constrainedTRUE.csv"
 max_tentative = 100
 replica = 200
 
-logfile = "../Temporary_data/output_env_corr_regionFALSE_scale_withinTRUE_cropconstrained.log"
-output_picked = "../Temporary_data/picked_env_corr_regionFALSE_scale_withinTRUE_cropconstrained.csv.gz"
-output_landscapes = "../Temporary_data/landscapes_env_corr_regionFALSE_scale_withinTRUEconstrained.csv.gz"
+logfile = "../Temporary_data/output__regionFALSE_cropconstrained.log"
+output_picked = "../Temporary_data/picked__regionFALSE_cropconstrained.csv.gz"
+output_landscapes = "../Temporary_data/landscapes__regionFALSE_cropconstrained.csv.gz"

@@ -8,11 +8,6 @@
 # Output: 
 # -------------------------------------------------------------------------------------------
 
-
-library(tidyr)
-library(mgcv)
-
-
 Plant_abundance = fread(
   'Temporary_data/Plants_abundance.csv'
 )
