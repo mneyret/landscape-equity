@@ -1,4 +1,4 @@
-# landscape-equity
+# Landscape for multifunctionality and equity
 
 This is the code necessary to replicate the results from Neyret et al. Landscape management strategies for multifunctionality and social equity. 
 
