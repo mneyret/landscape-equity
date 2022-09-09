@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------
-# This is part of the work used for the publication Neyret et al. 2022. Landscape management for multifunctionality and Equity. Nature Sustainability.
+# This is part of the work used for the publication Neyret et al. Landscape management for multifunctionality and Equity. In revision for Nature Sustainability.
 # by Margot Neyret
 
 # This script merges raw indicator data into one consistent ES dataframe,
@@ -18,7 +18,7 @@ library(zoo)
 library(plyr)
 library(ade4)
 
-setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition')
+setwd('~/Landscape_composition')
 set.seed(101)
 
 # Useful function
@@ -576,13 +576,7 @@ for (by_region in c(TRUE ,  FALSE
       ##### ENVIRONMENTAL CORRECTION #####
       # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% #
       # Soil and TWI data
-      #TWI_data <- fread("Raw_data/Data_to_load/31018_Dataset_5/Aggregated\ environmental\ and\ land\ use\ covariates\ of\ grassland\ EPs.csv")
-      #TWI_data[, Plot := EP_PlotID]
-      #TWI_data[, TWI := as.numeric(TW)]
-      
-      All_soil_data <- data.table(read_excel("/Users/Margot/Dropbox/P4_BEF-Up_SoCuDES/Environmental_data_for_correction/GP\ Soils\ and\ Carbon\ stocks\ master\ sheet\ with\ terrain.xlsx", sheet = 1))
-      All_soil_data[rw == 3515825 & hw == 5360120 & id == "A2277", PlotID := "A2277"]
-      All_soil_data <- merge(All_soil_data, Plot_id_matching[ActivePlot == "yes", c("EP_PlotID", "PlotID")], by = "PlotID")
+      All_soil_data <- fread('Raw_data/Data_to_load/31357_2_Dataset/31357_2_data.csv')
       All_soil_data$Core_depth <- All_soil_data[, "Core depth (cm)"]
       All_soil_data_f <- All_soil_data[, list(Exploratory,
                                               Plot = ifelse(nchar(EP_PlotID) == 5, EP_PlotID, paste(substr(EP_PlotID, 1, 3), 0, substr(EP_PlotID, 4, 4), sep = "")),

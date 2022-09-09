@@ -1,3 +1,13 @@
+# -------------------------------------------------------------------------------------------
+# This is part of the work used for the publication Neyret et al. Landscape management for multifunctionality and Equity. In revision for Nature Sustainability.
+# by Margot Neyret
+
+# In this script, we create the landscapes that will be used for the simulations
+
+# Input: Calculated service, multifunctionality and equity tables for all landscape scenarios
+# Output: Figures
+# -------------------------------------------------------------------------------------------
+
 library(data.table)
 library(vegan)
 library(ggplot2)
@@ -13,6 +23,7 @@ library(cowplot)
 library(ggcorrplot)
 library(ggpubr)
 
+setwd('~/Landscape_composition')
 
 scale01 <- function(x) {
   x <- as.numeric(x)
@@ -48,19 +59,19 @@ for (crop_constrained in c(TRUE#, FALSE
               com_file <-
                 paste( "Temporary_data/Community_average", 
                        env_corr, "-by_region", by_region,  "-SB", use_SB, "-weighted", weighted,
-                       "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
+                       "_forest", forest_class, "_constrained", crop_constrained, "_hunting0510.csv", sep = ""
                 )
               
               service_file <-
                 paste( "Temporary_data/Community_services", 
                        env_corr, "-by_region", by_region,  "-SB", use_SB, "-weighted", weighted, 
-                       "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
+                       "_forest", forest_class, "_constrained", crop_constrained, "_hunting0510.csv", sep = ""
                 )
               
               service_file_full = paste(
                 "Temporary_data/Community_services_full",
                 env_corr, "-by_region", by_region, "-SB", use_SB, 
-                "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
+                "_forest", forest_class, "_constrained", crop_constrained, "_hunting0510.csv", sep = ""
               )
          
               if (file.exists(com_file)) {
@@ -74,7 +85,6 @@ for (crop_constrained in c(TRUE#, FALSE
                 print("********** File does not exist, SKIPPED **************")
                 next
               }
-              
               
               Community_services_full[, is.MF := grepl('__MF', variable, perl = T)]
               
@@ -96,7 +106,7 @@ for (crop_constrained in c(TRUE#, FALSE
               Community_MF_average[, n_losers := - n_losers]
               
               # Decide maximum number of plots included in the best scenarios
-              n_max = 15#Community_MF_average[, length(unique(concatenate))] * 0.002
+              n_max = 15
               
               
               # Identification of focus scenarios: deforestation, good scenarios, best for biodiversity, best for conservation asso
@@ -410,13 +420,13 @@ for (crop_constrained in c(TRUE#, FALSE
                 dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
                 
                ggsave(plot = Fig2wholerange + theme(legend.position = 'none'),
-                file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF_wholerange.pdf", sep = ""
+                file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF_wholerange_hunting0510.pdf", sep = ""
                 ),  width = 4.5, height = 3.8)
                ggsave(plot = Fig2 + theme(legend.position = 'none'),
-                      file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF.pdf", sep = ""
+                      file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF_hunting0510.pdf", sep = ""
                       ),  width = 8, height = 9)
                ggsave(plot = Fig4 + theme(legend.position = 'none', panel.spacing = unit(5, "lines")),
-                 file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_loss.pdf", sep = ""
+                 file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_loss_hunting0510.pdf", sep = ""
                  ),width = 9, height = 4)
                 }
                 
@@ -433,12 +443,12 @@ for (crop_constrained in c(TRUE#, FALSE
                 dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
                 
                 ggsave(plot = gg_leg,
-                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/legend.pdf", sep = ""
+                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/legend_hunting0510.pdf", sep = ""
                        ))
                 
                 ggsave(plot = Fig2_4  + theme(legend.position = 'none'),
-                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/big_plot_MF.pdf", sep = ""
-                       ),  width = 8, height = 4)
+                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/big_plot_MF_hunting0510.pdf", sep = ""
+                       ),  width = 11, height = 4)
                 }
 
               ### Service correlation matrix
@@ -461,7 +471,7 @@ for (crop_constrained in c(TRUE#, FALSE
                          colors = c("#6D9EC1", "white", "#E46726"))
               
               ggsave(plot = cor_plot,
-                     file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/cor_plot.pdf", sep = ""
+                     file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/cor_plot_hunting0510.pdf", sep = ""
                      ),  width = 8, height = 8)
           
               
@@ -658,7 +668,7 @@ for (crop_constrained in c(TRUE#, FALSE
                 plot = landscape_box_baseline,
                 file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                               "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                             "/constrained", crop_constrained, "/landscape_baseline.pdf", sep = ""
+                             "/constrained", crop_constrained, "/landscape_baseline_hunting0510.pdf", sep = ""
                 ),
                 height = 6,
                 width = 6
@@ -698,7 +708,7 @@ for (crop_constrained in c(TRUE#, FALSE
                 plot = forest_plot,
                 file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                               "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                             "/constrained", crop_constrained, "/forest_plot.pdf", sep = ""
+                             "/constrained", crop_constrained, "/forest_plot_hunting0510.pdf", sep = ""
                 ),
                 height = 6,
                 width = 6
@@ -743,8 +753,6 @@ for (crop_constrained in c(TRUE#, FALSE
  "Hunting__MF", "Landowner__MF", "Forestry__MF", "Quarrying__MF", "Agric__MF"
                     )
                   )]
-                 # stakeholder_palette <- c( "#F4882A", "#F69E51", "#4C622D", "#6C8B40", "#82A84D", "#258EBB", "#33A5D7", "#55B4DD", "#77C3E4", "#88CBE7", "#6E7B8B", "#818D9C", "#98A2AE", "#BAC1C9"
-                 # )
 
                   plot_optimum_change[, group := factor(
                     gsub("__MF", "", variable),
@@ -769,21 +777,6 @@ for (crop_constrained in c(TRUE#, FALSE
                                      axis.text.y = element_blank(), 
                                      panel.grid.minor =   element_blank())
                   
-                  
-                #  gg_optimum_MF_abs <- ggplot(
-                #    plot_optimum_change[grepl("MF", variable) & plot_optimum_change$region == R, ],
-                #    aes(  mean_abs,  ymin = lower_abs,  ymax = upper_abs,  x = group),  fill = '#98A2AE'
-                #  ) + geom_col() + geom_errorbar() + theme_bw() +
-                #    geom_point(aes(y = value_baseline, x = group), color = 'black') +
-                #    ylab("") +
-                #    xlab("") +
-                #    coord_flip() + 
-                #    theme(legend.position = "none", 
-                #          text = element_text(size=18),
-                #          axis.ticks.y = element_blank(),
-                #          axis.text.y = element_blank(), 
-                #          panel.grid.minor =   element_blank())
-                  
                   gg_optimum_services <- ggplot(
                     plot_optimum_change[!grepl("MF", variable) & plot_optimum_change$region == R, ],
                     aes(  mean,  ymin = lower,  ymax = upper,  x = variable,  fill = variable)
@@ -800,18 +793,14 @@ for (crop_constrained in c(TRUE#, FALSE
                           axis.text.y = element_blank(), 
                           panel.grid.minor =   element_blank())
                   
-                 # ggsave(  plot = gg_optimum_MF_abs,  
-                 #          file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-                 #           "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                 #          "/constrained", crop_constrained, "/gg_optimum_MF_abs", criteria, ".pdf", sep = ""  ),  width =  5,  height = 6)
-                  ggsave(  plot = gg_optimum_MF,  
+                 ggsave(  plot = gg_optimum_MF,  
                            file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                                          "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                                        "/constrained", crop_constrained, "/gg_optimum_MF", criteria, ".pdf", sep = ""  ),  width =  5,  height = 5)
+                                        "/constrained", crop_constrained, "/gg_optimum_MF", criteria, "_hunting0510.pdf", sep = ""  ),  width =  5,  height = 5)
                   ggsave(  plot = gg_optimum_services,  
                            file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                                         "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                                        "/constrained", crop_constrained, "/gg_optimum_services", criteria, ".pdf", sep = ""  ),  width =  5,  height = 5)
+                                        "/constrained", crop_constrained, "/gg_optimum_services", criteria, "_hunting0510.pdf", sep = ""  ),  width =  5,  height = 5)
                 
                   }
 
@@ -873,13 +862,11 @@ for (crop_constrained in c(TRUE#, FALSE
                         fill = "#f48b30",
                         aes(  xmin = 0,  xmax = 1,  ymin = 0,  ymax = crop_top)
                       ) +
-                      # geom_emoji(aes(x= 0.5, y = plot_landscape$Crop/2), emoji = '1f33d') +
                       # Forests
                       geom_rect(
                         fill = "#c3d640",
                         aes(  xmin = 0,  xmax = forest_decid_right,  ymin = crop_top,  ymax = forest_top)
                       ) +
-                      # geom_emoji(aes(x=  plot_landscape$Forest_Deciduous/2, y = plot_landscape$Crop +  plot_landscape$Forest/2), emoji = '1f333') +
                       geom_rect(
                         fill = "#9cc947",
                         aes(   xmin = forest_decid_right,   xmax = forest_mixed_right,   ymin = crop_top,   ymax = forest_top )
@@ -887,7 +874,6 @@ for (crop_constrained in c(TRUE#, FALSE
                         fill = "#6c8b40",
                         aes(    xmin = forest_mixed_right,    xmax = 1,    ymin = crop_top,    ymax = forest_top  )
                       ) +
-                      #   geom_emoji(aes(x= plot_landscape$Forest_Deciduous + plot_landscape$Forest_Mixed + plot_landscape$Forest_Coniferous/2, y = plot_landscape$Crop +  plot_landscape$Forest/2), emoji = '1f332') +
 
                       # Grasslands
                       geom_rect(
@@ -940,7 +926,7 @@ for (crop_constrained in c(TRUE#, FALSE
                     file = 
                       paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                              "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                            "/constrained", crop_constrained, "/landscape_box", criteria, ".pdf", sep = ""
+                            "/constrained", crop_constrained, "/landscape_box", criteria, "_hunting0510.pdf", sep = ""
                     ),
                     height = 6,
                     width = 6
@@ -1022,85 +1008,7 @@ for (crop_constrained in c(TRUE#, FALSE
                       )), ]
                     }
 
-
                     Best_landscape_plus_baseline$variable <- droplevels(Best_landscape_plus_baseline$variable)
-                    # Plot differences in landscape composition
-                    # These plots show the % change in each land use type compared to baseline (changes management types are shown relative to land use type)
-                   
-              #     for (R in unique(Best_landscape_plus_baseline$region)){
-              #      gg_diff_LU <-
-              #       ggplot(
-              #         Best_landscape_plus_baseline[region == R & variable %in% c("Crop",'Grassland_all', 'Forest_all', 'prop_grass_low', 'prop_grass_med', 'prop_grass_high',
-              #                                                                    'prop_for_dec', 'prop_for_mix', 'prop_for_con', 'prop_for_ea', 'prop_for_ua'
-              #         ), ],
-              #         aes(
-              #           Average_diff / no_plots * 100,
-              #           x = variable,
-              #           fill = variable,
-              #           ymin = Average_diff / no_plots * 100 - CI / no_plots * 100,
-              #           ymax = Average_diff / no_plots * 100 + CI / no_plots * 100
-              #         )
-              #       ) + # facet_grid(Metric ~ region + Forest_age_scenario) +
-              #       ylab("Difference compare to the baseline") +
-              #       geom_col() +
-              #       scale_fill_manual(
-              #         name = "LU type",
-              #         values = c("darkorange","royalblue4", "darkolivegreen", "skyblue","skyblue3","skyblue4","olivedrab1","olivedrab3","olivedrab4","#ABE188","#00A375"
-              #         ),
-              #         breaks =
-              #           c( "Crop", "Grassland_all", "Forest_all", "prop_grass_low", "prop_grass_med", "prop_grass_high", "prop_for_dec", "prop_for_mix", "prop_for_con", "prop_for_ea", "prop_for_ua"
-              #           ),
-              #         labels =
-              #           c( "Crop", "Grassland (total)", "Forest (total)", "Grassland (low intensity)", "Grassland (medium intensity)", "Grassland (highintensity)", "Forest (deciduous)", "Forest (mixed)", "Forest (coniferous)", "Forest (even-aged)", "Forest (uneven-aged)"
-              #     )
-              #       ) + 
-              #        scale_x_discrete( breaks =
-              #                            c( "Crop", "Grassland_all", "Forest_all", "prop_grass_low", "prop_grass_med", "prop_grass_high", "prop_for_dec", "prop_for_mix", "prop_for_con", "prop_for_ea", "prop_for_ua"
-              #                            ),
-              #                          labels =
-              #                            c( "Crop", "Grassland\n(total)", "Forest\n(total)", "Grassland\n(low intensity)", "Grassland\n(medium intensity)", "Grassland\n(high intensity)", "Forest\n(deciduous)", "Forest\n(mixed)", "Forest\n(coniferous)", "Forest\n(even-aged)", "Forest\n(uneven-aged)"
-              #                            )) +
-              #        geom_errorbar() +
-              #        geom_vline(aes(xintercept =3.5), lwd = 2) +
-              #        geom_text(data = Best_landscape_plus_baseline[region == R & variable %in% c("Crop","Grassland_all", "Forest_all", "Grassland_low","Grassland_medium","Grassland_high","Forest_Deciduous","Forest_Mixed","Forest_Coniferous","Forest_even_aged","Forest_uneven_aged"
-              #        ), list(x = c(2, 6.5),
-              #                y = max(Average_diff  / no_plots * 100 + CI / no_plots * 100, na.rm = T),
-              #                lab = c('Land use types\nproportions', 'Land use management proportions\n(within land-use types)'))],
-              #                   aes(x = x,
-              #                       y = y,
-              #                       label = lab), inherit.aes = F, size = 5) +
-           
-              #       theme_bw() +
-              #       xlab("") +
-              #        theme(legend.position = 'bottom')
-              #      
-              #      gg_diff_LU
-              #      
-              #     ggsave(
-              #       plot = gg_diff_LU,
-              #       file =  paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
-              #                     "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-              #                     "/constrained", crop_constrained, "/gg_diff_LU",criteria, ".pdf",sep = ""
-              #       ),
-              #       width =13
-              #     )}
-
-                    # Export best landscape composition to rerun whole analysis
-               #     mean_export <- Average[, .SD, .SDcols = c( "region", "Grassland_low", "Grassland_medium", "Grassland_high", "Forest_Deciduous", "Forest_Mixed", "Forest_Coniferous", "Forest_even_aged", "Forest_uneven_aged", "Crop"
-               #     )][, Scenario_description := paste( "Scenario_post_", env_corr, "_by_region", by_region,  "_SB", use_SB, "-weighted", weighted, "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, "", sep = ""
-               #     )]
-               #     # print('n')
-               #     mean_no <- Community_MF_average[get(criteria) == 1, .N, by = region]
-               #     # print('o')
-               #     mean_export <- merge.data.table(mean_export, mean_no)[, Forest_classification := forest_class]
-                    # print('p')
-                    #write.csv(
-                    #  mean_export,
-                    #    paste("Results/",R, "/Scenario_post_",
-                    #    env_corr, "by_region", by_region, "_SB", use_SB, "-weighted", weighted,
-                    #    "_forest", forest_class, "_", criteria, "_constrained", crop_constrained, ".csv", sep = ""
-                      #)
-                   # )
                   }
                 }
               }
@@ -1111,3 +1019,4 @@ for (crop_constrained in c(TRUE#, FALSE
     
   }
  
+

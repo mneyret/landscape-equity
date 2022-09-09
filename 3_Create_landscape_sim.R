@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------
-# This is part of the work used for the publication Neyret et al. 2022. Landscape management for multifunctionality and Equity. Nature Sustainability.
+# This is part of the work used for the publication Neyret et al. Landscape management for multifunctionality and Equity. In revision for Nature Sustainability.
 # by Margot Neyret
 
 # In this script, we create the landscapes that will be used for the simulations
@@ -19,7 +19,7 @@ library(readxl)
 # Default parameters are used for the main results shown in the manuscript
 #         - by_region: should the optimisation should be done within (TRUE) or across regions (FALSE, default)
 #         - constrain_crop: is the proportion of cropland fixed to its baseline value? (efault: TRUE)
-setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition')
+setwd('~/Landscape_composition')
 for (constrain_crop in c(FALSE, TRUE)) {
   for (by_region in c(FALSE, TRUE)) {
     # Set number of plots per landscape

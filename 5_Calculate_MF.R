@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------
-# This is part of the work used for the publication Neyret et al. 2022. Landscape management for multifunctionality and Equity. Nature Sustainability.
+# This is part of the work used for the publication Neyret et al. Landscape management for multifunctionality and Equity. In revision for Nature Sustainability.
 # by Margot Neyret
 
 # In this script, we calculate multifunctionality from all the generated scenarios
@@ -23,7 +23,7 @@ library(cowplot)
 library(DescTools)
 library(tidyr)
 
-setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition')
+setwd('~/Landscape_composition')
 
 scale01 <- function(x) {
   x <- as.numeric(x)
@@ -36,7 +36,7 @@ scale01 <- function(x) {
 }
 
 ### Parameters loop
-for (by_region in c(FALSE, TRUE
+for (by_region in c(FALSE#, TRUE
 )){ 
   print(paste("by_region: ", by_region))
   
@@ -45,7 +45,8 @@ for (by_region in c(FALSE, TRUE
     "Area_correction.R"
   )
   
-  if (by_region == FALSE){ crop_choice = c(TRUE, FALSE)}
+  if (by_region == FALSE){ crop_choice = c(TRUE#, FALSE
+                                           )}
   if (by_region == TRUE){ crop_choice = c(TRUE)}
 
   for (crop_constrained in crop_choice) {
@@ -138,7 +139,8 @@ for (by_region in c(FALSE, TRUE
  
     # * --- Loop on environment correction ####
     if (by_region == FALSE & crop_constrained == TRUE) {
-      env_choices <- c("env_corr", "")
+      env_choices <- c("env_corr"#, ""
+                       )
     }   else {
       env_choices <- "env_corr"
     }
@@ -300,7 +302,7 @@ for (by_region in c(FALSE, TRUE
                             'Hunting_other_habitat_boar') := list(
                               Hunting_habitat_deer,
                               proportion_forests,
-                              ifelse(proportion_grasslands + Crop/no_plots <= 0.20, proportion_grasslands + Crop/no_plots, 0.20), # Change to check other habitat suitability thresholds
+                              ifelse(proportion_grasslands + Crop/no_plots <= 0.15, proportion_grasslands + Crop/no_plots, 0.15), # Change to check other habitat suitability thresholds
                               ifelse(proportion_grasslands + Crop/no_plots <= 0.10, proportion_grasslands + Crop/no_plots, 0.10)) # Change to check other habitat suitability thresholds
                             ]
        
@@ -361,13 +363,13 @@ for (by_region in c(FALSE, TRUE
       by = region
       ]
       
-      # There are some Nan for landscapes with only grasslands or crops, we replace them with 0
-     # if (is.nan(unique(sim_data_complete$Hunting_other_habitat_roe_deer))  == TRUE){
-     #   sim_data_complete$Hunting_other_habitat_roe_deer = 0
-     # }
-     # if (is.nan(unique(sim_data_complete$Hunting_other_habitat_boar))  == TRUE){
-     #   sim_data_complete$Hunting_other_habitat_boar = 0
-     # }
+      # There are some Nan for landscapes with  grasslands or crops above the limit for hunting, we replace them with 0
+      if (is.nan(unique(sim_data_complete$Hunting_other_habitat_roe_deer))  == TRUE){
+        sim_data_complete$Hunting_other_habitat_roe_deer = 0
+      }
+      if (is.nan(unique(sim_data_complete$Hunting_other_habitat_boar))  == TRUE){
+        sim_data_complete$Hunting_other_habitat_boar = 0
+      }
       
       ## Check: indicators min/max
      # sim_data_complete[, lapply(.SD, function(x) {
@@ -493,7 +495,8 @@ for (by_region in c(FALSE, TRUE
       # * --- Loop on SB ####
       if (by_region == FALSE &
         crop_constrained == TRUE & env_corr == "env_corr") {
-        SB_choices <- c(FALSE, TRUE)
+        SB_choices <- c(FALSE#, TRUE
+                        )
       } else {
         SB_choices <- FALSE
       }
@@ -572,7 +575,8 @@ for (by_region in c(FALSE, TRUE
         if (by_region == FALSE &
           crop_constrained == TRUE &
           env_corr == "env_corr" | use_SB == FALSE) {
-          forest_choices <- c("Type", "Age")
+          forest_choices <- c("Type"#, "Age"
+                              )
         } else {
           forest_choices <- "Type"
         }
@@ -773,7 +777,8 @@ for (by_region in c(FALSE, TRUE
             crop_constrained == TRUE &
             env_corr == "env_corr" |
             use_SB == FALSE | forest_class == "Type") {
-            weighting_choices <- c(TRUE, FALSE)
+            weighting_choices <- c(#TRUE, 
+              FALSE)
           }  else {
             weighting_choices <- FALSE
           }

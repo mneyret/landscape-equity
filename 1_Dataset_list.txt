@@ -59,7 +59,7 @@ Flower cover:
 - 21688_2_Dataset from https://www.bexis.uni-jena.de/ddm/data/Showdata/21688 (Not yet public at time of publication)
 
 Environmental data:
-- Aggregated environmental and land-use covariates of the 150 grassland EPs used in "Contrasting responses of above- and belowground diversity to multiple components of land-use intensity" Dataset: https://www.bexis.uni-jena.de/ddm/data/Showdata/31018 (Not yet public at time of publication)
+- TWI and soil depth data from https://www.bexis.uni-jena.de/ddm/Data/ShowData/31357
 - 14686_MinSoil_2011_Soil_Texture_1.9.13 from https://www.bexis.uni-jena.de/ddm/data/Showdata/14686 (OPEN)
 - 14447_8_Dataset from https://www.bexis.uni-jena.de/ddm/data/Showdata/14447 (OPEN)
 - 19067_3_Dataset from https://www.bexis.uni-jena.de/ddm/data/Showdata/19067 (OPEN)
