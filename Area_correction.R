@@ -4,8 +4,6 @@
 
 # In this script, we normalise plant richness by sampling area
 
-# Input: 
-# Output: 
 # -------------------------------------------------------------------------------------------
 
 Plant_abundance = fread(
@@ -58,4 +56,4 @@ gg_area = ggplot(Area_correction_data, aes(Ric_plants, x = Area)) +
  # geom_point(data = Area_correction_data[sites == 20,], color = 'skyblue3') +
   ylab('Plant richness') + xlab('Area covered (m2)')
   
-ggsave(gg_area, file = "Results/FigS8_plot_SAC.pdf", height = 5, width = 6)
+ggsave(gg_area, file = paste("Results/FigS8_plot_SAC_byregion", by_region, ".pdf", sep = ''), height = 5, width = 6)

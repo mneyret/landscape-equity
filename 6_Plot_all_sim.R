@@ -12,9 +12,9 @@ library(data.table)
 library(vegan)
 library(ggplot2)
 library(ggnewscale)
-library(ghibli)
+#library(ghibli)
 library(Hmisc)
-library(mgcv)
+#library(mgcv)
 library(readxl)
 library(boot)
 library(R.utils)
@@ -23,7 +23,7 @@ library(cowplot)
 library(ggcorrplot)
 library(ggpubr)
 
-setwd('~/Landscape_composition')
+setwd('~Landscape_composition')
 
 scale01 <- function(x) {
   x <- as.numeric(x)
@@ -37,41 +37,41 @@ scale01 <- function(x) {
 my_palette_services <- c("lightsteelblue1","lightsteelblue2","lightsteelblue3","lightsteelblue4","burlywood1","sandybrown","lightsalmon1","darksalmon","lightsalmon3","salmon4","paleturquoise4"
 )
 
-for (crop_constrained in c(TRUE#, FALSE
+for (crop_constrained in c(TRUE, FALSE
                            )) {
   for (by_region in c(#TRUE,
                     FALSE  
                     )) {
       # * --- Loop on environment correction ####
-      for (env_corr in c("env_corr"#, ""
+      for (env_corr in c("env_corr", ""
                          )) {
         # * --- Loop on SB ####
-        for (use_SB in c(FALSE#, TRUE
+        for (use_SB in c(FALSE, TRUE
                          )) {
 
           #  *--- Loop on Forest classification ####
-          for (forest_class in c("Type"#, "Age" 
+          for (forest_class in c("Type", "Age" 
                                  )) {
             #  *--- Loop on power weighting ####
-            for (weighted in c(FALSE#, TRUE 
+            for (weighted in c(FALSE, TRUE 
                                )) {
               
               com_file <-
                 paste( "Temporary_data/Community_average", 
                        env_corr, "-by_region", by_region,  "-SB", use_SB, "-weighted", weighted,
-                       "_forest", forest_class, "_constrained", crop_constrained, "_hunting0510.csv", sep = ""
+                       "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
                 )
               
               service_file <-
                 paste( "Temporary_data/Community_services", 
                        env_corr, "-by_region", by_region,  "-SB", use_SB, "-weighted", weighted, 
-                       "_forest", forest_class, "_constrained", crop_constrained, "_hunting0510.csv", sep = ""
+                       "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
                 )
               
               service_file_full = paste(
                 "Temporary_data/Community_services_full",
                 env_corr, "-by_region", by_region, "-SB", use_SB, 
-                "_forest", forest_class, "_constrained", crop_constrained, "_hunting0510.csv", sep = ""
+                "_forest", forest_class, "_constrained", crop_constrained, ".csv", sep = ""
               )
          
               if (file.exists(com_file)) {
@@ -361,7 +361,7 @@ for (crop_constrained in c(TRUE#, FALSE
                                    values = rep(c(22, 23, 24), 8)) +
 
                 geom_point(
-                  data = Community_MF_average_by_predef[region == R & !is.na(Scenario_description)  & mean_MF_diff > min_MF,],
+                  data = Community_MF_average_by_predef[region == R & !is.na(Scenario_description)  & mean_MF_diff >= min_MF,],
                   aes(
                     color = Scenario_description,
                     shape = Scenario_description,
@@ -413,20 +413,20 @@ for (crop_constrained in c(TRUE#, FALSE
                     use_SB == FALSE & weighted == FALSE & forest_class == "Type" & crop_constrained == TRUE){
                 
                 Fig2wholerange = plot_big_plot(Community_MF_average_to_plot[variable == 'equity_diff',], Community_MF_average_by_predef[variable == 'equity_diff',])
-                Fig2 = plot_big_plot(Community_MF_average_to_plot[variable == 'equity_diff' &  mean_MF_diff > min_MF,], Community_MF_average_by_predef[variable == 'equity_diff',])
-                Fig4 = plot_big_plot(Community_MF_average_to_plot[variable != 'equity_diff' &  mean_MF_diff > min_MF,], Community_MF_average_by_predef[variable != 'equity_diff',])
+                Fig2 = plot_big_plot(Community_MF_average_to_plot[variable == 'equity_diff' &  mean_MF_diff >= min_MF,], Community_MF_average_by_predef[variable == 'equity_diff',])
+                Fig4 = plot_big_plot(Community_MF_average_to_plot[variable != 'equity_diff' &  mean_MF_diff >= min_MF,], Community_MF_average_by_predef[variable != 'equity_diff',])
                 Fig4 = Fig4 + scale_y_reverse()
                 
                 dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
                 
                ggsave(plot = Fig2wholerange + theme(legend.position = 'none'),
-                file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF_wholerange_hunting0510.pdf", sep = ""
+                file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF_wholerange.pdf", sep = ""
                 ),  width = 4.5, height = 3.8)
                ggsave(plot = Fig2 + theme(legend.position = 'none'),
-                      file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF_hunting0510.pdf", sep = ""
+                      file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_MF.pdf", sep = ""
                       ),  width = 8, height = 9)
                ggsave(plot = Fig4 + theme(legend.position = 'none', panel.spacing = unit(5, "lines")),
-                 file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_loss_hunting0510.pdf", sep = ""
+                 file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/plot_loss.pdf", sep = ""
                  ),width = 9, height = 4)
                 }
                 
@@ -443,11 +443,11 @@ for (crop_constrained in c(TRUE#, FALSE
                 dir.create(file.path(paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/", sep = "")), recursive = T) 
                 
                 ggsave(plot = gg_leg,
-                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/legend_hunting0510.pdf", sep = ""
+                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/legend.pdf", sep = ""
                        ))
                 
                 ggsave(plot = Fig2_4  + theme(legend.position = 'none'),
-                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/big_plot_MF_hunting0510.pdf", sep = ""
+                       file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region,  "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/big_plot_MF.pdf", sep = ""
                        ),  width = 11, height = 4)
                 }
 
@@ -471,7 +471,7 @@ for (crop_constrained in c(TRUE#, FALSE
                          colors = c("#6D9EC1", "white", "#E46726"))
               
               ggsave(plot = cor_plot,
-                     file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/cor_plot_hunting0510.pdf", sep = ""
+                     file = paste( "Results/",R,"/env_corr", env_corr, "/by_region", by_region, "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, "/constrained", crop_constrained, "/cor_plot.pdf", sep = ""
                      ),  width = 8, height = 8)
           
               
@@ -668,7 +668,7 @@ for (crop_constrained in c(TRUE#, FALSE
                 plot = landscape_box_baseline,
                 file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                               "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                             "/constrained", crop_constrained, "/landscape_baseline_hunting0510.pdf", sep = ""
+                             "/constrained", crop_constrained, "/landscape_baseline.pdf", sep = ""
                 ),
                 height = 6,
                 width = 6
@@ -708,7 +708,7 @@ for (crop_constrained in c(TRUE#, FALSE
                 plot = forest_plot,
                 file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                               "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                             "/constrained", crop_constrained, "/forest_plot_hunting0510.pdf", sep = ""
+                             "/constrained", crop_constrained, "/forest_plot.pdf", sep = ""
                 ),
                 height = 6,
                 width = 6
@@ -735,8 +735,16 @@ for (crop_constrained in c(TRUE#, FALSE
                                            by = c("variable", "region" )] # calculate.ci(value_diff/value_baseline*100)
                   plot_optimum_change_abs <- Community_services_full2[keep_scenario == TRUE, list(
                     value = mean(value)), by = c("scenario","variable", "region" )][ ,
-                                                                                             as.list(CI(value, ci = 0.95)), 
+                  
+                                                                                                                                                              as.list(CI(value, ci = 0.95)), 
                                                                                                        by = c("variable", "region" )] # calculate.ci(value_diff/value_baseline*100)
+                  plot_optimum_all = Community_services_full2[keep_scenario == TRUE, list(
+                    value_relative = mean(value_relative), 
+                    group = factor(gsub("__MF", "", variable),
+                                                                          levels = c( "Quarrying", "Agric", "Hunting", "Forestry", "Landowner", "Tourism", "Loc_her_asso", "Policy_admin", "Press", "Locals", "Econ", "Nat_cons_asso", "Research", "Reg_dev_prog"
+                                                                          ))), by = c("scenario","variable", "region" )]
+                  plot_optimum_all[, Nscenarios := .N, by = c("variable", "region" )]
+                  
                   plot_optimum_change = merge.data.table(plot_optimum_change, plot_optimum_change_abs[, list( variable, region, 'upper_abs' = upper,'mean_abs' = mean, 'lower_abs' = lower)], all = T)
                   plot_optimum_change = merge.data.table(plot_optimum_change,
                                               Community_services_full2[keep_scenario == TRUE, list(
@@ -775,10 +783,14 @@ for (crop_constrained in c(TRUE#, FALSE
                                      text = element_text(size=20),
                                      axis.ticks.y = element_blank(),
                                      axis.text.y = element_blank(), 
-                                     panel.grid.minor =   element_blank())
+                                     panel.grid.minor =   element_blank())+ # Add points
+                    geom_jitter(data = plot_optimum_all[region == R & grepl('__MF', variable),], aes(x = group, y = value_relative), inherit.aes = F, width = 0.1, alpha = 0.25, size = 0.9)+
+                    annotate(geom= 'text', x = +Inf, y = Inf, label = paste('n = ', unique(plot_optimum_all[region == R,]$Nscenarios)),  vjust = 1.5, hjust = 1.5, size = 6)
+                  
+                  
                   
                   gg_optimum_services <- ggplot(
-                    plot_optimum_change[!grepl("MF", variable) & plot_optimum_change$region == R, ],
+                    plot_optimum_change[!grepl("MF", variable) & variable != 'N' & plot_optimum_change$region == R, ],
                     aes(  mean,  ymin = lower,  ymax = upper,  x = variable,  fill = variable)
                   ) +
                      geom_col() + geom_errorbar() + theme_bw() + ylab("") +
@@ -791,16 +803,20 @@ for (crop_constrained in c(TRUE#, FALSE
                           text = element_text(size=20),
                           axis.ticks.y = element_blank(),
                           axis.text.y = element_blank(), 
-                          panel.grid.minor =   element_blank())
+                          panel.grid.minor =   element_blank()) + # Add points
+                    geom_jitter(data = Community_services_full2[region == R & keep_scenario == TRUE & variable != 'N' & !grepl('_MF', variable), list(
+                      value_relative = mean(value_relative)), by = c("scenario","variable", "region" )], aes(x = variable, y = value_relative), inherit.aes = F, width = 0.1, alpha = 0.25, size = 0.9)+
+                    annotate(geom= 'text', x = +Inf, y = Inf, label = paste('n = ', unique(plot_optimum_all[region == R,]$Nscenarios)),  vjust = 1.5, hjust = 1.5, size = 6)
+                  
                   
                  ggsave(  plot = gg_optimum_MF,  
                            file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                                          "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                                        "/constrained", crop_constrained, "/gg_optimum_MF", criteria, "_hunting0510.pdf", sep = ""  ),  width =  5,  height = 5)
-                  ggsave(  plot = gg_optimum_services,  
+                                        "/constrained", crop_constrained, "/gg_optimum_MF", criteria, ".pdf", sep = ""  ),  width =  5,  height = 5)
+                 ggsave(  plot = gg_optimum_services,  
                            file = paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                                         "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                                        "/constrained", crop_constrained, "/gg_optimum_services", criteria, "_hunting0510.pdf", sep = ""  ),  width =  5,  height = 5)
+                                        "/constrained", crop_constrained, "/gg_optimum_services", criteria, ".pdf", sep = ""  ),  width =  5,  height = 5)
                 
                   }
 
@@ -926,12 +942,13 @@ for (crop_constrained in c(TRUE#, FALSE
                     file = 
                       paste("Results/",R,"/env_corr", env_corr, "/by_region", by_region, 
                              "/SB", use_SB, "/weighted", weighted,  "/forest", forest_class, 
-                            "/constrained", crop_constrained, "/landscape_box", criteria, "_hunting0510.pdf", sep = ""
+                            "/constrained", crop_constrained, "/landscape_box", criteria, ".pdf", sep = ""
                     ),
                     height = 6,
                     width = 6
                   )
-}}
+                  }
+                  }
 
                   ## Calculate confidence intervals for scenarios fitting the criteria
                   # The data is strongly not-normal so we need bootstrap confidence intervals

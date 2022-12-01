@@ -8,7 +8,6 @@
 # Output: Full scenarios table including most possible landscape compositions
 # -------------------------------------------------------------------------------------------
 
-library(tictoc)
 library(ade4)
 library(geometry)
 library(data.table)
