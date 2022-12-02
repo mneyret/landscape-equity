@@ -1117,7 +1117,7 @@ Priority[, Stakeholder := dplyr::recode(Group,
   
 
   # Export fig S2
-  my_palette_services <- c("lightsteelblue1","lightsteelblue2","lightsteelblue3","lightsteelblue4","burlywood1","sandybrown","lightsalmon1","darksalmon","lightsalmon3","salmon4","paleturquoise4")[11:1]
+  my_palette_services <- c("lightsteelblue1","lightsteelblue2","lightsteelblue3","lightsteelblue4","burlywood1","sandybrown","lightsalmon1","darksalmon","lightsalmon3","salmon4","paleturquoise4")#[11:1]
   priority_plot = ggplot(Priority_stakeholder#[Category == 'Stakeholder',]
                          , aes(Priority *100, x = Group, fill = Service_name)) +
     geom_col() + theme_bw() + theme(legend.position ='bottom') +
@@ -1128,7 +1128,7 @@ Priority[, Stakeholder := dplyr::recode(Group,
     scale_x_discrete(breaks=c( "Hunting",  "Forestry", "Landowner", "Econ", "Nat_cons_asso", "Research", "Reg_dev_prog", "Quarrying", "Agric", "Tourism", "Loc_her_asso", "Policy_admin", "Press", "Locals"),
                      labels=c( "Hunting",  "Forestry\nsector", "Land\nowner", "Local\neconomy", "Nature\ncons. asso.", "Scientific\nresearch", "Regional dev.\nprog.", "Quarrying\nsector", "Agricultural\nsector", "Tourism\nsector", "Local\nheritage\nasso.", "Policy and\npublic admin", "Local\npress", "Local\nresidents"))
   
-  ggsave(priority_plot,file =  '/Users/Margot/Desktop/Research/Senckenberg/Documents/Papers/Landscape_P4/FigS2.pdf', height = 5, width = 10)
+  ggsave(priority_plot,file =  'Results/FigS2.pdf', height = 5, width = 10)
   
   
   # Cast for merge with additional data
