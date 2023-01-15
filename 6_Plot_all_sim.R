@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------
-# This is part of the work used for the publication Neyret et al. Landscape management for multifunctionality and Equity. In revision for Nature Sustainability.
+# This is part of the work used for the publication Neyret et al. (2023) Landscape management for multifunctionality and equity. Nature Sustainability. 10.1038/s41893-022-01045-w
 # by Margot Neyret
 
 # In this script, we create the landscapes that will be used for the simulations
@@ -37,23 +37,23 @@ scale01 <- function(x) {
 my_palette_services <- c("lightsteelblue1","lightsteelblue2","lightsteelblue3","lightsteelblue4","burlywood1","sandybrown","lightsalmon1","darksalmon","lightsalmon3","salmon4","paleturquoise4"
 )
 
-for (crop_constrained in c(TRUE, FALSE
+for (crop_constrained in c(TRUE#, FALSE
                            )) {
   for (by_region in c(#TRUE,
                     FALSE  
                     )) {
       # * --- Loop on environment correction ####
-      for (env_corr in c("env_corr", ""
+      for (env_corr in c("env_corr"#, ""
                          )) {
         # * --- Loop on SB ####
-        for (use_SB in c(FALSE, TRUE
+        for (use_SB in c(FALSE#, TRUE
                          )) {
 
           #  *--- Loop on Forest classification ####
-          for (forest_class in c("Type", "Age" 
+          for (forest_class in c("Type"#, "Age" 
                                  )) {
             #  *--- Loop on power weighting ####
-            for (weighted in c(FALSE, TRUE 
+            for (weighted in c(FALSE#, TRUE 
                                )) {
               
               com_file <-
@@ -693,7 +693,8 @@ for (crop_constrained in c(TRUE, FALSE
               }
               Best_forest = Community_MF_average_maxforest[, get_best(.SD), .SDcols = c('value', 'Forest_tot'), by = c('variable','region') ]
               
-              forest_plot = ggplot(Community_MF_average_maxforest, aes(value, x = Forest_tot)) + geom_jitter(alpha = 0.2, width = 0.01) + geom_smooth(color = 'darkgreen') + theme_bw() +
+              forest_plot = ggplot(Community_MF_average_maxforest, aes(value, x = Forest_tot)) + 
+                geom_jitter(alpha = 0.2, width = 0.01) + geom_smooth(color = 'darkgreen') + theme_bw() +
                 facet_wrap(~variable, nrow = 2, scales = "free_y") +
                 geom_vline(data = Best_forest, aes(xintercept = Forest_tot)) +
                 geom_vline(data =  Baseline_composition_melt[, list(Forest_tot = sum(baseline[variable %in% c('Forest_Deciduous', 'Forest_Mixed','Forest_Coniferous','Forest_even_aged', 'Forest_uneven_aged')])/

@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------
-# This is part of the work used for the publication Neyret et al. Landscape management for multifunctionality and Equity. In revision for Nature Sustainability.
+# This is part of the work used for the publication Neyret et al. (2023) Landscape management for multifunctionality and equity. Nature Sustainability. 10.1038/s41893-022-01045-w
 # by Margot Neyret
 
 # In this script, we create the landscapes that will be used for the simulations

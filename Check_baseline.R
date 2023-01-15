@@ -1,6 +1,5 @@
 # -------------------------------------------------------------------------------------------
-# This is part of the work used for the publication Neyret et al. 2022. Landscape management for multifunctionality and Equity. Nature Sustainability.
-# by Margot Neyret
+# This is part of the work used for the publication Neyret et al. (2023) Landscape management for multifunctionality and equity. Nature Sustainability. 10.1038/s41893-022-01045-w
 
 # This script identifies what are the current proportions of different land uses in the regions to use as a baseline in the models
 
@@ -17,7 +16,7 @@ library(rgeos)
 library(sf)
 library(data.table)
 
-setwd('~/Desktop/Research/Senckenberg/Project_Sophie_P4/Landscape_composition')
+setwd('Landscape_composition')
 
 # %%%%%%%%%%%%%%%% #
 #### Grasslands ####
@@ -162,7 +161,7 @@ Alb_rast = extract(corine, Alb)
 Hai_rast = extract(corine, Hai)
 Sch_rast = extract(corine, Sch)
 #Germany_rast = mask( corine, Germany)
-#Germany_ex = extract( Germany_rast, Germany)
+Germany_ex = extract( Germany_rast, Germany)
 #Germany_list = 
 
 cropAlb <- crop(corine, extent(Alb))
@@ -183,8 +182,9 @@ Germany_table = data.table(Value = Germany_list)
 clcLeg[, Value := as.numeric(Raster_value)]
 
 All_table = merge(All_table[, Value := as.numeric(Value)], clcLeg[, c('Value', 'Label')])
-#Germany_table = merge(Germany_table[, Value := as.numeric(Value)], clcLeg[, c('Value', 'Label')])
-#fwrite(Germany_table, 'Temporary_data/Germany_baseline.csv')
+Germany_table = merge(Germany_table[, Value := as.numeric(Value)], clcLeg[, c('Value', 'Label')])
+fwrite(Germany_table, 'Temporary_data/Germany_baseline.csv')
+#Germany_baseline = fread( 'Temporary_data/Germany_baseline.csv')
 Germany_short = Germany_table[, list(N = .N), by = 'Label']
 Germany_short[, Land_use_type := dplyr::recode(Label, 'Continuous urban fabric' = 'remove',
                                                'Discontinuous urban fabric' = 'remove',

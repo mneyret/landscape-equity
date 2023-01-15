@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------------------
-# This is part of the work used for the publication Neyret et al. 2022. Landscape management for multifunctionality and Equity. Nature Sustainability.
+# This is part of the work used for the publication NNeyret et al. (2023) Landscape management for multifunctionality and equity. Nature Sustainability. 10.1038/s41893-022-01045-w
 # by Margot Neyret
 
 # In this script, raw data of acoustic diversity and NDSI is formatted into a usable form.
